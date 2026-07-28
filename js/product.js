@@ -214,7 +214,7 @@
   function ctaText() {
     var p = state.product;
     var bits = [
-      'Good day. I would like to commission the ' + p.name + ' (' + p.ref + ').',
+      'Good day. I would like to commission ' + p.name + ' (' + p.ref + ').',
       'Hide: ' + (state.hide || p.hide) + '.'
     ];
     bits.push(state.initials ? 'Initials for the brass shank: ' + state.initials + '.'
