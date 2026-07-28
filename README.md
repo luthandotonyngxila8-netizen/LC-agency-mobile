@@ -3,7 +3,7 @@
 Static site for **Asekho Twaku Apparels**, a 27-year exotic-leather house in East London,
 South Africa. Plain HTML, CSS and vanilla JS. No framework, no build step, no dependencies.
 
-Built to the LUSTRA replication spec (LC Agency), **Skin B — Asekho-native**.
+Built to the LUSTRA replication spec (LC Agency), in **Skin C — Highveld Spring**.
 
 ## Running it
 
@@ -34,32 +34,44 @@ js/main.js          reveals, chrome sweep, marquee, drawer, search, toggles, for
 js/collection.js    builds the collection grid
 js/product.js       builds the product page
 data/products.json  six seeded products
-images/             placeholder imagery (WebP + JPEG) and the AT logo assets
+images/             placeholder imagery (WebP + JPEG), the AT logo assets, and the
+                    one real photograph in the build (hero + backpack card)
 ```
 
 ## Design system
 
-Tokens live at the top of `css/style.css`:
+Skin C — **Highveld Spring**. Warm light grounds, a four-colour accent family taken
+from an Eastern Cape spring, and espresso bookends (header and footer) so the chrome
+AT monogram still reads. Tokens live at the top of `css/style.css`:
 
 | Token | Value | Role |
 |---|---|---|
-| `--obsidian` | `#050505` | page ground |
-| `--graphite` | `#14161A` | raised bands |
-| `--steel` | `#6E7780` | hairlines |
-| `--bone` | `#E7E1D6` | text — never pure white |
-| `--cognac` | `#8A4B2A` | the single accent: eyebrows, solid CTA, italic accent words, active states |
-| `--chrome-1/2/3` | `#FDFEFF` `#A8B0B8` `#E6EBEF` | the chrome gradient stops |
+| `--ivory` | `#FBF6EE` | page ground, warm with a peach cast |
+| `--sand` | `#F3E9D9` | raised band, sunlit leather |
+| `--mist` | `#EAEFE4` | raised band, new-grass tint |
+| `--espresso` | `#221A14` | header, footer, hero grounds |
+| `--ink` | `#2C231C` | body text — a warm near-black, never pure |
+| `--cognac` | `#9C5228` | primary accent: CTAs, eyebrows, active states |
+| `--coral` | `#C4472A` | the spring pop: accent words, callouts, markers |
+| `--veld` | `#4F6B3C` | growth: sourcing, skills transfer, confirmations |
+| `--ochre` | `#C08A2E` | sun: badges and small fills |
+| `--brass-1/2/3` | `#8A5A2B` `#F0D6AE` `#B4813F` | the swept-headline gradient |
+
+Grounds rotate ivory → sand → mist down the page, with a coral `--band--bloom` wash
+on the closing invitation of each page. Dark sections (header, drawer, footer, heroes,
+craft blocks) don't get their own rules — they remap the contextual tokens
+(`--fg`, `--fg-72`, `--rule`) so every component works on either ground.
 
 Type is **Cormorant Garamond** for display and body, **Jost** uppercase at `0.3em`
-tracking for eyebrows, labels and nav. Sections alternate obsidian → graphite down
-the page. A tileable grain sits over everything at ~3.8% opacity.
+tracking for eyebrows, labels and nav. A paper tooth sits over the light grounds at
+~5.5% opacity, multiplied.
 
-**The signature:** exactly one chrome-swept headline per page — the chrome gradient is
-clipped to the text and its specular highlight sweeps once when the headline scrolls in.
-Everything else stays flat.
+**The signature:** exactly one brass-swept headline per page — the gradient is clipped
+to the text and its highlight sweeps once when the headline scrolls in. Everything else
+stays flat.
 
-Switching to **Skin A** (the LUSTRA palette) is a token swap only — the block is
-commented into `css/style.css` right below the token list.
+The earlier dark build (Skin B — obsidian ground, chrome sweep) is in the git history
+if it is ever wanted back.
 
 ## Motion
 
