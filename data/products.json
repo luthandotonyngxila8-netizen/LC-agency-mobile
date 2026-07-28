@@ -1,0 +1,218 @@
+{
+  "currency": "ZAR",
+  "whatsapp": "27XXXXXXXXX",
+  "products": [
+    {
+      "id": "weekender-1999",
+      "ref": "AT-W1999",
+      "category": "Travel",
+      "name": "The 1999 Weekender",
+      "hide": "Ostrich",
+      "price": 14500,
+      "priceNote": "Price includes VAT and delivery anywhere in South Africa.",
+      "materialLine": "Full-quill South African ostrich. Vegetable-tanned full-grain lining. Solid brass, no plating.",
+      "moodLine": "Packed on a Thursday night. Still in the family in 2050.",
+      "images": [
+        { "src": "images/product-weekender-01", "alt": "The 1999 Weekender in full-quill ostrich, front three-quarter view" },
+        { "src": "images/product-weekender-02", "alt": "Close detail of the quill pattern across the Weekender's front panel" },
+        { "src": "images/product-weekender-03", "alt": "The Weekender open, showing the full-grain lining and structured pockets" }
+      ],
+      "video": "",
+      "hideOptions": ["Ostrich", "Crocodile", "Nguni"],
+      "personalisation": { "enabled": true, "maxChars": 3, "label": "Brass shank, stamped with your initials" },
+      "editorial": [
+        {
+          "heading": "Why this one exists",
+          "body": "The Weekender is the bag Asekho built for himself first, in 1999, out of an offcut nobody else wanted. It has been redrawn four times since. The proportions have not changed: wide enough for three days, narrow enough to sit at your feet on a bus to Mthatha."
+        },
+        {
+          "heading": "The quill",
+          "body": "Full-quill means the panels come from the prime back of the bird, where the follicles stand proud. We cut so the quill field runs unbroken across the front — which costs hide, and is the whole point. No two fronts match. Yours will be read at a glance across a room."
+        },
+        {
+          "heading": "How it ages",
+          "body": "Ostrich takes on a soft sheen where your hand falls. The lining darkens first, then the corners, then the base. Twenty-seven years of these bags coming back for repair has taught us that people do not want them to look new. They want them to look theirs."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "520 mm wide × 300 mm high × 250 mm deep",
+          "Holds three days of clothing, or two and a suit",
+          "Handle drop 170 mm — carries in the hand or over the forearm",
+          "Detachable shoulder strap, adjustable 900–1400 mm",
+          "Weighs 1.9 kg empty"
+        ],
+        "Materials": [
+          "Full-quill ostrich, South African, chrome-free tanned",
+          "Lining: vegetable-tanned full-grain cowhide, 1.2 mm",
+          "Hardware: solid brass, unplated, sand-cast and hand-polished",
+          "Thread: waxed polyester, 0.8 mm, saddle-stitched",
+          "Feet: five brass studs on a reinforced base"
+        ],
+        "Details": [
+          "Two internal slip pockets, one zipped",
+          "14-inch laptop sleeve, padded, full-grain faced",
+          "Brass shank on the handle collar, stamped with your initials",
+          "Rolled and stitched handles, not folded and glued",
+          "Edges hand-burnished and waxed, four passes"
+        ],
+        "The Making": [
+          "Cut by hand from a single hide where the panels allow",
+          "Saddle-stitched throughout — two needles, one thread, no machine lock",
+          "Six to eight weeks from deposit to collection",
+          "Built by Asekho and two makers in the East London workshop",
+          "Numbered on the shank if it is a 1999 Series piece"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed, upright, out of direct sun",
+          "Brass will dull to a warm brown. Leave it, or polish it. Both are correct.",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": true,
+      "related": ["sovereign-attache", "buffalo-street-holdall"]
+    },
+    {
+      "id": "buffalo-street-holdall",
+      "ref": "AT-H04",
+      "category": "Travel",
+      "name": "The Buffalo Street Holdall",
+      "hide": "Nguni",
+      "price": 9800,
+      "priceNote": "Price includes VAT and delivery anywhere in South Africa.",
+      "materialLine": "Hair-on Nguni hide with full-grain gussets. Brass hardware. Canvas-free.",
+      "moodLine": "Every one is a different animal. That is not a defect.",
+      "images": [
+        { "src": "images/product-holdall-01", "alt": "The Buffalo Street Holdall in hair-on Nguni hide, front view" },
+        { "src": "images/product-holdall-02", "alt": "Close detail of the Nguni hair-on panel and its natural markings" },
+        { "src": "images/product-holdall-03", "alt": "The Holdall's reinforced base and brass feet" }
+      ],
+      "video": "",
+      "hideOptions": ["Nguni", "Springbok", "Zebra"],
+      "personalisation": { "enabled": true, "maxChars": 3, "label": "Brass shank, stamped with your initials" },
+      "editorial": [
+        {
+          "heading": "The hide chooses the bag",
+          "body": "Nguni cattle carry their own map — every hide is patterned differently, and we cut to the pattern rather than against it. You are not choosing a colourway. You are choosing an animal, and we will send you a photograph of the actual hide before we cut it."
+        },
+        {
+          "heading": "Built for the road, not the shelf",
+          "body": "Named for the street the first workshop sat on. Short handles, wide mouth, a base that takes a knock. It is the bag people buy when they have already ruined two nylon ones."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "480 mm wide × 280 mm high × 240 mm deep",
+          "Two days of clothing, or a gym kit and boots",
+          "Handle drop 150 mm",
+          "Detachable shoulder strap, adjustable 900–1400 mm",
+          "Weighs 1.6 kg empty"
+        ],
+        "Materials": [
+          "Hair-on Nguni hide, sourced from Eastern Cape herds",
+          "Gussets and base: full-grain vegetable-tanned cowhide",
+          "Lining: brushed cotton drill over a leather-faced base",
+          "Hardware: solid brass, unplated",
+          "Thread: waxed polyester, 0.8 mm, saddle-stitched"
+        ],
+        "Details": [
+          "One internal zipped pocket, two slip pockets",
+          "Full-grain base panel with five brass feet",
+          "Brass shank on the handle collar, stamped with your initials",
+          "Rolled leather handles, stitched through",
+          "Hair-on panels sealed at the edge so they do not shed"
+        ],
+        "The Making": [
+          "Hide selected and photographed for you before cutting",
+          "Cut to the animal's own markings, never trimmed to match",
+          "Saddle-stitched throughout",
+          "Four to six weeks from deposit to collection",
+          "Built in the East London workshop"
+        ],
+        "Care": [
+          "Brush the hair with the grain, dry, with a soft brush",
+          "Keep it out of standing water — hair-on holds damp",
+          "Condition the leather gussets twice a year",
+          "Store upright and stuffed",
+          "Bring it back for repair whenever it needs it"
+        ]
+      },
+      "series1999": false,
+      "related": ["weekender-1999", "sovereign-attache"]
+    },
+    {
+      "id": "sovereign-attache",
+      "ref": "AT-A11",
+      "category": "Business",
+      "name": "The Sovereign Attaché",
+      "hide": "Crocodile",
+      "price": 24500,
+      "priceNote": "Price includes VAT and delivery anywhere in South Africa.",
+      "materialLine": "Nile crocodile belly, CITES-documented. Full-grain interior. Solid brass locks.",
+      "moodLine": "It does not announce itself. It does not need to.",
+      "images": [
+        { "src": "images/product-attache-01", "alt": "The Sovereign Attaché in Nile crocodile belly leather, front view" },
+        { "src": "images/product-attache-02", "alt": "Close detail of the crocodile belly scale pattern across the front panel" },
+        { "src": "images/product-attache-03", "alt": "The Attaché open, showing the padded fourteen-inch laptop sleeve" }
+      ],
+      "video": "",
+      "hideOptions": ["Crocodile", "Ostrich"],
+      "personalisation": { "enabled": true, "maxChars": 3, "label": "Brass shank, stamped with your initials" },
+      "editorial": [
+        {
+          "heading": "Belly, centred",
+          "body": "Crocodile is judged on the belly — the small, even scales down the centre line. We centre that line on the front panel and let it run out to the sides, which means the two halves of the bag are cut from opposite ends of the same skin. It is the most expensive way to lay a pattern and the only one worth doing."
+        },
+        {
+          "heading": "Papers included",
+          "body": "Every crocodile piece leaves the workshop with its CITES documentation. Keep it with the bag. It travels with you, and it is what separates a legitimate skin from a story."
+        },
+        {
+          "heading": "A working bag",
+          "body": "Fourteen-inch laptop, a folder of paper, a charger, and nothing rattling. The lid closes flat because the gussets are cut, not gathered. It stands up on its own when you put it down."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "400 mm wide × 300 mm high × 90 mm deep",
+          "Fits a 14-inch laptop, A4 folders and a notebook",
+          "Handle drop 110 mm",
+          "Optional detachable shoulder strap",
+          "Weighs 1.4 kg empty"
+        ],
+        "Materials": [
+          "Nile crocodile belly, CITES-documented, farm-sourced",
+          "Interior: vegetable-tanned full-grain cowhide, 1.2 mm",
+          "Hardware: solid brass locks and fittings, unplated",
+          "Thread: waxed polyester, 0.6 mm, saddle-stitched",
+          "Reinforced base with four brass studs"
+        ],
+        "Details": [
+          "Twin brass turn-locks, hand-fitted",
+          "Padded 14-inch laptop sleeve, leather-faced",
+          "Three document dividers and two pen slots",
+          "Brass shank inside the lid, stamped with your initials",
+          "Edges hand-burnished and waxed, four passes"
+        ],
+        "The Making": [
+          "Belly line centred on the front panel by hand",
+          "Front and back cut from opposite ends of one skin",
+          "Saddle-stitched throughout",
+          "Eight to ten weeks from deposit to collection",
+          "Built by Asekho personally"
+        ],
+        "Care": [
+          "Wipe with a dry cloth after use",
+          "Condition twice a year with a neutral cream, sparingly",
+          "Never store in plastic — the scales need air",
+          "Keep the CITES paperwork with the bag",
+          "Bring it back for repair whenever it needs it"
+        ]
+      },
+      "series1999": true,
+      "related": ["weekender-1999", "buffalo-street-holdall"]
+    }
+  ]
+}
