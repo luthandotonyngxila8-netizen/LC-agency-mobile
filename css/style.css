@@ -471,7 +471,10 @@ body::after{
   font-family:var(--label);font-weight:400;font-size:12px;letter-spacing:.22em;
   text-transform:uppercase;color:var(--fg);
 }
-.feature-list .sub{font-style:italic;color:var(--fg-52)}
+/* stacked, the description belongs under the label — not auto-placed back into
+   the 34px marker column, where it wraps a word per line */
+.feature-list .sub{grid-column:2;font-style:italic;color:var(--fg-52)}
+@media (min-width:760px){.feature-list .sub{grid-column:3}}
 
 /* --- 14. Craftsmanship blocks ------------------------------------------- */
 .craft{position:relative;border-radius:14px;overflow:hidden;min-height:clamp(300px,46vw,520px);display:flex;align-items:flex-end}
@@ -683,7 +686,9 @@ textarea.field{min-height:150px;resize:vertical;line-height:1.7}
 .accordion details{border-bottom:1px solid var(--rule)}
 .accordion summary{
   list-style:none;cursor:pointer;padding:clamp(18px,2.6vw,24px) 0;
-  display:flex;justify-content:space-between;align-items:center;gap:20px;
+  /* grid, not flex: the question is an anonymous item, and as a flex item it
+     shrinks to its longest word instead of using the row it has been given */
+  display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px;
   font-family:var(--label);font-weight:400;font-size:12px;letter-spacing:.2em;text-transform:uppercase;
   transition:color .35s var(--ease);
 }
