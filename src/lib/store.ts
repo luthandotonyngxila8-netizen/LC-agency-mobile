@@ -27,12 +27,22 @@ function newId(): string {
 }
 
 export class LocalTaskStore implements TaskStore {
+  /**
+   * Holds the tasks when localStorage is unavailable — private browsing, a
+   * sandboxed iframe, or a full quota. Without it, writes would fail silently
+   * and every edit would vanish on the next read.
+   */
+  private fallback: Task[] | null = null
+
   private read(): Task[] {
+    // A fresh array each read: callers put this straight into React state, and
+    // returning the same reference would make React skip the re-render.
+    if (this.fallback) return [...this.fallback]
     try {
       const raw = localStorage.getItem(STORAGE_KEY)
       if (raw) return JSON.parse(raw) as Task[]
     } catch {
-      // Corrupt or unavailable storage falls through to the seed below.
+      // Corrupt or unreadable storage falls through to the seed below.
     }
     const seeded = seedTasks()
     this.write(seeded)
@@ -42,8 +52,9 @@ export class LocalTaskStore implements TaskStore {
   private write(tasks: Task[]): void {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks))
+      this.fallback = null
     } catch {
-      // Private-browsing quota errors shouldn't break the demo.
+      this.fallback = tasks
     }
   }
 
@@ -116,9 +127,16 @@ export class LocalTaskStore implements TaskStore {
   }
 }
 
-/** Wipes local state so the demo can be reset between walkthroughs. */
+/**
+ * Wipes local state so the demo can be reset between walkthroughs. Callers
+ * reload afterwards, which also clears the in-memory fallback above.
+ */
 export function resetDemoData(): void {
-  localStorage.removeItem(STORAGE_KEY)
+  try {
+    localStorage.removeItem(STORAGE_KEY)
+  } catch {
+    // Nothing stored to clear; the reload handles it.
+  }
 }
 
 export const taskStore: TaskStore = new LocalTaskStore()

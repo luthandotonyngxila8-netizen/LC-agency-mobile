@@ -16,6 +16,17 @@ npm run build    # production build into dist/
 The build output in `dist/` is plain static files — it can be dropped on any host
 (Netlify, Vercel, Cloudflare Pages, S3, a folder on a server).
 
+### Sharing the demo as one file
+
+```bash
+npm run build && npm run build:demo
+```
+
+That writes `demo/finini-dashboard-demo.html`: the whole app — markup, styles and
+JavaScript — inlined into a single file with no external references. It can be emailed,
+opened straight off a phone, or hosted anywhere. Handy for sending the client something
+to click without standing up hosting first.
+
 ## What the demo covers
 
 **1. Timeline progress view — the "Week 1 of Week 4" screen.**
