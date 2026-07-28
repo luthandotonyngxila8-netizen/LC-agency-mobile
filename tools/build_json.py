@@ -43,7 +43,7 @@ HIDE_STORY = {
 MAKING = [
     "Cut by hand in the East London workshop",
     "Made to order — nothing here is cut before it is ordered",
-    "Built by a house that has been working leather since 1997",
+    "Built by a house that has been working leather since 1999",
     "Part of the workshop's skills-transfer programme in East London and Mdantsane",
 ]
 
