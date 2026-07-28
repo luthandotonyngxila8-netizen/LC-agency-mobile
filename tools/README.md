@@ -15,5 +15,16 @@ rebuilt rather than hand-edited.
   `tools/originals/`. Files are matched on their `IMG_####` numbers.
 - `crop.py` — finds the photograph inside a phone screenshot, so the WhatsApp
   catalogue captures in the source set lose their UI chrome.
+- `build_preview.py` — flattens the whole site into one self-contained HTML file
+  for showing the client: fonts, CSS, JS and images all inlined, the eight pages
+  become hash routes, and nothing is fetched from the network. Writes two files
+  into `build/`:
+  - `asekho-twaku-preview.html` — for a host that supplies its own `<head>`.
+  - `asekho-twaku-apparels-preview.html` — a complete document, for sending to
+    someone to open off their own device.
+
+  Both degrade if the viewer strips scripts (phone file previews do): the pages
+  show stacked with a banner, rather than a blank screen. It fails the build
+  rather than emit a preview where any real page link survived the rewrite.
 
 Needs Pillow. `numpy` is only used by `crop.py`.
