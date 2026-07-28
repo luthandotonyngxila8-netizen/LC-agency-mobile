@@ -6,7 +6,7 @@
   var root = document.getElementById('pdp-root');
   if (!root) return;
 
-  var state = { product: null, hide: null, initials: '' };
+  var state = { product: null, finish: null, initials: '' };
 
   function esc(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
@@ -54,9 +54,9 @@
 
   function pillars() {
     return '<div class="pillars" data-reveal>' +
-      '<div><p class="t">Made to order</p><p class="s">Six to ten weeks, cut for you</p></div>' +
-      '<div><p class="t">Repaired for life</p><p class="s">Stitching, always, at no charge</p></div>' +
-      '<div><p class="t">Couriered free</p><p class="s">Anywhere in South Africa</p></div>' +
+      '<div><p class="t">Made to order</p><p class="s">Cut for you, never off a shelf</p></div>' +
+      '<div><p class="t">Repaired where it was made</p><p class="s">Bring it back whenever it needs it</p></div>' +
+      '<div><p class="t">East London workshop</p><p class="s">Collection or courier, nationwide</p></div>' +
     '</div>';
   }
 
@@ -75,12 +75,13 @@
     '</div>';
   }
 
-  function hideSelector(p) {
-    if (!p.hideOptions || !p.hideOptions.length) return '';
-    return '<div><span class="label-caps" id="hide-label">Hide</span>' +
+  /* Standing colourways, where the workshop keeps more than one running. */
+  function finishSelector(p) {
+    if (!p.finishes || !p.finishes.length) return '';
+    return '<div class="finish-block"><span class="label-caps" id="hide-label">' + esc(p.finishLabel || 'Finish') + '</span>' +
       '<div class="hide-select" role="group" aria-labelledby="hide-label">' +
-      p.hideOptions.map(function (h, i) {
-        return '<button type="button" data-hide="' + esc(h) + '" aria-pressed="' + (i === 0) + '">' + esc(h) + '</button>';
+      p.finishes.map(function (h, i) {
+        return '<button type="button" data-finish="' + esc(h) + '" aria-pressed="' + (i === 0) + '">' + esc(h) + '</button>';
       }).join('') + '</div></div>';
   }
 
@@ -94,7 +95,7 @@
       '<p class="material-line mt-m">' + esc(p.materialLine) + '</p>' +
       '<p class="mood-line">' + esc(p.moodLine) + '</p>' +
       personalise(p) +
-      hideSelector(p) +
+      finishSelector(p) +
       '<a class="btn btn--solid btn--block" id="commission-cta" href="#">Start Your Commission</a>' +
       '<p class="small-note mt-s center">Opens WhatsApp. No deposit until you have a figure in writing.</p>' +
     '</div>';
@@ -124,12 +125,13 @@
 
   function policies() {
     var items = [
-      ['Delivery', 'Couriered free anywhere in South Africa, insured, signature on delivery. ' +
-        'International delivery is quoted per country — exotic hides need their paperwork checked against ' +
-        'the destination first. Collection from the East London workshop is always welcome.'],
-      ['Repairs &amp; care', 'Stitching is repaired free for the life of the piece. Handles, hardware, lining ' +
-        'and base work are quoted at materials cost before we start. Bring it in once a year and we will ' +
-        'condition it while you wait, at no charge.'],
+      ['Delivery', 'Couriered nationwide, insured, signature on delivery — the delivery figure is confirmed ' +
+        'with your quote. International delivery is quoted per country, because exotic hides need their ' +
+        'paperwork checked against the destination first. Collection from the East London workshop is ' +
+        'always welcome.'],
+      ['Repairs &amp; care', 'We repair what we make, for as long as you own it. Bring the piece back to the ' +
+        'workshop and we will tell you what it needs and what it costs before we start — and if it is a ' +
+        'stitch, it is usually not a conversation worth having.'],
       ['Returns &amp; exchanges', 'A made-to-order piece is cut for one person, so it cannot be returned once ' +
         'the hide is cut, and a stamped piece cannot be exchanged. Manufacturing defects are repaired or ' +
         'remade at our cost, and nothing here limits your rights under the Consumer Protection Act.']
@@ -143,10 +145,14 @@
 
   function faq(p) {
     var items = [
-      ['How long does it take?', 'Six to eight weeks for ostrich and Nguni, eight to ten for crocodile. ' +
-        'If we are going to be late, you will hear it from us before the date, not after it.'],
-      ['Can I change the hide?', 'Yes. ' + esc(p.name) + ' is cut in ' + esc(p.hideOptions.join(', ')) +
-        ' as standard, and most pieces can be built in any of the five hides in the house. Ask on WhatsApp.'],
+      ['How long does it take?', 'Every piece is made to order, so it depends on the hide and on what is ' +
+        'already on the bench. You will have a date before you pay a deposit, not after — and if we are ' +
+        'going to be late, you will hear it from us before the date, not after it.'],
+      ['Can I change the hide or the colour?', (p.finishes && p.finishes.length
+          ? esc(p.name) + ' runs as standard in ' + esc(p.finishes.join(', ')) + '. '
+          : esc(p.name) + ' is shown here in ' + esc(p.hide) + '. ') +
+        'Most pieces can be built in another hide or another colour — ask on WhatsApp and we will tell you ' +
+        'what it does to the figure before you commit.'],
       ['Will it look exactly like the photograph?', 'No, and it should not. Quill spacing, scale pattern and ' +
         'Nguni markings differ on every hide. We photograph your actual hide before cutting.'],
       ['What if it wears out?', 'Bring it back. We made it, so we can open it — for as long as you own it, ' +
@@ -215,11 +221,12 @@
     var p = state.product;
     var bits = [
       'Good day. I would like to commission ' + p.name + ' (' + p.ref + ').',
-      'Hide: ' + (state.hide || p.hide) + '.'
+      (p.finishes && p.finishes.length
+        ? 'Finish: ' + (state.finish || p.finishes[0]) + '.'
+        : 'Hide: ' + p.hide + '.')
     ];
-    bits.push(state.initials ? 'Initials for the brass shank: ' + state.initials + '.'
-                             : 'No initials on the shank.');
-    bits.push('Please send me a figure and a lead time.');
+    if (state.initials) bits.push('Initials: ' + state.initials + '.');
+    bits.push('Please confirm the figure and the lead time.');
     return bits.join(' ');
   }
 
@@ -257,13 +264,13 @@
       });
     }
 
-    var hides = document.querySelector('.hide-select');
-    if (hides) {
-      hides.addEventListener('click', function (e) {
-        var btn = e.target.closest('button[data-hide]');
+    var finishes = document.querySelector('.hide-select');
+    if (finishes) {
+      finishes.addEventListener('click', function (e) {
+        var btn = e.target.closest('button[data-finish]');
         if (!btn) return;
-        state.hide = btn.getAttribute('data-hide');
-        Array.prototype.forEach.call(hides.querySelectorAll('button'), function (b) {
+        state.finish = btn.getAttribute('data-finish');
+        Array.prototype.forEach.call(finishes.querySelectorAll('button'), function (b) {
           b.setAttribute('aria-pressed', String(b === btn));
         });
         updateCta();
@@ -291,7 +298,7 @@
       if (!p) { notFound(); return; }
 
       state.product = p;
-      state.hide = (p.hideOptions && p.hideOptions[0]) || p.hide;
+      state.finish = (p.finishes && p.finishes[0]) || null;
 
       document.title = p.name + ' — Asekho Twaku Apparels';
       var meta = document.querySelector('meta[name="description"]');

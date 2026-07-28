@@ -1,518 +1,2361 @@
 {
   "currency": "ZAR",
   "whatsapp": "27796448562",
+  "categories": [
+    "Handbags",
+    "Backpacks",
+    "Travel",
+    "Business",
+    "Heritage",
+    "Apparel",
+    "Interiors"
+  ],
   "products": [
     {
-      "id": "weekender-1999",
-      "ref": "AT-W1999",
-      "category": "Travel",
-      "name": "The 1999 Weekender",
-      "hide": "Ostrich",
-      "price": 14500,
-      "priceNote": "Price includes VAT and delivery anywhere in South Africa.",
-      "materialLine": "Full-quill South African ostrich. Vegetable-tanned full-grain lining. Solid brass, no plating.",
-      "moodLine": "Packed on a Thursday night. Still in the family in 2050.",
+      "id": "ola-bag",
+      "ref": "AT-OL1",
+      "category": "Handbags",
+      "name": "AT Ola Bag",
+      "hide": "Full-grain",
+      "price": 4090,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Black full-grain cowhide. Cut-out handles, taken out of the panel rather than stitched on. Appliquéd AT monogram in white hide.",
+      "moodLine": "An open tote that carries a laptop, a lunch and a day.",
       "images": [
         {
-          "src": "images/product-weekender-01",
-          "alt": "The 1999 Weekender in full-quill ostrich, front three-quarter view"
+          "src": "images/products/ola-bag-01",
+          "alt": "The AT Ola Bag in black full-grain, three-quarter view, white AT monogram on the front panel"
         },
         {
-          "src": "images/product-weekender-02",
-          "alt": "Close detail of the quill pattern across the Weekender's front panel"
+          "src": "images/products/ola-bag-02",
+          "alt": "The Ola Bag square to camera, showing the cut-out handle and open top"
         },
         {
-          "src": "images/product-weekender-03",
-          "alt": "The Weekender open, showing the full-grain lining and structured pockets"
+          "src": "images/products/ola-bag-03",
+          "alt": "The Ola Bag from the side, showing the depth of the body and the folded top edge"
         }
       ],
       "video": "",
-      "hideOptions": [
-        "Ostrich",
-        "Crocodile",
-        "Nguni"
-      ],
+      "finishLabel": "Finish",
+      "finishes": [],
       "personalisation": {
-        "enabled": true,
+        "enabled": false,
         "maxChars": 3,
-        "label": "Brass shank, stamped with your initials"
+        "label": ""
       },
       "editorial": [
         {
-          "heading": "Why this one exists",
-          "body": "The Weekender is the bag Asekho built for himself first, in 1999, out of an offcut nobody else wanted. It has been redrawn four times since. The proportions have not changed: wide enough for three days, narrow enough to sit at your feet on a bus to Mthatha."
-        },
-        {
-          "heading": "The quill",
-          "body": "Full-quill means the panels come from the prime back of the bird, where the follicles stand proud. We cut so the quill field runs unbroken across the front — which costs hide, and is the whole point. No two fronts match. Yours will be read at a glance across a room."
+          "heading": "What it is",
+          "body": "An open-top tote with the handles cut straight out of the body panel, so there is nothing to work loose. The white AT monogram is appliquéd, not printed — a second piece of hide, stitched down."
         },
         {
           "heading": "How it ages",
-          "body": "Ostrich takes on a soft sheen where your hand falls. The lining darkens first, then the corners, then the base. Twenty-seven years of these bags coming back for repair has taught us that people do not want them to look new. They want them to look theirs."
+          "body": "Full-grain is the whole top of the hide, with nothing sanded off to hide a scar. It marks, and it is supposed to — the surface darkens where it is handled and the colour moves over years rather than months. It is the leather that looks worse in a photograph and better after five."
         }
       ],
       "specs": {
         "Size & Fit": [
-          "520 mm wide × 300 mm high × 250 mm deep",
-          "Holds three days of clothing, or two and a suit",
-          "Handle drop 170 mm — carries in the hand or over the forearm",
-          "Detachable shoulder strap, adjustable 900–1400 mm",
-          "Weighs 1.9 kg empty"
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
         ],
         "Materials": [
-          "Full-quill ostrich, South African, chrome-free tanned",
-          "Lining: vegetable-tanned full-grain cowhide, 1.2 mm",
-          "Hardware: solid brass, unplated, sand-cast and hand-polished",
-          "Thread: waxed polyester, 0.8 mm, saddle-stitched",
-          "Feet: five brass studs on a reinforced base"
+          "Black full-grain cowhide. Cut-out handles, taken out of the panel rather than stitched on. Appliquéd AT monogram in white hide."
         ],
         "Details": [
-          "Two internal slip pockets, one zipped",
-          "14-inch laptop sleeve, padded, full-grain faced",
-          "Brass shank on the handle collar, stamped with your initials",
-          "Rolled and stitched handles, not folded and glued",
-          "Edges hand-burnished and waxed, four passes"
+          "Open top, no closure — made to be reached into",
+          "Cut-out handles, taken from the body panel",
+          "Appliquéd AT monogram in contrast hide",
+          "Flat base, stands on its own when loaded"
         ],
         "The Making": [
-          "Cut by hand from a single hide where the panels allow",
-          "Saddle-stitched throughout — two needles, one thread, no machine lock",
-          "Six to eight weeks from deposit to collection",
-          "Built on the main factory floor in East London",
-          "Numbered on the shank if it is a 1999 Series piece"
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
         ],
         "Care": [
           "Wipe with a dry cloth. Never soak.",
           "Condition twice a year with a neutral cream — no silicone",
-          "Store stuffed, upright, out of direct sun",
-          "Brass will dull to a warm brown. Leave it, or polish it. Both are correct.",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
           "Bring it back for repair whenever it needs it, for as long as you own it"
         ]
       },
-      "series1999": true,
-      "related": [
-        "sovereign-attache",
-        "nguni-holdall"
-      ]
-    },
-    {
-      "id": "nguni-holdall",
-      "ref": "AT-H04",
-      "category": "Travel",
-      "name": "The Nguni Holdall",
-      "hide": "Nguni",
-      "price": 9800,
-      "priceNote": "Price includes VAT and delivery anywhere in South Africa.",
-      "materialLine": "Hair-on Nguni hide with full-grain gussets. Brass hardware. Canvas-free.",
-      "moodLine": "Every one is a different animal. That is not a defect.",
-      "images": [
-        {
-          "src": "images/product-holdall-01",
-          "alt": "The Nguni Holdall in hair-on Nguni hide, front view"
-        },
-        {
-          "src": "images/product-holdall-02",
-          "alt": "Close detail of the Nguni hair-on panel and its natural markings"
-        },
-        {
-          "src": "images/product-holdall-03",
-          "alt": "The Holdall's reinforced base and brass feet"
-        }
-      ],
-      "video": "",
-      "hideOptions": [
-        "Nguni",
-        "Springbok",
-        "Zebra"
-      ],
-      "personalisation": {
-        "enabled": true,
-        "maxChars": 3,
-        "label": "Brass shank, stamped with your initials"
-      },
-      "editorial": [
-        {
-          "heading": "The hide chooses the bag",
-          "body": "Nguni cattle carry their own map — every hide is patterned differently, and we cut to the pattern rather than against it. You are not choosing a colourway. You are choosing an animal, and we will send you a photograph of the actual hide before we cut it."
-        },
-        {
-          "heading": "Built for the road, not the shelf",
-          "body": "Short handles, a wide mouth and a base that takes a knock. It is the bag people buy when they have already ruined two nylon ones, and the one that comes back from a Transkei road trip looking better than it left."
-        }
-      ],
-      "specs": {
-        "Size & Fit": [
-          "480 mm wide × 280 mm high × 240 mm deep",
-          "Two days of clothing, or a gym kit and boots",
-          "Handle drop 150 mm",
-          "Detachable shoulder strap, adjustable 900–1400 mm",
-          "Weighs 1.6 kg empty"
-        ],
-        "Materials": [
-          "Hair-on Nguni hide, sourced from Eastern Cape herds",
-          "Gussets and base: full-grain vegetable-tanned cowhide",
-          "Lining: brushed cotton drill over a leather-faced base",
-          "Hardware: solid brass, unplated",
-          "Thread: waxed polyester, 0.8 mm, saddle-stitched"
-        ],
-        "Details": [
-          "One internal zipped pocket, two slip pockets",
-          "Full-grain base panel with five brass feet",
-          "Brass shank on the handle collar, stamped with your initials",
-          "Rolled leather handles, stitched through",
-          "Hair-on panels sealed at the edge so they do not shed"
-        ],
-        "The Making": [
-          "Hide selected and photographed for you before cutting",
-          "Cut to the animal's own markings, never trimmed to match",
-          "Saddle-stitched throughout",
-          "Four to six weeks from deposit to collection",
-          "Built in the East London factory on Settlers Way"
-        ],
-        "Care": [
-          "Brush the hair with the grain, dry, with a soft brush",
-          "Keep it out of standing water — hair-on holds damp",
-          "Condition the leather gussets twice a year",
-          "Store upright and stuffed",
-          "Bring it back for repair whenever it needs it"
-        ]
-      },
       "series1999": false,
       "related": [
-        "weekender-1999",
-        "sovereign-attache"
+        "opulance-clutch-bag",
+        "exclusive-europeana"
       ]
     },
     {
-      "id": "sovereign-attache",
-      "ref": "AT-A11",
+      "id": "exclusive-mens-wallet",
+      "ref": "AT-WL2",
       "category": "Business",
-      "name": "The Sovereign Attaché",
-      "hide": "Crocodile",
-      "price": 24500,
-      "priceNote": "Price includes VAT and delivery anywhere in South Africa.",
-      "materialLine": "Nile crocodile belly, CITES-documented. Full-grain interior. Solid brass locks.",
-      "moodLine": "It does not announce itself. It does not need to.",
-      "images": [
-        {
-          "src": "images/product-attache-01",
-          "alt": "The Sovereign Attaché in Nile crocodile belly leather, front view"
-        },
-        {
-          "src": "images/product-attache-02",
-          "alt": "Close detail of the crocodile belly scale pattern across the front panel"
-        },
-        {
-          "src": "images/product-attache-03",
-          "alt": "The Attaché open, showing the padded fourteen-inch laptop sleeve"
-        }
-      ],
-      "video": "",
-      "hideOptions": [
-        "Crocodile",
-        "Ostrich"
-      ],
-      "personalisation": {
-        "enabled": true,
-        "maxChars": 3,
-        "label": "Brass shank, stamped with your initials"
-      },
-      "editorial": [
-        {
-          "heading": "Belly, centred",
-          "body": "Crocodile is judged on the belly — the small, even scales down the centre line. We centre that line on the front panel and let it run out to the sides, which means the two halves of the bag are cut from opposite ends of the same skin. It is the most expensive way to lay a pattern and the only one worth doing."
-        },
-        {
-          "heading": "Papers included",
-          "body": "Every crocodile piece leaves the workshop with its CITES documentation. Keep it with the bag. It travels with you, and it is what separates a legitimate skin from a story."
-        },
-        {
-          "heading": "A working bag",
-          "body": "Fourteen-inch laptop, a folder of paper, a charger, and nothing rattling. The lid closes flat because the gussets are cut, not gathered. It stands up on its own when you put it down."
-        }
-      ],
-      "specs": {
-        "Size & Fit": [
-          "400 mm wide × 300 mm high × 90 mm deep",
-          "Fits a 14-inch laptop, A4 folders and a notebook",
-          "Handle drop 110 mm",
-          "Optional detachable shoulder strap",
-          "Weighs 1.4 kg empty"
-        ],
-        "Materials": [
-          "Nile crocodile belly, CITES-documented, farm-sourced",
-          "Interior: vegetable-tanned full-grain cowhide, 1.2 mm",
-          "Hardware: solid brass locks and fittings, unplated",
-          "Thread: waxed polyester, 0.6 mm, saddle-stitched",
-          "Reinforced base with four brass studs"
-        ],
-        "Details": [
-          "Twin brass turn-locks, hand-fitted",
-          "Padded 14-inch laptop sleeve, leather-faced",
-          "Three document dividers and two pen slots",
-          "Brass shank inside the lid, stamped with your initials",
-          "Edges hand-burnished and waxed, four passes"
-        ],
-        "The Making": [
-          "Belly line centred on the front panel by hand",
-          "Front and back cut from opposite ends of one skin",
-          "Saddle-stitched throughout",
-          "Eight to ten weeks from deposit to collection",
-          "Finished under the founder’s hand before it leaves"
-        ],
-        "Care": [
-          "Wipe with a dry cloth after use",
-          "Condition twice a year with a neutral cream, sparingly",
-          "Never store in plastic — the scales need air",
-          "Keep the CITES paperwork with the bag",
-          "Bring it back for repair whenever it needs it"
-        ]
-      },
-      "series1999": true,
-      "related": [
-        "weekender-1999",
-        "nguni-holdall"
-      ]
-    },
-    {
-      "id": "ostrich-backpack",
-      "ref": "AT-B07",
-      "category": "Everyday",
-      "name": "The Ostrich Backpack",
+      "name": "AT Exclusive Men's Wallet",
       "hide": "Ostrich",
-      "price": null,
-      "priceNote": "Quoted per hide and specification. VAT and delivery anywhere in South Africa included.",
-      "materialLine": "Full-quill ostrich with full-grain straps. Twin-zip opening. Solid brass fittings.",
-      "moodLine": "The one that gets carried every day, and shows it well.",
+      "price": 2990,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Full-quill South African ostrich. Three standing colourways: brown, tan and black.",
+      "moodLine": "The one thing you carry every single day.",
       "images": [
         {
-          "src": "images/product-backpack-01",
-          "alt": "The Asekho Twaku backpack in tan leather, AT monogram embossed on the front pocket, carried over the shoulder"
+          "src": "images/products/exclusive-mens-wallet-01",
+          "alt": "Three AT Exclusive men's wallets in ostrich — brown, tan and black — laid on a cutting bench"
         },
         {
-          "src": "images/product-backpack-02",
-          "alt": "The backpack’s quilled front pocket and brass zip pulls"
-        },
-        {
-          "src": "images/product-backpack-03",
-          "alt": "The padded back panel and full-grain shoulder straps"
+          "src": "images/products/exclusive-mens-wallet-02",
+          "alt": "The wallets opened out, showing the quill pattern across the outer panels"
         }
       ],
       "video": "",
-      "hideOptions": [
-        "Ostrich",
-        "Nguni",
-        "Springbok"
+      "finishLabel": "Finish",
+      "finishes": [
+        "Brown",
+        "Tan",
+        "Black"
       ],
       "personalisation": {
-        "enabled": true,
+        "enabled": false,
         "maxChars": 3,
-        "label": "Brass shank, stamped with your initials"
+        "label": ""
       },
       "editorial": [
         {
-          "heading": "Carried, not displayed",
-          "body": "A backpack takes more abuse than any other bag in the range, so this one is built around its straps: full-grain, stitched through the back panel rather than riveted to it, on a spine that holds its shape when the bag is empty."
+          "heading": "What it is",
+          "body": "A bifold cut from full-quill ostrich — the prime back of the bird, where the follicles stand proud. Small enough that the quill field has to be placed exactly, which is why these are cut one at a time."
         },
         {
-          "heading": "Quill where it shows",
-          "body": "The quill field runs across the front panel and the outer pocket. The back panel and base are full-grain, because that is what sits against you and against the floor."
+          "heading": "The hide",
+          "body": "Full-quill ostrich comes off the prime back of the bird, where the follicles stand proud and leave the quill field everyone recognises. It is cut one panel at a time, because the field has to be placed rather than simply laid out — which costs hide, and is the whole point. No two pieces carry the same pattern, and ostrich takes on a soft sheen exactly where your hand falls."
         }
       ],
       "specs": {
         "Size & Fit": [
-          "400 mm high × 300 mm wide × 140 mm deep",
-          "Fits a 15-inch laptop, a folder and a day’s kit",
-          "Adjustable full-grain straps, stitched through the back panel",
-          "Weighs 1.3 kg empty"
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
         ],
         "Materials": [
-          "Full-quill ostrich front and outer pocket",
-          "Full-grain vegetable-tanned back panel, base and straps",
-          "Solid brass zips and fittings, unplated",
-          "Leather-faced padded laptop divider"
+          "Full-quill South African ostrich. Three standing colourways: brown, tan and black."
         ],
         "Details": [
-          "Twin-zip main opening that lies flat when open",
-          "Quilled front pocket on its own zip",
-          "Two internal slip pockets and a pen slot",
-          "Brass shank at the top handle, stamped with your initials"
+          "Bifold, folded and stitched rather than glued",
+          "Card slots and a full-width note section",
+          "One popper-closed coin pocket on the brown and tan",
+          "Quill field placed by hand on every panel"
         ],
         "The Making": [
-          "Cut and finished in the East London factory",
-          "Straps stitched through, never riveted alone",
-          "Six to eight weeks from deposit to collection"
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
         ],
         "Care": [
-          "Wipe with a dry cloth; never soak",
-          "Condition twice a year with a neutral cream",
-          "Empty it before storing so the spine keeps its shape",
-          "Bring it back for repair whenever it needs it"
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
         ]
       },
       "series1999": false,
       "related": [
-        "weekender-1999",
-        "sovereign-attache"
+        "executive-bag",
+        "exclusive-bowling-bag"
       ]
     },
     {
-      "id": "ostrich-bifold",
-      "ref": "AT-S02",
-      "category": "Small Goods",
-      "name": "The Ostrich Bifold",
+      "id": "mini-bowling-bag",
+      "ref": "AT-BB3",
+      "category": "Handbags",
+      "name": "AT Mini Bowling Bag",
+      "hide": "Full-grain",
+      "price": 2730,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Full-grain cowhide over a structured barrel body. Rolled twin handles, contrast leather corner tabs, detachable shoulder strap.",
+      "moodLine": "Small, round and completely certain of itself.",
+      "images": [
+        {
+          "src": "images/products/mini-bowling-bag-01",
+          "alt": "The AT Mini Bowling Bag in tan full-grain, on a sand ground, AT monogram appliquéd on the side"
+        },
+        {
+          "src": "images/products/mini-bowling-bag-02",
+          "alt": "The Mini Bowling Bag in red, three-quarter view against ochre"
+        },
+        {
+          "src": "images/products/mini-bowling-bag-03",
+          "alt": "The tan Mini Bowling Bag from the end, showing the round barrel profile"
+        },
+        {
+          "src": "images/products/mini-bowling-bag-04",
+          "alt": "The red Mini Bowling Bag with its rolled twin handles"
+        },
+        {
+          "src": "images/products/mini-bowling-bag-05",
+          "alt": "The Mini Bowling Bag in mustard with the detachable shoulder strap laid out"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [
+        "Tan",
+        "Red",
+        "Mustard"
+      ],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "A barrel bag scaled down — the shape the workshop is best known for, cut small enough to carry an evening rather than a day. The corner tabs are a second hide in a contrast colour, which is what stops the shape going soft at the ends."
+        },
+        {
+          "heading": "How it ages",
+          "body": "Full-grain is the whole top of the hide, with nothing sanded off to hide a scar. It marks, and it is supposed to — the surface darkens where it is handled and the colour moves over years rather than months. It is the leather that looks worse in a photograph and better after five."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Full-grain cowhide over a structured barrel body. Rolled twin handles, contrast leather corner tabs, detachable shoulder strap."
+        ],
+        "Details": [
+          "Structured barrel body, holds its round profile empty",
+          "Rolled twin handles, stitched not folded",
+          "Contrast leather corner tabs at both ends",
+          "Detachable, adjustable shoulder strap",
+          "Zip across the top, full length of the body"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "roitro-bag",
+        "man-slyng-bag"
+      ]
+    },
+    {
+      "id": "exclusive-bowling-bag",
+      "ref": "AT-BB4",
+      "category": "Handbags",
+      "name": "AT Exclusive Bowling Bag",
       "hide": "Ostrich",
-      "price": null,
-      "priceNote": "Quoted per hide and specification. VAT and delivery anywhere in South Africa included.",
-      "materialLine": "Full-quill ostrich outer, full-grain interior. Eight cards, two note sleeves. No lining foam.",
-      "moodLine": "The piece most people meet the house through.",
+      "price": 24570,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Ostrich in cobalt and purple. Embossed AT monogram. Hand-beaded webbing shoulder strap in a diamond pattern.",
+      "moodLine": "The one people ask about before you have sat down.",
       "images": [
         {
-          "src": "images/product-wallet-01",
-          "alt": "The Ostrich Bifold wallet closed, showing the quill field"
+          "src": "images/products/exclusive-bowling-bag-01",
+          "alt": "The AT Exclusive Bowling Bag in cobalt ostrich against a red ground, beaded strap coiled beside it"
         },
         {
-          "src": "images/product-wallet-02",
-          "alt": "The bifold open, showing card slots and note sleeves"
+          "src": "images/products/exclusive-bowling-bag-02",
+          "alt": "The Exclusive Bowling Bag in purple ostrich with its beaded shoulder strap"
         },
         {
-          "src": "images/product-wallet-03",
-          "alt": "Edge detail of the wallet, hand-burnished and waxed"
+          "src": "images/products/exclusive-bowling-bag-03",
+          "alt": "The cobalt Exclusive Bowling Bag three-quarter on, showing the embossed AT monogram"
+        },
+        {
+          "src": "images/products/exclusive-bowling-bag-04",
+          "alt": "The cobalt bag from the end, showing the barrel profile and quill texture"
+        },
+        {
+          "src": "images/products/exclusive-bowling-bag-05",
+          "alt": "The purple Exclusive Bowling Bag on an ochre ground with the strap extended"
         }
       ],
       "video": "",
-      "hideOptions": [
-        "Ostrich",
-        "Crocodile",
-        "Springbok"
+      "finishLabel": "Finish",
+      "finishes": [
+        "Cobalt",
+        "Purple"
       ],
       "personalisation": {
-        "enabled": true,
+        "enabled": false,
         "maxChars": 3,
-        "label": "Brass shank, stamped with your initials"
+        "label": ""
       },
       "editorial": [
         {
-          "heading": "Thin, on purpose",
-          "body": "A wallet gets thick where it is over-built. This one is skived down at every fold and stitched at 0.6 mm thread, so eight cards and a fold of notes still sit flat in a jacket."
+          "heading": "What it is",
+          "body": "The barrel bag at full exotic weight — ostrich dyed to colours the hide is not usually taken to, with the AT monogram embossed into the panel rather than appliquéd on top. The beaded strap is a separate piece of work again."
         },
         {
-          "heading": "Where the quill goes",
-          "body": "The outer is cut from the crown so the follicles read across the fold. Because the panel is small, we can be choosy about which part of the hide it comes from — and we are."
+          "heading": "The hide",
+          "body": "Full-quill ostrich comes off the prime back of the bird, where the follicles stand proud and leave the quill field everyone recognises. It is cut one panel at a time, because the field has to be placed rather than simply laid out — which costs hide, and is the whole point. No two pieces carry the same pattern, and ostrich takes on a soft sheen exactly where your hand falls."
         }
       ],
       "specs": {
         "Size & Fit": [
-          "110 mm × 95 mm closed",
-          "Eight card slots, two note sleeves",
-          "Sits flat in an inside jacket pocket"
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
         ],
         "Materials": [
-          "Full-quill ostrich outer",
-          "Vegetable-tanned full-grain interior",
-          "Waxed polyester thread, 0.6 mm",
-          "No foam, no bonded backing"
+          "Ostrich in cobalt and purple. Embossed AT monogram. Hand-beaded webbing shoulder strap in a diamond pattern."
         ],
         "Details": [
-          "Skived at every fold so it closes flat",
-          "Edges hand-burnished and waxed, four passes",
-          "Initials blind-embossed inside, or stamped on a brass shank"
+          "Embossed AT monogram, struck into the panel",
+          "Hand-beaded webbing strap, diamond pattern, detachable",
+          "Structured barrel body with reinforced ends",
+          "Full-length top zip with leather pulls",
+          "Dyed ostrich — colour placement is checked on your hide before cutting"
         ],
         "The Making": [
-          "Cut from the crown of the hide",
-          "Hand-finished in East London",
-          "Three to four weeks from deposit"
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
         ],
         "Care": [
-          "Keep it out of a back pocket if you want it to keep its shape",
-          "Condition once a year, sparingly",
-          "Wipe dry; never soak",
-          "Bring it back for repair whenever it needs it"
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
         ]
       },
       "series1999": false,
       "related": [
-        "ostrich-backpack",
-        "crocodile-watch-strap"
+        "ostrich-slyng-lrg",
+        "bowling-bag-std"
       ]
     },
     {
-      "id": "crocodile-watch-strap",
-      "ref": "AT-A03",
-      "category": "Accessories",
-      "name": "The Crocodile Watch Strap",
-      "hide": "Crocodile",
-      "price": null,
-      "priceNote": "Quoted per hide and specification. VAT and delivery anywhere in South Africa included.",
-      "materialLine": "Nile crocodile belly, CITES-documented. Full-grain backing. Cut to your lug width.",
-      "moodLine": "Small, and the first thing anyone notices.",
+      "id": "roitro-bag",
+      "ref": "AT-RO5",
+      "category": "Handbags",
+      "name": "AT Roitro Bag",
+      "hide": "Full-grain",
+      "price": 2730,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Dark brown full-grain, deeply burnished. Circular body. Patterned webbing strap with leather tabs.",
+      "moodLine": "A circle is the hardest shape to make well in leather.",
       "images": [
         {
-          "src": "images/product-strap-01",
-          "alt": "The Crocodile Watch Strap on a watch, showing the belly scale"
+          "src": "images/products/roitro-bag-01",
+          "alt": "The AT Roitro Bag, a round dark-brown crossbody, against a red ground with its patterned strap"
         },
         {
-          "src": "images/product-strap-02",
-          "alt": "Close detail of the strap’s scale pattern and stitching"
-        },
-        {
-          "src": "images/product-strap-03",
-          "alt": "The full-grain backing and hand-finished edge of the strap"
+          "src": "images/products/roitro-bag-02",
+          "alt": "The Roitro Bag angled, showing the embossed AT monogram across the circular face"
         }
       ],
       "video": "",
-      "hideOptions": [
-        "Crocodile",
-        "Ostrich",
-        "Springbok"
-      ],
+      "finishLabel": "Finish",
+      "finishes": [],
       "personalisation": {
-        "enabled": true,
+        "enabled": false,
         "maxChars": 3,
-        "label": "Brass shank, stamped with your initials"
+        "label": ""
       },
       "editorial": [
         {
-          "heading": "Cut to your watch",
-          "body": "Straps are made to your lug width and your wrist, not to a stock size. Send the measurement, or bring the watch in and we will take it off you and hand it back the same week."
+          "heading": "What it is",
+          "body": "A round bag, which sounds simple and is not — the face and the gusset have to be eased together by hand the whole way round, with no straight run to hide a correction. The monogram is embossed into the face."
         },
         {
-          "heading": "Documented, like the bags",
-          "body": "Crocodile is crocodile whether it is a briefcase or a strap: farm-sourced, CITES-documented, and the papers go with it. Keep them if you travel."
+          "heading": "How it ages",
+          "body": "Full-grain is the whole top of the hide, with nothing sanded off to hide a scar. It marks, and it is supposed to — the surface darkens where it is handled and the colour moves over years rather than months. It is the leather that looks worse in a photograph and better after five."
         }
       ],
       "specs": {
         "Size & Fit": [
-          "Made to your lug width, 18 – 24 mm",
-          "Tapered to the buckle, standard or long lengths",
-          "Quick-release pins on request"
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
         ],
         "Materials": [
-          "Nile crocodile belly, CITES-documented",
-          "Vegetable-tanned full-grain backing",
-          "Waxed polyester thread, 0.4 mm",
-          "Solid brass or steel buckle, your choice"
+          "Dark brown full-grain, deeply burnished. Circular body. Patterned webbing strap with leather tabs."
         ],
         "Details": [
-          "Hand-stitched, not glued",
-          "Edges burnished and waxed",
-          "Padded or flat profile"
+          "Circular body, hand-eased gusset",
+          "Embossed AT monogram across the face",
+          "Zip around the upper half, leather pulls",
+          "Patterned webbing strap on swivel clips, detachable"
         ],
         "The Making": [
-          "Scale run centred along the strap",
-          "Cut and stitched in East London",
-          "Two to three weeks from deposit"
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
         ],
         "Care": [
-          "Keep it off wet skin where you can; dry it after sport",
-          "Condition twice a year, very sparingly",
-          "Keep the CITES paperwork with the watch",
-          "Restitching is free for the life of the strap"
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
         ]
       },
       "series1999": false,
       "related": [
-        "sovereign-attache",
-        "ostrich-bifold"
+        "mini-bowling-bag",
+        "man-slyng-bag"
+      ]
+    },
+    {
+      "id": "exclusive-europeana",
+      "ref": "AT-EU6",
+      "category": "Handbags",
+      "name": "AT Exclusive Europeana",
+      "hide": "Ostrich",
+      "price": 4710,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Full-quill ostrich in cream and brown. Flap front with an embossed AT monogram. Patterned webbing strap.",
+      "moodLine": "Flat enough to forget you have it on.",
+      "images": [
+        {
+          "src": "images/products/exclusive-europeana-01",
+          "alt": "The AT Exclusive Europeana in brown ostrich worn on the hip, animal-print strap over the shoulder"
+        },
+        {
+          "src": "images/products/exclusive-europeana-02",
+          "alt": "The Exclusive Europeana in cream ostrich on a teal ground, flap closed"
+        },
+        {
+          "src": "images/products/exclusive-europeana-03",
+          "alt": "The brown Europeana laid flat on ochre, showing the flap and the embossed monogram"
+        },
+        {
+          "src": "images/products/exclusive-europeana-04",
+          "alt": "The brown Europeana with its patterned strap laid out full length"
+        },
+        {
+          "src": "images/products/exclusive-europeana-05",
+          "alt": "The brown Europeana square to camera, showing the quill across the flap"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [
+        "Cream",
+        "Brown"
+      ],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "A flat shoulder bag in full-quill ostrich, cut so the quill field runs unbroken across the flap. It sits close to the body rather than swinging, which is the whole point of the shape."
+        },
+        {
+          "heading": "The hide",
+          "body": "Full-quill ostrich comes off the prime back of the bird, where the follicles stand proud and leave the quill field everyone recognises. It is cut one panel at a time, because the field has to be placed rather than simply laid out — which costs hide, and is the whole point. No two pieces carry the same pattern, and ostrich takes on a soft sheen exactly where your hand falls."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Full-quill ostrich in cream and brown. Flap front with an embossed AT monogram. Patterned webbing strap."
+        ],
+        "Details": [
+          "Flap front with a concealed closure",
+          "Embossed AT monogram on the flap",
+          "Quill field placed to run unbroken across the front",
+          "Patterned webbing strap, detachable, adjustable",
+          "Slim profile — sits flat against the body"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "opulance-clutch-bag",
+        "ola-bag"
+      ]
+    },
+    {
+      "id": "europeana-bag-1",
+      "ref": "AT-EU7",
+      "category": "Handbags",
+      "name": "AT Europeana Bag 1",
+      "hide": "Nguni",
+      "price": 2990,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Nguni hide-on flap — hair left on the skin — over a smooth leather body. Patterned webbing strap.",
+      "moodLine": "No two flaps in this run are the same.",
+      "images": [
+        {
+          "src": "images/products/europeana-bag-1-01",
+          "alt": "The AT Europeana Bag 1 with a Nguni hide-on flap and brown trim, hanging from its animal-print strap"
+        },
+        {
+          "src": "images/products/europeana-bag-1-02",
+          "alt": "The Europeana Bag 1 with a tan leather body and Nguni flap, patterned strap over a dark ground"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [
+        "Nguni / Brown",
+        "Nguni / Tan"
+      ],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "The Europeana with the flap cut from Nguni hide with the hair left on. Every Nguni skin is marked differently, so the flap is the part of the bag that will never be repeated. We cut for the marking, not for the yield."
+        },
+        {
+          "heading": "The hide",
+          "body": "Nguni is the cattle of this country, and we use the skin with the hair left on. Every one is marked differently — that is the point, and it is also the problem, because it means we cut for the marking and accept the waste. The panel on your piece will not turn up on anybody else's."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Nguni hide-on flap — hair left on the skin — over a smooth leather body. Patterned webbing strap."
+        ],
+        "Details": [
+          "Hide-on Nguni flap, hair left on the skin",
+          "Smooth leather body and trim",
+          "Embossed AT monogram on the flap",
+          "Patterned webbing strap, detachable",
+          "Every flap is cut for its marking — no two match"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "man-slyng-bag",
+        "mini-bowling-bag"
+      ]
+    },
+    {
+      "id": "europeana-bag",
+      "ref": "AT-EU8",
+      "category": "Handbags",
+      "name": "AT Europeana Bag",
+      "hide": "Full-grain",
+      "price": 2600,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Full-grain cowhide in pewter, white, red and brown. Twin top zips. Patterned webbing strap.",
+      "moodLine": "The everyday one. Four colours, one shape.",
+      "images": [
+        {
+          "src": "images/products/europeana-bag-01",
+          "alt": "The AT Europeana Bag in pewter against a red ground, patterned strap coiled beside it"
+        },
+        {
+          "src": "images/products/europeana-bag-02",
+          "alt": "The Europeana Bag in white with a red AT monogram and a paisley strap"
+        },
+        {
+          "src": "images/products/europeana-bag-03",
+          "alt": "The Europeana Bag in white with a zebra-print strap, laid on brown leather"
+        },
+        {
+          "src": "images/products/europeana-bag-04",
+          "alt": "The Europeana Bag in red on a navy ground with its patterned strap"
+        },
+        {
+          "src": "images/products/europeana-bag-05",
+          "alt": "The Europeana Bag in brown on an ochre ground, strap laid out full length"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [
+        "Pewter",
+        "White",
+        "Red",
+        "Brown"
+      ],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "The plain-leather Europeana — the same flat, close-to-the-body shape without the exotic hide, in the four colourways the workshop keeps running. The monogram is appliquéd in a contrast hide."
+        },
+        {
+          "heading": "How it ages",
+          "body": "Full-grain is the whole top of the hide, with nothing sanded off to hide a scar. It marks, and it is supposed to — the surface darkens where it is handled and the colour moves over years rather than months. It is the leather that looks worse in a photograph and better after five."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Full-grain cowhide in pewter, white, red and brown. Twin top zips. Patterned webbing strap."
+        ],
+        "Details": [
+          "Twin top zips, separate compartments",
+          "Appliquéd AT monogram in contrast hide",
+          "Slim profile — sits flat against the body",
+          "Patterned webbing strap, detachable, adjustable",
+          "Four standing colourways"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "mini-bowling-bag",
+        "roitro-bag"
+      ]
+    },
+    {
+      "id": "executive-bag",
+      "ref": "AT-EX9",
+      "category": "Business",
+      "name": "AT Executive Bag",
+      "hide": "Full-grain",
+      "price": 72130,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Dark brown full-grain, hand-burnished. Twin front pockets. Rolled handles. Structured body.",
+      "moodLine": "Twenty-seven years of practice, in one bag.",
+      "images": [
+        {
+          "src": "images/products/executive-bag-01",
+          "alt": "The AT Executive Bag in dark brown full-grain, standing on a Nguni hide, twin front pockets visible"
+        },
+        {
+          "src": "images/products/executive-bag-02",
+          "alt": "The Executive Bag three-quarter on, showing the rolled handles and the front pocket flaps"
+        },
+        {
+          "src": "images/products/executive-bag-03",
+          "alt": "The Executive Bag open at the top, showing the depth of the main compartment"
+        },
+        {
+          "src": "images/products/executive-bag-04",
+          "alt": "The Executive Bag from the side, showing the burnished finish across the body panel"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "The heaviest piece in the range and the one that takes the longest. A structured briefcase with twin front pockets, built on a frame so it stands square whether it is full or empty. The finish is burnished by hand, in passes, until the colour moves."
+        },
+        {
+          "heading": "How it ages",
+          "body": "Full-grain is the whole top of the hide, with nothing sanded off to hide a scar. It marks, and it is supposed to — the surface darkens where it is handled and the colour moves over years rather than months. It is the leather that looks worse in a photograph and better after five."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Dark brown full-grain, hand-burnished. Twin front pockets. Rolled handles. Structured body."
+        ],
+        "Details": [
+          "Structured body on a frame — stands square, loaded or empty",
+          "Twin front pockets with flaps",
+          "Rolled handles, stitched through the body",
+          "Hand-burnished finish, built up in passes",
+          "Built on the main factory floor in East London"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "exclusive-mens-wallet",
+        "ola-bag"
+      ]
+    },
+    {
+      "id": "overnight-bag",
+      "ref": "AT-OV10",
+      "category": "Travel",
+      "name": "AT Overnight Bag",
+      "hide": "Nguni",
+      "price": 9230,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Full-grain body with a hide-on Nguni front panel. Twin rolled handles. Full-length top zip.",
+      "moodLine": "One night, two if you pack properly.",
+      "images": [
+        {
+          "src": "images/products/overnight-bag-01",
+          "alt": "The AT Overnight Bag in black with a Nguni hide-on front panel, on an ochre ground"
+        },
+        {
+          "src": "images/products/overnight-bag-02",
+          "alt": "The Overnight Bag in tan with a Nguni panel and the AT monogram appliquéd across it"
+        },
+        {
+          "src": "images/products/overnight-bag-03",
+          "alt": "The black Overnight Bag three-quarter on, showing the full length of the body"
+        },
+        {
+          "src": "images/products/overnight-bag-04",
+          "alt": "The tan Overnight Bag from the side, showing the zip run and the end panel"
+        },
+        {
+          "src": "images/products/overnight-bag-05",
+          "alt": "The Overnight Bag in brown with a Nguni panel, on an ochre ground"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [
+        "Black",
+        "Tan",
+        "Brown"
+      ],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "A soft-sided holdall with the front panel cut from Nguni hide with the hair left on. It is the bag most likely to come back to us for a strap or a lining after ten years, and the one most likely to be handed on rather than replaced."
+        },
+        {
+          "heading": "The hide",
+          "body": "Nguni is the cattle of this country, and we use the skin with the hair left on. Every one is marked differently — that is the point, and it is also the problem, because it means we cut for the marking and accept the waste. The panel on your piece will not turn up on anybody else's."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Full-grain body with a hide-on Nguni front panel. Twin rolled handles. Full-length top zip."
+        ],
+        "Details": [
+          "Hide-on Nguni front panel, hair left on the skin",
+          "Appliquéd AT monogram across the panel",
+          "Twin rolled handles",
+          "Full-length top zip",
+          "Three standing colourways"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "royal-travelex",
+        "royal-toiletry-bag"
+      ]
+    },
+    {
+      "id": "bowling-bag-std",
+      "ref": "AT-BB11",
+      "category": "Handbags",
+      "name": "AT Bowling Bag STD",
+      "hide": "Full-grain",
+      "price": 5750,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Red full-grain over a structured barrel body. Large embossed AT roundel. Contrast corner tabs.",
+      "moodLine": "The full-size version of the shape that started it.",
+      "images": [
+        {
+          "src": "images/products/bowling-bag-std-01",
+          "alt": "The AT Bowling Bag STD in red full-grain, large embossed AT roundel on the side"
+        },
+        {
+          "src": "images/products/bowling-bag-std-02",
+          "alt": "The red Bowling Bag STD on a gold ground, showing the barrel profile and twin handles"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "The standard barrel bag — the mini's full-size parent, with the AT mark struck into the side as a roundel rather than appliquéd. Structured throughout, so it holds the barrel shape empty."
+        },
+        {
+          "heading": "How it ages",
+          "body": "Full-grain is the whole top of the hide, with nothing sanded off to hide a scar. It marks, and it is supposed to — the surface darkens where it is handled and the colour moves over years rather than months. It is the leather that looks worse in a photograph and better after five."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Red full-grain over a structured barrel body. Large embossed AT roundel. Contrast corner tabs."
+        ],
+        "Details": [
+          "Structured barrel body, holds its shape empty",
+          "Large embossed AT roundel on the side panel",
+          "Rolled twin handles",
+          "Contrast leather corner tabs",
+          "Full-length top zip"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "exclusive-europeana",
+        "opulance-clutch-bag"
+      ]
+    },
+    {
+      "id": "skinny-ladys-pants",
+      "ref": "AT-PT12",
+      "category": "Apparel",
+      "name": "AT Skinny Lady's Pants",
+      "hide": "Full-grain",
+      "price": 11520,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Soft burgundy leather, panelled and seamed to follow the leg.",
+      "moodLine": "Leather that moves like cloth.",
+      "images": [
+        {
+          "src": "images/products/skinny-ladys-pants-01",
+          "alt": "The AT Skinny Lady's Pants in burgundy leather, worn, full length"
+        },
+        {
+          "src": "images/products/skinny-ladys-pants-02",
+          "alt": "The Skinny Lady's Pants worn, three-quarter view, showing the leg line and the seam run"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "Cut and seamed like a trouser rather than assembled like a bag — the panels follow the leg, and the seams do the shaping. The workshop has been making leather clothing as long as it has been making bags."
+        },
+        {
+          "heading": "How it ages",
+          "body": "Full-grain is the whole top of the hide, with nothing sanded off to hide a scar. It marks, and it is supposed to — the surface darkens where it is handled and the colour moves over years rather than months. It is the leather that looks worse in a photograph and better after five."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Made to your measurements — send us your sizing on WhatsApp and we will confirm before cutting."
+        ],
+        "Materials": [
+          "Soft burgundy leather, panelled and seamed to follow the leg."
+        ],
+        "Details": [
+          "Panelled and seamed to follow the leg",
+          "Soft leather, chosen for drape rather than structure",
+          "Cut to your measurements",
+          "Made in the East London workshop"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "ola-bag",
+        "mini-bowling-bag"
+      ]
+    },
+    {
+      "id": "roll-up-backpack",
+      "ref": "AT-RU13",
+      "category": "Backpacks",
+      "name": "AT Roll Up Backpack",
+      "hide": "Full-grain",
+      "price": 9250,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Full-grain in tan and brown. Roll-top closure on leather straps. Front pocket with an appliquéd AT monogram.",
+      "moodLine": "Roll it down twice and it is a different bag.",
+      "images": [
+        {
+          "src": "images/products/roll-up-backpack-01",
+          "alt": "The AT Roll Up Backpack in tan, roll-top closed, standing on a Nguni hide"
+        },
+        {
+          "src": "images/products/roll-up-backpack-02",
+          "alt": "The Roll Up Backpack in brown with tan straps and an appliquéd AT monogram on the front pocket"
+        },
+        {
+          "src": "images/products/roll-up-backpack-03",
+          "alt": "The brown Roll Up Backpack from the side, showing the roll-top and the shoulder straps"
+        },
+        {
+          "src": "images/products/roll-up-backpack-04",
+          "alt": "The tan Roll Up Backpack laid flat with the roll-top opened out"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [
+        "Tan",
+        "Brown"
+      ],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "A roll-top pack that changes volume with the load — closed short it is a day bag, opened out it takes a fortnight's worth. The closure is leather on leather, no plastic clips."
+        },
+        {
+          "heading": "How it ages",
+          "body": "Full-grain is the whole top of the hide, with nothing sanded off to hide a scar. It marks, and it is supposed to — the surface darkens where it is handled and the colour moves over years rather than months. It is the leather that looks worse in a photograph and better after five."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Full-grain in tan and brown. Roll-top closure on leather straps. Front pocket with an appliquéd AT monogram."
+        ],
+        "Details": [
+          "Roll-top closure on leather straps — no plastic clips",
+          "Volume changes with the roll",
+          "Front pocket with an appliquéd AT monogram",
+          "Padded shoulder straps",
+          "Two standing colourways"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "baby-boom-backpack",
+        "backpack-std"
+      ]
+    },
+    {
+      "id": "man-slyng-bag",
+      "ref": "AT-MS14",
+      "category": "Handbags",
+      "name": "AT Man Slyng Bag",
+      "hide": "Full-grain",
+      "price": 2850,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Red full-grain. Twin zip compartments. Long adjustable webbing sling.",
+      "moodLine": "Phone, wallet, keys, and nothing you do not need.",
+      "images": [
+        {
+          "src": "images/products/man-slyng-bag-01",
+          "alt": "The AT Man Slyng Bag in red full-grain on a red ground, long strap laid out above it"
+        },
+        {
+          "src": "images/products/man-slyng-bag-02",
+          "alt": "The Man Slyng Bag angled, showing the twin zips and the embossed AT monogram"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "A flat sling for the things you check your pockets for. Two zipped compartments, one against the body, and a strap long enough to wear across the chest without adjusting it every time."
+        },
+        {
+          "heading": "How it ages",
+          "body": "Full-grain is the whole top of the hide, with nothing sanded off to hide a scar. It marks, and it is supposed to — the surface darkens where it is handled and the colour moves over years rather than months. It is the leather that looks worse in a photograph and better after five."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Red full-grain. Twin zip compartments. Long adjustable webbing sling."
+        ],
+        "Details": [
+          "Twin zip compartments, one body-side",
+          "Embossed AT monogram on the front panel",
+          "Long adjustable sling, worn across the body",
+          "Slim enough to sit flat under a jacket"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "mini-bowling-bag",
+        "roitro-bag"
+      ]
+    },
+    {
+      "id": "umthika-zebra-bag",
+      "ref": "AT-UM15",
+      "category": "Heritage",
+      "name": "AT Umthika Zebra Bag",
+      "hide": "Zebra",
+      "price": 9980,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Zebra hide with the hair left on, rolled and tied with leather thongs.",
+      "moodLine": "The oldest shape in the house.",
+      "images": [
+        {
+          "src": "images/products/umthika-zebra-bag-01",
+          "alt": "The AT Umthika Zebra Bag, a rolled carrier in zebra hide with leather ties, on a white ground"
+        },
+        {
+          "src": "images/products/umthika-zebra-bag-02",
+          "alt": "The Umthika Zebra Bag from above, showing the full length of the roll and the stamped end tab"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "Umthika is the rolled carrier — the way a mat, a stick or a set of tools has always been carried in the Eastern Cape. We make it in zebra with the hair on, tied with leather thongs rather than buckled. It is the piece in the range that is not a copy of anything European."
+        },
+        {
+          "heading": "The hide",
+          "body": "Zebra is used hide-on, and it is cut around the marking rather than through it. Every skin is sourced with its paperwork in order and checked against CITES before anything is cut. A run is limited by what the skins give, not by what we would like to make."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Zebra hide with the hair left on, rolled and tied with leather thongs."
+        ],
+        "Details": [
+          "Hide-on zebra, hair left on the skin",
+          "Rolled carrier, tied with leather thongs",
+          "Stamped leather end tab",
+          "Every skin is marked differently — no two match"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "mthika-amashoba-combo",
+        "umthika-bag"
+      ]
+    },
+    {
+      "id": "backpack-sml",
+      "ref": "AT-BP16",
+      "category": "Backpacks",
+      "name": "AT Backpack (SML)",
+      "hide": "Full-grain",
+      "price": 5780,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Full-grain in tan, brown and red. Front pocket with an embossed AT monogram. Padded shoulder straps.",
+      "moodLine": "A day bag that does not look like a school bag.",
+      "images": [
+        {
+          "src": "images/products/backpack-sml-01",
+          "alt": "The AT Backpack (SML) in tan on a white bench, a book and a watch beside it"
+        },
+        {
+          "src": "images/products/backpack-sml-02",
+          "alt": "The Backpack (SML) in red on a chair, sunglasses and a tag beside it"
+        },
+        {
+          "src": "images/products/backpack-sml-03",
+          "alt": "The Backpack (SML) in brown with tan straps, on a bench"
+        },
+        {
+          "src": "images/products/backpack-sml-04",
+          "alt": "The red Backpack (SML) from the side, showing the shoulder straps and the depth"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [
+        "Tan",
+        "Brown",
+        "Red"
+      ],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "The small pack — cut for a tablet, a notebook and the rest of it, not for a laptop and a gym kit. Structured enough to stand up on its own when you put it down."
+        },
+        {
+          "heading": "How it ages",
+          "body": "Full-grain is the whole top of the hide, with nothing sanded off to hide a scar. It marks, and it is supposed to — the surface darkens where it is handled and the colour moves over years rather than months. It is the leather that looks worse in a photograph and better after five."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Full-grain in tan, brown and red. Front pocket with an embossed AT monogram. Padded shoulder straps."
+        ],
+        "Details": [
+          "Front pocket with an embossed AT monogram",
+          "Padded shoulder straps",
+          "Structured body — stands up when set down",
+          "Top zip, full width",
+          "Three standing colourways"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "backpack-std",
+        "baby-boom-backpack"
+      ]
+    },
+    {
+      "id": "mobile-suit-cover",
+      "ref": "AT-MC17",
+      "category": "Travel",
+      "name": "AT Mobile Suit Cover",
+      "hide": "Full-grain",
+      "price": 28574,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Burgundy full-grain over a wheeled frame. Telescopic handle. Appliquéd AT monogram in tan.",
+      "moodLine": "Arrive with the suit already hanging straight.",
+      "images": [
+        {
+          "src": "images/products/mobile-suit-cover-01",
+          "alt": "The AT Mobile Suit Cover in burgundy leather standing on a Nguni hide, large AT monogram on the face"
+        },
+        {
+          "src": "images/products/mobile-suit-cover-02",
+          "alt": "The Mobile Suit Cover with its telescopic handle extended, outdoors"
+        },
+        {
+          "src": "images/products/mobile-suit-cover-03",
+          "alt": "The Mobile Suit Cover on its wheels, three-quarter view, handle up"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "A wheeled garment carrier — a suit goes in flat and comes out without a crease across the back. Built on a frame with a telescopic handle, and skinned in full-grain rather than the nylon these are usually made from."
+        },
+        {
+          "heading": "How it ages",
+          "body": "Full-grain is the whole top of the hide, with nothing sanded off to hide a scar. It marks, and it is supposed to — the surface darkens where it is handled and the colour moves over years rather than months. It is the leather that looks worse in a photograph and better after five."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Burgundy full-grain over a wheeled frame. Telescopic handle. Appliquéd AT monogram in tan."
+        ],
+        "Details": [
+          "Wheeled frame with a telescopic handle",
+          "Carries a suit flat, no fold across the back",
+          "Appliquéd AT monogram in contrast hide",
+          "Full-grain throughout, no nylon",
+          "The largest piece in the travel range"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "zeb-travelex-overnight",
+        "royal-travelex"
+      ]
+    },
+    {
+      "id": "ladys-slyng-bag",
+      "ref": "AT-LS18",
+      "category": "Handbags",
+      "name": "AT Lady's Slyng Bag",
+      "hide": "Nguni",
+      "price": 1800,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Smooth leather upper with a hide-on Nguni base panel. Patterned webbing strap.",
+      "moodLine": "The smallest piece we make, and the one that sells first.",
+      "images": [
+        {
+          "src": "images/products/ladys-slyng-bag-01",
+          "alt": "The AT Lady's Slyng Bag with a Nguni hide-on base and a zebra-print strap, on a red ground"
+        },
+        {
+          "src": "images/products/ladys-slyng-bag-02",
+          "alt": "The Lady's Slyng Bag in red with a Nguni panel and a patterned strap"
+        },
+        {
+          "src": "images/products/ladys-slyng-bag-03",
+          "alt": "The Lady's Slyng Bag in pewter with a Nguni base and an animal-print strap"
+        },
+        {
+          "src": "images/products/ladys-slyng-bag-04",
+          "alt": "The Lady's Slyng Bag in black with a Nguni base, strap laid out"
+        },
+        {
+          "src": "images/products/ladys-slyng-bag-05",
+          "alt": "Three Lady's Slyng Bags together — red, black and Nguni — with their straps"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [
+        "Red",
+        "Pewter",
+        "Black"
+      ],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "A small sling with the base panel cut from Nguni hide with the hair on — the part of the bag that takes the wear, and the part that makes each one different. The lightest and most affordable way into the house."
+        },
+        {
+          "heading": "The hide",
+          "body": "Nguni is the cattle of this country, and we use the skin with the hair left on. Every one is marked differently — that is the point, and it is also the problem, because it means we cut for the marking and accept the waste. The panel on your piece will not turn up on anybody else's."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Smooth leather upper with a hide-on Nguni base panel. Patterned webbing strap."
+        ],
+        "Details": [
+          "Hide-on Nguni base panel, hair left on the skin",
+          "Smooth leather upper",
+          "Appliquéd AT monogram",
+          "Patterned webbing strap, detachable",
+          "Three standing colourways"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "europeana-bag",
+        "mini-bowling-bag"
+      ]
+    },
+    {
+      "id": "zeb-std-backpack",
+      "ref": "AT-ZB19",
+      "category": "Backpacks",
+      "name": "AT Zeb STD Backpack",
+      "hide": "Zebra",
+      "price": 17640,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Hide-on zebra front panel with tan full-grain body, trim and straps.",
+      "moodLine": "Cut around the mane, not through it.",
+      "images": [
+        {
+          "src": "images/products/zeb-std-backpack-01",
+          "alt": "The AT Zeb STD Backpack, zebra hide front panel with tan leather trim, against a dark ground"
+        },
+        {
+          "src": "images/products/zeb-std-backpack-02",
+          "alt": "The Zeb STD Backpack from the side, showing the zebra mane running down the panel and the tan gusset"
+        },
+        {
+          "src": "images/products/zeb-std-backpack-03",
+          "alt": "The Zeb STD Backpack from the back, showing the tan shoulder straps and padded panel"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "The standard pack with the front panel cut from a zebra skin with the hair on. The panel is placed so the mane runs down the centre — which means the panel is cut for the marking and the rest of the bag is built to fit it, rather than the other way round."
+        },
+        {
+          "heading": "The hide",
+          "body": "Zebra is used hide-on, and it is cut around the marking rather than through it. Every skin is sourced with its paperwork in order and checked against CITES before anything is cut. A run is limited by what the skins give, not by what we would like to make."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Hide-on zebra front panel with tan full-grain body, trim and straps."
+        ],
+        "Details": [
+          "Hide-on zebra front panel, cut around the mane",
+          "Tan full-grain body, trim and shoulder straps",
+          "Padded back panel and straps",
+          "Top zip, full width",
+          "Every skin is marked differently — no two match"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "roll-up-backpack",
+        "baby-boom-backpack"
+      ]
+    },
+    {
+      "id": "royal-travelex",
+      "ref": "AT-RT20",
+      "category": "Travel",
+      "name": "AT Royal Travelex",
+      "hide": "Nguni",
+      "price": 14075,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Full-grain body in tan or black with twin hide-on Nguni panels across the front. Rolled handles.",
+      "moodLine": "A week, carried by hand.",
+      "images": [
+        {
+          "src": "images/products/royal-travelex-01",
+          "alt": "The AT Royal Travelex in tan with Nguni hide panels, on a red ground, embossed monogram on the end"
+        },
+        {
+          "src": "images/products/royal-travelex-02",
+          "alt": "The Royal Travelex in tan laid flat, showing the twin Nguni panels across the front"
+        },
+        {
+          "src": "images/products/royal-travelex-03",
+          "alt": "The Royal Travelex in black with Nguni panels, three-quarter view"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [
+        "Tan",
+        "Black"
+      ],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "The large holdall — twin Nguni panels set into the front, an embossed monogram on the end, and a body cut long enough for a week rather than a weekend. It is the piece the workshop shows when it travels."
+        },
+        {
+          "heading": "The hide",
+          "body": "Nguni is the cattle of this country, and we use the skin with the hair left on. Every one is marked differently — that is the point, and it is also the problem, because it means we cut for the marking and accept the waste. The panel on your piece will not turn up on anybody else's."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Full-grain body in tan or black with twin hide-on Nguni panels across the front. Rolled handles."
+        ],
+        "Details": [
+          "Twin hide-on Nguni front panels",
+          "Embossed AT monogram on the end panel",
+          "Rolled twin handles",
+          "Full-length top zip",
+          "Two standing colourways"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "overnight-bag",
+        "royal-toiletry-bag"
+      ]
+    },
+    {
+      "id": "baby-boom-backpack",
+      "ref": "AT-BM21",
+      "category": "Backpacks",
+      "name": "AT Baby Boom Backpack",
+      "hide": "Full-grain",
+      "price": 8165,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Tan full-grain. Front pocket with an embossed AT monogram. Base compartment on its own zip.",
+      "moodLine": "A nappy bag that outlives the nappies.",
+      "images": [
+        {
+          "src": "images/products/baby-boom-backpack-01",
+          "alt": "The AT Baby Boom Backpack in tan full-grain, standing on a Nguni hide, embossed monogram on the front pocket"
+        },
+        {
+          "src": "images/products/baby-boom-backpack-02",
+          "alt": "The Baby Boom Backpack from the side, showing the depth and the base zip"
+        },
+        {
+          "src": "images/products/baby-boom-backpack-03",
+          "alt": "The Baby Boom Backpack worn, walking a pram along a street"
+        },
+        {
+          "src": "images/products/baby-boom-backpack-04",
+          "alt": "The Baby Boom Backpack worn over a shoulder beside a pram"
+        },
+        {
+          "src": "images/products/baby-boom-backpack-05",
+          "alt": "The Baby Boom Backpack worn, three-quarter view, beside a pram"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "Built for the first two years and cut to survive the next twenty. A separate base compartment on its own zip keeps the wet things away from everything else — and once you no longer need that, it is simply a large pack."
+        },
+        {
+          "heading": "How it ages",
+          "body": "Full-grain is the whole top of the hide, with nothing sanded off to hide a scar. It marks, and it is supposed to — the surface darkens where it is handled and the colour moves over years rather than months. It is the leather that looks worse in a photograph and better after five."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Tan full-grain. Front pocket with an embossed AT monogram. Base compartment on its own zip."
+        ],
+        "Details": [
+          "Separate base compartment on its own zip",
+          "Front pocket with an embossed AT monogram",
+          "Padded shoulder straps",
+          "Wide top opening — reachable one-handed",
+          "Built to outlast what it was bought for"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "roll-up-backpack",
+        "backpack-std"
+      ]
+    },
+    {
+      "id": "backpack-std",
+      "ref": "AT-BP22",
+      "category": "Backpacks",
+      "name": "AT Backpack STD",
+      "hide": "Full-grain",
+      "price": 6985,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Full-grain in black and red. Embossed AT monogram on the front pocket. Padded back panel.",
+      "moodLine": "The one you will actually use every day.",
+      "images": [
+        {
+          "src": "images/products/backpack-std-01",
+          "alt": "The AT Backpack STD in black full-grain, standing on a Nguni hide"
+        },
+        {
+          "src": "images/products/backpack-std-02",
+          "alt": "The Backpack STD in black, front on, showing the embossed AT monogram on the lower pocket"
+        },
+        {
+          "src": "images/products/backpack-std-03",
+          "alt": "The Backpack STD in red, open at the side, showing the laptop section"
+        },
+        {
+          "src": "images/products/backpack-std-04",
+          "alt": "The Backpack STD from the back, showing the padded panel and shoulder straps"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [
+        "Black",
+        "Red"
+      ],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "The full-size pack — a laptop section, a full-width top zip and a padded back panel. The plainest thing in the range, and the one that has to be built best, because it gets opened four times a day."
+        },
+        {
+          "heading": "How it ages",
+          "body": "Full-grain is the whole top of the hide, with nothing sanded off to hide a scar. It marks, and it is supposed to — the surface darkens where it is handled and the colour moves over years rather than months. It is the leather that looks worse in a photograph and better after five."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Full-grain in black and red. Embossed AT monogram on the front pocket. Padded back panel."
+        ],
+        "Details": [
+          "Padded laptop section",
+          "Embossed AT monogram on the front pocket",
+          "Padded back panel and shoulder straps",
+          "Full-width top zip",
+          "Two standing colourways"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "baby-boom-backpack",
+        "backpack-sml"
+      ]
+    },
+    {
+      "id": "zeb-travelex-overnight",
+      "ref": "AT-ZT23",
+      "category": "Travel",
+      "name": "AT Zeb Travelex Overnight",
+      "hide": "Zebra",
+      "price": 33640,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Hide-on zebra throughout, with tan full-grain handles, trim and end panels.",
+      "moodLine": "One skin, one bag, one owner.",
+      "images": [
+        {
+          "src": "images/products/zeb-travelex-overnight-01",
+          "alt": "The AT Zeb Travelex Overnight in zebra hide with tan leather handles and trim"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "The travel bag cut almost entirely from a single zebra skin with the hair on. Because the whole body comes off one hide, the run is limited by what the skin gives — which is why there is rarely more than one of these on the bench at a time."
+        },
+        {
+          "heading": "The hide",
+          "body": "Zebra is used hide-on, and it is cut around the marking rather than through it. Every skin is sourced with its paperwork in order and checked against CITES before anything is cut. A run is limited by what the skins give, not by what we would like to make."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Hide-on zebra throughout, with tan full-grain handles, trim and end panels."
+        ],
+        "Details": [
+          "Hide-on zebra body, cut from a single skin",
+          "Tan full-grain handles, trim and end panels",
+          "Appliquéd AT monogram",
+          "Full-length top zip",
+          "Effectively a one-off — no two skins are the same"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "mobile-suit-cover",
+        "royal-travelex"
+      ]
+    },
+    {
+      "id": "royal-toiletry-bag",
+      "ref": "AT-TB24",
+      "category": "Travel",
+      "name": "AT Royal Toiletry Bag",
+      "hide": "Nguni",
+      "price": 1950,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Full-grain with a hide-on Nguni side panel on the burgundy. Full-length zip. Wrist strap.",
+      "moodLine": "The last thing packed and the first thing unpacked.",
+      "images": [
+        {
+          "src": "images/products/royal-toiletry-bag-01",
+          "alt": "The AT Royal Toiletry Bag in burgundy with a Nguni hide-on side panel, on a Nguni ground"
+        },
+        {
+          "src": "images/products/royal-toiletry-bag-02",
+          "alt": "The Royal Toiletry Bag in tan with an appliquéd AT monogram, on a dark ground"
+        },
+        {
+          "src": "images/products/royal-toiletry-bag-03",
+          "alt": "The burgundy Toiletry Bag from the end, showing the Nguni panel and the wrist strap"
+        },
+        {
+          "src": "images/products/royal-toiletry-bag-04",
+          "alt": "The tan Toiletry Bag three-quarter on, showing the full-length zip"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [
+        "Burgundy / Nguni",
+        "Tan"
+      ],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "A flat-bottomed wash bag that opens the whole way along, so you can see what is in it without emptying it. Wiped out rather than washed — which is what the full-grain is for."
+        },
+        {
+          "heading": "The hide",
+          "body": "Nguni is the cattle of this country, and we use the skin with the hair left on. Every one is marked differently — that is the point, and it is also the problem, because it means we cut for the marking and accept the waste. The panel on your piece will not turn up on anybody else's."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Full-grain with a hide-on Nguni side panel on the burgundy. Full-length zip. Wrist strap."
+        ],
+        "Details": [
+          "Full-length zip — opens the whole way along",
+          "Flat base, stands open on a shelf",
+          "Hide-on Nguni side panel on the burgundy",
+          "Leather wrist strap",
+          "Wipe clean, no lining to perish"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "overnight-bag",
+        "royal-travelex"
+      ]
+    },
+    {
+      "id": "mthika-amashoba-combo",
+      "ref": "AT-MA25",
+      "category": "Heritage",
+      "name": "AT Mthika & Amashoba Bag",
+      "hide": "Nguni",
+      "price": 6080,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Full-grain and hide-on Nguni. Two rolled carriers, tied with leather thongs. Sold as a pair.",
+      "moodLine": "What you carry to a ceremony, not to an office.",
+      "images": [
+        {
+          "src": "images/products/mthika-amashoba-combo-01",
+          "alt": "The AT Mthika and Amashoba bags together — two rolled carriers in tan leather and Nguni hide, tied with thongs"
+        },
+        {
+          "src": "images/products/mthika-amashoba-combo-02",
+          "alt": "The Mthika and Amashoba pair laid flat, one in olive and one in tan with a hide panel"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "Sold as a pair. The mthika carries the rolled mat, the amashoba carries the ceremonial tail switches — both are shapes that existed here long before anyone in the workshop was making handbags. We build them properly rather than decoratively."
+        },
+        {
+          "heading": "The hide",
+          "body": "Nguni is the cattle of this country, and we use the skin with the hair left on. Every one is marked differently — that is the point, and it is also the problem, because it means we cut for the marking and accept the waste. The panel on your piece will not turn up on anybody else's."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Full-grain and hide-on Nguni. Two rolled carriers, tied with leather thongs. Sold as a pair."
+        ],
+        "Details": [
+          "Sold as a pair — mthika and amashoba together",
+          "Rolled carriers, tied with leather thongs",
+          "Hide-on Nguni panels with stamped leather tabs",
+          "Full-grain body in tan and olive",
+          "Made to the shapes they have always been made to"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "umthika-bag",
+        "umthika-zebra-bag"
+      ]
+    },
+    {
+      "id": "umthika-bag",
+      "ref": "AT-UM26",
+      "category": "Heritage",
+      "name": "AT Umthika Bag",
+      "hide": "Nguni",
+      "price": 4100,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Burgundy full-grain with hide-on Nguni panels set into the body. Leather ties. Full-length zip.",
+      "moodLine": "The rolled carrier, in the house's own leather.",
+      "images": [
+        {
+          "src": "images/products/umthika-bag-01",
+          "alt": "The AT Umthika Bag, a burgundy rolled carrier with Nguni hide panels, on an ochre ground"
+        },
+        {
+          "src": "images/products/umthika-bag-02",
+          "alt": "The Umthika Bag from above, showing the full length of the roll and the leather ties"
+        },
+        {
+          "src": "images/products/umthika-bag-03",
+          "alt": "The Umthika Bag laid flat, showing the hide panels set into the body and the stamped tab"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "The umthika built in burgundy full-grain rather than hide-on — the same rolled shape, made as a piece of luggage. Nguni panels are set into the body, and a full-length zip runs the length of the roll."
+        },
+        {
+          "heading": "The hide",
+          "body": "Nguni is the cattle of this country, and we use the skin with the hair left on. Every one is marked differently — that is the point, and it is also the problem, because it means we cut for the marking and accept the waste. The panel on your piece will not turn up on anybody else's."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Burgundy full-grain with hide-on Nguni panels set into the body. Leather ties. Full-length zip."
+        ],
+        "Details": [
+          "Rolled carrier with a full-length zip",
+          "Hide-on Nguni panels set into the body",
+          "Leather carrying ties",
+          "Stamped leather end tab",
+          "The everyday version of the oldest shape we make"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "mthika-amashoba-combo",
+        "umthika-zebra-bag"
+      ]
+    },
+    {
+      "id": "opulance-clutch-bag",
+      "ref": "AT-OP27",
+      "category": "Handbags",
+      "name": "AT Opulance Clutch Bag",
+      "hide": "Full-grain",
+      "price": 4680,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Black full-grain with a large appliquéd AT monogram in white hide. Zebra-print webbing strap.",
+      "moodLine": "Carried in the hand, on purpose.",
+      "images": [
+        {
+          "src": "images/products/opulance-clutch-bag-01",
+          "alt": "The AT Opulance Clutch Bag in black full-grain with a large white AT monogram and a zebra-print strap, on a red ground"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "A long flat clutch with the monogram taken large across the face — the one piece in the range where the mark is the design rather than a detail. The strap comes off entirely if you would rather carry it."
+        },
+        {
+          "heading": "How it ages",
+          "body": "Full-grain is the whole top of the hide, with nothing sanded off to hide a scar. It marks, and it is supposed to — the surface darkens where it is handled and the colour moves over years rather than months. It is the leather that looks worse in a photograph and better after five."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Black full-grain with a large appliquéd AT monogram in white hide. Zebra-print webbing strap."
+        ],
+        "Details": [
+          "Long flat clutch, carried in the hand or on the strap",
+          "Large appliquéd AT monogram in contrast hide",
+          "Zebra-print webbing strap, fully detachable",
+          "Top zip, full length"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "exclusive-europeana",
+        "ola-bag"
+      ]
+    },
+    {
+      "id": "dining-chair-reupholstery",
+      "ref": "AT-RU28",
+      "category": "Interiors",
+      "name": "AT Re-upholstery — Dining Chair",
+      "hide": "Full-grain",
+      "price": 1780,
+      "priceNote": "Per chair. Send us a photograph on WhatsApp and we will confirm the figure and the turnaround.",
+      "materialLine": "Your chairs, re-covered in full-grain leather in the hide and colour you choose.",
+      "moodLine": "The chairs are fine. It is the covering that went.",
+      "images": [
+        {
+          "src": "images/products/dining-chair-reupholstery-01",
+          "alt": "A row of dining chairs re-upholstered in tan leather, outside the East London workshop"
+        },
+        {
+          "src": "images/products/dining-chair-reupholstery-02",
+          "alt": "Two re-upholstered dining chairs, close on the seat and back, showing the stitched leather"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "We re-cover dining chairs in leather — your frames, our hide and our stitching. The frame is stripped, the padding checked and replaced where it has gone, and the leather is cut and fitted to the chair rather than stretched over it."
+        },
+        {
+          "heading": "How it ages",
+          "body": "Full-grain is the whole top of the hide, with nothing sanded off to hide a scar. It marks, and it is supposed to — the surface darkens where it is handled and the colour moves over years rather than months. It is the leather that looks worse in a photograph and better after five."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Quoted per chair once we have seen the frames."
+        ],
+        "Materials": [
+          "Your chairs, re-covered in full-grain leather in the hide and colour you choose."
+        ],
+        "Details": [
+          "Priced per chair",
+          "Your frames — stripped, checked and re-padded where needed",
+          "Full-grain leather in the colour you choose",
+          "Cut and fitted to the chair, not stretched over it",
+          "Collection and delivery in and around East London"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "leather-couches",
+        "ola-bag"
+      ]
+    },
+    {
+      "id": "leather-couches",
+      "ref": "AT-CH29",
+      "category": "Interiors",
+      "name": "AT Leather Couches",
+      "hide": "Full-grain",
+      "price": 60000,
+      "priceNote": "From this figure, depending on size and hide. WhatsApp us with the room and we will quote it.",
+      "materialLine": "Full-grain leather over a hardwood frame. Studded arm edges. Hand-stitched roll arms.",
+      "moodLine": "Furniture built by people who make bags.",
+      "images": [
+        {
+          "src": "images/products/leather-couches-01",
+          "alt": "A tan full-grain leather couch, two-seater, in a lounge"
+        },
+        {
+          "src": "images/products/leather-couches-02",
+          "alt": "The leather couch from the side, showing the length of the seat and the stitched roll arm"
+        },
+        {
+          "src": "images/products/leather-couches-03",
+          "alt": "A three-seater in the same tan full-grain, against a lounge wall"
+        },
+        {
+          "src": "images/products/leather-couches-04",
+          "alt": "The two-seater square to camera, showing the back and the arm line"
+        },
+        {
+          "src": "images/products/leather-couches-05",
+          "alt": "Close on the arm of the couch, showing the studded edge and the hand-stitched roll"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "Couches built in the same workshop and to the same standard as the bags — full-grain over a hardwood frame, studded along the arm edge, with the roll arms stitched by hand. Made to order in the hide and colour you choose."
+        },
+        {
+          "heading": "How it ages",
+          "body": "Full-grain is the whole top of the hide, with nothing sanded off to hide a scar. It marks, and it is supposed to — the surface darkens where it is handled and the colour moves over years rather than months. It is the leather that looks worse in a photograph and better after five."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Sizing and configuration confirmed before we start."
+        ],
+        "Materials": [
+          "Full-grain leather over a hardwood frame. Studded arm edges. Hand-stitched roll arms."
+        ],
+        "Details": [
+          "Full-grain leather over a hardwood frame",
+          "Hand-stitched roll arms",
+          "Studded arm edges",
+          "Made to order in your choice of hide and colour",
+          "Delivered and placed in and around East London"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "dining-chair-reupholstery",
+        "ola-bag"
+      ]
+    },
+    {
+      "id": "ostrich-slyng-lrg",
+      "ref": "AT-OS30",
+      "category": "Handbags",
+      "name": "AT Ostrich Slyng LRG",
+      "hide": "Ostrich",
+      "price": 8640,
+      "priceNote": "Made to order in the East London workshop. WhatsApp us to confirm the lead time before anything is cut.",
+      "materialLine": "Full-quill South African ostrich in tan. Twin zip compartments. Detachable sling and top handle.",
+      "moodLine": "Ostrich, at a size you will actually fill.",
+      "images": [
+        {
+          "src": "images/products/ostrich-slyng-lrg-01",
+          "alt": "The AT Ostrich Slyng LRG in tan full-quill ostrich on a green ground, embossed monogram on the front pocket"
+        },
+        {
+          "src": "images/products/ostrich-slyng-lrg-02",
+          "alt": "The Ostrich Slyng LRG held up, showing the twin zip compartments and the quill across the panels"
+        }
+      ],
+      "video": "",
+      "finishLabel": "Finish",
+      "finishes": [],
+      "personalisation": {
+        "enabled": false,
+        "maxChars": 3,
+        "label": ""
+      },
+      "editorial": [
+        {
+          "heading": "What it is",
+          "body": "The large sling in full-quill ostrich — twin zipped compartments, a top handle and a detachable sling, cut so the quill field runs across the front pocket as well as the body. The most hide of any bag in the range that is not luggage."
+        },
+        {
+          "heading": "The hide",
+          "body": "Full-quill ostrich comes off the prime back of the bird, where the follicles stand proud and leave the quill field everyone recognises. It is cut one panel at a time, because the field has to be placed rather than simply laid out — which costs hide, and is the whole point. No two pieces carry the same pattern, and ostrich takes on a soft sheen exactly where your hand falls."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Dimensions are confirmed on WhatsApp before we cut — every piece is made to order."
+        ],
+        "Materials": [
+          "Full-quill South African ostrich in tan. Twin zip compartments. Detachable sling and top handle."
+        ],
+        "Details": [
+          "Twin zip compartments",
+          "Embossed AT monogram on the front pocket",
+          "Top handle and a detachable sling",
+          "Quill field placed across the front pocket and the body",
+          "Full-quill South African ostrich"
+        ],
+        "The Making": [
+          "Cut by hand in the East London workshop",
+          "Made to order — nothing here is cut before it is ordered",
+          "Built by a house that has been working leather since 1997",
+          "Part of the workshop's skills-transfer programme in East London and Mdantsane"
+        ],
+        "Care": [
+          "Wipe with a dry cloth. Never soak.",
+          "Condition twice a year with a neutral cream — no silicone",
+          "Store stuffed and out of direct sun",
+          "Hide-on panels: brush with the hair, never against it",
+          "Bring it back for repair whenever it needs it, for as long as you own it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "bowling-bag-std",
+        "exclusive-europeana"
       ]
     }
   ]

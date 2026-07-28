@@ -23,7 +23,7 @@ and `product.html` read `data/products.json` with `fetch()`, which browsers bloc
 ```
 index.html          home — the full 14-section layout
 skins.html          the five hides: ostrich, crocodile, nguni, springbok, zebra
-collection.html     grid, built from data/products.json, filterable by hide
+collection.html     grid, built from data/products.json, filterable by category
 product.html        ?id=-driven template, also from products.json
 bespoke.html        the commission process, what we make, repairs & care
 heritage.html       the house, the timeline, the founder block
@@ -33,9 +33,11 @@ css/style.css       the whole design system, one file, sectioned and commented
 js/main.js          reveals, chrome sweep, marquee, drawer, search, toggles, forms
 js/collection.js    builds the collection grid
 js/product.js       builds the product page
-data/products.json  six seeded products
-images/             placeholder imagery (WebP + JPEG), the AT logo assets, and the
-                    one real photograph in the build (hero + backpack card)
+tools/              rebuilds products.json and the product imagery — see tools/README.md
+data/products.json  the thirty pieces in the catalogue
+images/products/    the client's own product photography, 97 shots across 30 pieces
+images/             the AT logo assets, the home and collection heroes, and the
+                    remaining placeholder imagery (WebP + JPEG)
 ```
 
 ## Design system
@@ -81,8 +83,40 @@ and the chrome sweep. All of it is disabled under `prefers-reduced-motion: reduc
 ## No cart, by design
 
 There is no checkout anywhere. Every CTA is **START YOUR COMMISSION**, which builds a
-`https://wa.me/…` link live from the product name, ref, selected hide and the initials
-you typed, URL-encoded.
+`https://wa.me/…` link live from the product name, its reference and the finish you
+picked, URL-encoded.
+
+The initials-stamping feature is built and working but switched **off** on every
+piece (`personalisation.enabled: false`), because nothing in the brief or the
+photographs says the workshop stamps initials. If it does, set the flag to `true`
+and the block — live preview and all — comes back.
+
+## The catalogue
+
+Thirty pieces, all real: the client's names, the client's prices and the client's
+photography. `data/products.json` holds them; `images/products/` holds the shots,
+named `<slug>-01`, `-02` and so on, with the `-01` always the card image.
+
+The photographs came in at everything from 0.46 to 2.09 aspect. Rather than
+cover-crop them all into the 4:5 the grid wants — which cut half the bag off the
+wide ones — each is framed onto a 4:5 canvas over a blurred, darkened copy of
+itself. Nothing is cropped away. See `tools/` — the catalogue lives in
+`tools/manifest.py` and both the JSON and the images are regenerated from it.
+
+Categories are **Handbags** (12), **Backpacks** (5), **Travel** (5),
+**Business** (2), **Heritage** (3), **Apparel** (1) and **Interiors** (2). The
+collection filter runs off these rather than off hide, because twenty of the
+thirty are full-grain and a hide filter came out lopsided. Hide is still on
+every card, next to the reference.
+
+### Two names were changed
+
+The client's message said *bowling balls* and *Coaches*. The photographs show
+bowling **bags**, and the WhatsApp catalogue header in the source screenshot
+reads **Couches**. The site uses *AT Exclusive Bowling Bag* and *AT Leather
+Couches* — say the word and they go back.
+
+*Opulance* and *Slyng* have been left exactly as the client spelled them.
 
 ## What came from the 2024 business profile
 
@@ -97,12 +131,14 @@ addresses, both phone numbers and the email address.
 
 Placeholders that need a real answer, in rough priority order:
 
-1. **Photography** — everything in `images/` is a generated placeholder, labelled
-   *PLACEHOLDER IMAGE* on the face of it, at the aspect ratio the layout expects.
-   Filenames say what belongs there (`hero-workshop`, `hide-ostrich`, `craft-cutting-table`,
-   `product-weekender-01`…). Replace each `.jpg` **and** its `.webp` sibling.
-   The AT monogram (`images/mark-at.png`, `images/logo-asekho-twaku.png`) is the real
-   logo, keyed off its black background.
+1. **The remaining photography** — product shots are the client's own and are done.
+   Still standing in, and still labelled *PLACEHOLDER IMAGE* on the face of them:
+   the workshop and craft shots (`hero-workshop`, `craft-cutting-table`,
+   `craft-east-london`), the five hide swatches (`hide-ostrich`, `hide-crocodile`,
+   `hide-nguni`, `hide-springbok`, `hide-zebra`), the toggle pair, the founder
+   portrait, `series-1999-circle`, and the `bespoke` / `heritage` / `contact` heroes.
+   Replace each `.jpg` **and** its `.webp` sibling. The AT monogram
+   (`images/mark-at.png`, `images/logo-asekho-twaku.png`) is the real logo.
 2. **The founder quote** — marked as a placeholder on `index.html` and `heritage.html`.
    Nothing has been invented for Asekho; the block is flagged in the page itself and
    needs his own words.
@@ -119,10 +155,21 @@ Placeholders that need a real answer, in rough priority order:
    field in `products.json` is empty on all three products, so the slot is skipped. Drop
    in an MP4 path to turn it on.
 
-Product names, prices, dimensions, lead times and specification lines in
-`data/products.json` are written in the brand voice but are **not** from the profile —
-confirm every one of them. Three products carry a rand price, three are "price on
-request". Opening hours on `contact.html` are marked *(to confirm)* in the page itself.
+In `data/products.json`, the **names, prices, categories and photographs are the
+client's**. The description lines, the editorial blocks and the spec lists were
+written from what is visible in each photograph plus the house-level facts in the
+profile. Nothing invents a dimension, a weight or a lead time — where the page
+would have shown a measurement it says the dimensions are confirmed on WhatsApp
+before cutting, which is true of a made-to-order house and is the one thing worth
+replacing first if the client has a size list.
+
+Hide is assigned per piece by eye from the photographs — ostrich, Nguni, zebra or
+full-grain. Twenty of the thirty read as full-grain cowhide rather than an exotic,
+which is worth a look, because `skins.html` still tells a five-exotic story.
+Standing colourways (the `finishes` field) are only listed where more than one
+appears in the client's own photographs.
+
+Opening hours on `contact.html` are marked *(to confirm)* in the page itself.
 
 ## Quality floor
 

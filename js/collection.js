@@ -8,6 +8,7 @@
   if (!grid) return;
 
   var all = [];
+  var order = [];
   var active = 'All';
 
   function esc(s) {
@@ -34,22 +35,29 @@
   }
 
   function render() {
-    var list = active === 'All' ? all : all.filter(function (p) { return p.hide === active; });
+    var list = active === 'All' ? all : all.filter(function (p) { return p.category === active; });
     grid.innerHTML = list.map(card).join('');
     if (empty) empty.hidden = list.length > 0;
     window.AT.refresh();
   }
 
   function buildFilters() {
-    var hides = ['All'];
-    all.forEach(function (p) { if (hides.indexOf(p.hide) < 0) hides.push(p.hide); });
-    filters.innerHTML = hides.map(function (h) {
-      return '<button type="button" data-hide="' + esc(h) + '" aria-pressed="' + (h === active) + '">' +
-        esc(h === 'All' ? 'All pieces' : h) + '</button>';
+    /* Categories in the order the data file sets, then anything it missed. */
+    var cats = ['All'];
+    order.forEach(function (c) {
+      if (all.some(function (p) { return p.category === c; })) cats.push(c);
+    });
+    all.forEach(function (p) { if (cats.indexOf(p.category) < 0) cats.push(p.category); });
+
+    filters.innerHTML = cats.map(function (c) {
+      var n = c === 'All' ? all.length
+                          : all.filter(function (p) { return p.category === c; }).length;
+      return '<button type="button" data-cat="' + esc(c) + '" aria-pressed="' + (c === active) + '">' +
+        esc(c === 'All' ? 'All pieces' : c) + ' <span class="filter-n">' + n + '</span></button>';
     }).join('');
     Array.prototype.forEach.call(filters.querySelectorAll('button'), function (b) {
       b.addEventListener('click', function () {
-        active = b.getAttribute('data-hide');
+        active = b.getAttribute('data-cat');
         Array.prototype.forEach.call(filters.querySelectorAll('button'), function (o) {
           o.setAttribute('aria-pressed', String(o === b));
         });
@@ -62,6 +70,7 @@
     .then(function (r) { return r.json(); })
     .then(function (data) {
       all = data.products || [];
+      order = data.categories || [];
       buildFilters();
       render();
     })
