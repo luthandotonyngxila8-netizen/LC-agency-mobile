@@ -6,7 +6,7 @@
   'use strict';
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var WHATSAPP = '27XXXXXXXXX'; // placeholder — swap for the workshop number
+  var WHATSAPP = '27796448562'; // Asekho Twaku, cel. 1 (also on WhatsApp)
 
   /* --- helpers ----------------------------------------------------------- */
   function $(sel, root) { return (root || document).querySelector(sel); }
@@ -18,6 +18,7 @@
       return 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(text);
     },
     money: function (n) {
+      if (n === null || n === undefined || n === '') return 'Price on request';
       return 'R' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     },
     reduced: reduced
@@ -133,11 +134,12 @@
     var loaded = false;
 
     var STATIC = [
-      { name: 'The Skins', ref: 'Ostrich · Crocodile · Nguni · Springbok · Zebra', href: base + 'skins.html' },
+      { name: 'The Skins', ref: 'Ostrich · Crocodile · Nguni · Springbok · Zebra · Lizard · Elephant', href: base + 'skins.html' },
       { name: 'The Collection', ref: 'Every piece in the house', href: base + 'collection.html' },
       { name: 'Bespoke', ref: 'Commission your own', href: base + 'bespoke.html' },
+      { name: 'Trade & Partnership', ref: 'Distributors and agents', href: base + 'bespoke.html#trade' },
       { name: 'Heritage', ref: 'Since 1999, East London', href: base + 'heritage.html' },
-      { name: 'Contact', ref: 'Workshop and enquiries', href: base + 'contact.html' }
+      { name: 'Contact', ref: 'East London · +27 79 644 8562', href: base + 'contact.html' }
     ];
 
     function load() {

@@ -1,6 +1,6 @@
 {
   "currency": "ZAR",
-  "whatsapp": "27XXXXXXXXX",
+  "whatsapp": "27796448562",
   "products": [
     {
       "id": "weekender-1999",
@@ -13,13 +13,30 @@
       "materialLine": "Full-quill South African ostrich. Vegetable-tanned full-grain lining. Solid brass, no plating.",
       "moodLine": "Packed on a Thursday night. Still in the family in 2050.",
       "images": [
-        { "src": "images/product-weekender-01", "alt": "The 1999 Weekender in full-quill ostrich, front three-quarter view" },
-        { "src": "images/product-weekender-02", "alt": "Close detail of the quill pattern across the Weekender's front panel" },
-        { "src": "images/product-weekender-03", "alt": "The Weekender open, showing the full-grain lining and structured pockets" }
+        {
+          "src": "images/product-weekender-01",
+          "alt": "The 1999 Weekender in full-quill ostrich, front three-quarter view"
+        },
+        {
+          "src": "images/product-weekender-02",
+          "alt": "Close detail of the quill pattern across the Weekender's front panel"
+        },
+        {
+          "src": "images/product-weekender-03",
+          "alt": "The Weekender open, showing the full-grain lining and structured pockets"
+        }
       ],
       "video": "",
-      "hideOptions": ["Ostrich", "Crocodile", "Nguni"],
-      "personalisation": { "enabled": true, "maxChars": 3, "label": "Brass shank, stamped with your initials" },
+      "hideOptions": [
+        "Ostrich",
+        "Crocodile",
+        "Nguni"
+      ],
+      "personalisation": {
+        "enabled": true,
+        "maxChars": 3,
+        "label": "Brass shank, stamped with your initials"
+      },
       "editorial": [
         {
           "heading": "Why this one exists",
@@ -60,7 +77,7 @@
           "Cut by hand from a single hide where the panels allow",
           "Saddle-stitched throughout — two needles, one thread, no machine lock",
           "Six to eight weeks from deposit to collection",
-          "Built by Asekho and two makers in the East London workshop",
+          "Built on the main factory floor in East London",
           "Numbered on the shank if it is a 1999 Series piece"
         ],
         "Care": [
@@ -72,26 +89,46 @@
         ]
       },
       "series1999": true,
-      "related": ["sovereign-attache", "buffalo-street-holdall"]
+      "related": [
+        "sovereign-attache",
+        "nguni-holdall"
+      ]
     },
     {
-      "id": "buffalo-street-holdall",
+      "id": "nguni-holdall",
       "ref": "AT-H04",
       "category": "Travel",
-      "name": "The Buffalo Street Holdall",
+      "name": "The Nguni Holdall",
       "hide": "Nguni",
       "price": 9800,
       "priceNote": "Price includes VAT and delivery anywhere in South Africa.",
       "materialLine": "Hair-on Nguni hide with full-grain gussets. Brass hardware. Canvas-free.",
       "moodLine": "Every one is a different animal. That is not a defect.",
       "images": [
-        { "src": "images/product-holdall-01", "alt": "The Buffalo Street Holdall in hair-on Nguni hide, front view" },
-        { "src": "images/product-holdall-02", "alt": "Close detail of the Nguni hair-on panel and its natural markings" },
-        { "src": "images/product-holdall-03", "alt": "The Holdall's reinforced base and brass feet" }
+        {
+          "src": "images/product-holdall-01",
+          "alt": "The Nguni Holdall in hair-on Nguni hide, front view"
+        },
+        {
+          "src": "images/product-holdall-02",
+          "alt": "Close detail of the Nguni hair-on panel and its natural markings"
+        },
+        {
+          "src": "images/product-holdall-03",
+          "alt": "The Holdall's reinforced base and brass feet"
+        }
       ],
       "video": "",
-      "hideOptions": ["Nguni", "Springbok", "Zebra"],
-      "personalisation": { "enabled": true, "maxChars": 3, "label": "Brass shank, stamped with your initials" },
+      "hideOptions": [
+        "Nguni",
+        "Springbok",
+        "Zebra"
+      ],
+      "personalisation": {
+        "enabled": true,
+        "maxChars": 3,
+        "label": "Brass shank, stamped with your initials"
+      },
       "editorial": [
         {
           "heading": "The hide chooses the bag",
@@ -99,7 +136,7 @@
         },
         {
           "heading": "Built for the road, not the shelf",
-          "body": "Named for the street the first workshop sat on. Short handles, wide mouth, a base that takes a knock. It is the bag people buy when they have already ruined two nylon ones."
+          "body": "Short handles, a wide mouth and a base that takes a knock. It is the bag people buy when they have already ruined two nylon ones, and the one that comes back from a Transkei road trip looking better than it left."
         }
       ],
       "specs": {
@@ -129,7 +166,7 @@
           "Cut to the animal's own markings, never trimmed to match",
           "Saddle-stitched throughout",
           "Four to six weeks from deposit to collection",
-          "Built in the East London workshop"
+          "Built in the East London factory on Settlers Way"
         ],
         "Care": [
           "Brush the hair with the grain, dry, with a soft brush",
@@ -140,7 +177,10 @@
         ]
       },
       "series1999": false,
-      "related": ["weekender-1999", "sovereign-attache"]
+      "related": [
+        "weekender-1999",
+        "sovereign-attache"
+      ]
     },
     {
       "id": "sovereign-attache",
@@ -153,13 +193,29 @@
       "materialLine": "Nile crocodile belly, CITES-documented. Full-grain interior. Solid brass locks.",
       "moodLine": "It does not announce itself. It does not need to.",
       "images": [
-        { "src": "images/product-attache-01", "alt": "The Sovereign Attaché in Nile crocodile belly leather, front view" },
-        { "src": "images/product-attache-02", "alt": "Close detail of the crocodile belly scale pattern across the front panel" },
-        { "src": "images/product-attache-03", "alt": "The Attaché open, showing the padded fourteen-inch laptop sleeve" }
+        {
+          "src": "images/product-attache-01",
+          "alt": "The Sovereign Attaché in Nile crocodile belly leather, front view"
+        },
+        {
+          "src": "images/product-attache-02",
+          "alt": "Close detail of the crocodile belly scale pattern across the front panel"
+        },
+        {
+          "src": "images/product-attache-03",
+          "alt": "The Attaché open, showing the padded fourteen-inch laptop sleeve"
+        }
       ],
       "video": "",
-      "hideOptions": ["Crocodile", "Ostrich"],
-      "personalisation": { "enabled": true, "maxChars": 3, "label": "Brass shank, stamped with your initials" },
+      "hideOptions": [
+        "Crocodile",
+        "Ostrich"
+      ],
+      "personalisation": {
+        "enabled": true,
+        "maxChars": 3,
+        "label": "Brass shank, stamped with your initials"
+      },
       "editorial": [
         {
           "heading": "Belly, centred",
@@ -201,7 +257,7 @@
           "Front and back cut from opposite ends of one skin",
           "Saddle-stitched throughout",
           "Eight to ten weeks from deposit to collection",
-          "Built by Asekho personally"
+          "Finished under the founder’s hand before it leaves"
         ],
         "Care": [
           "Wipe with a dry cloth after use",
@@ -212,7 +268,252 @@
         ]
       },
       "series1999": true,
-      "related": ["weekender-1999", "buffalo-street-holdall"]
+      "related": [
+        "weekender-1999",
+        "nguni-holdall"
+      ]
+    },
+    {
+      "id": "ostrich-backpack",
+      "ref": "AT-B07",
+      "category": "Everyday",
+      "name": "The Ostrich Backpack",
+      "hide": "Ostrich",
+      "price": null,
+      "priceNote": "Quoted per hide and specification. VAT and delivery anywhere in South Africa included.",
+      "materialLine": "Full-quill ostrich with full-grain straps. Twin-zip opening. Solid brass fittings.",
+      "moodLine": "The one that gets carried every day, and shows it well.",
+      "images": [
+        {
+          "src": "images/product-backpack-01",
+          "alt": "The Ostrich Backpack in full-quill ostrich, front view"
+        },
+        {
+          "src": "images/product-backpack-02",
+          "alt": "The backpack’s quilled front pocket and brass zip pulls"
+        },
+        {
+          "src": "images/product-backpack-03",
+          "alt": "The padded back panel and full-grain shoulder straps"
+        }
+      ],
+      "video": "",
+      "hideOptions": [
+        "Ostrich",
+        "Nguni",
+        "Springbok"
+      ],
+      "personalisation": {
+        "enabled": true,
+        "maxChars": 3,
+        "label": "Brass shank, stamped with your initials"
+      },
+      "editorial": [
+        {
+          "heading": "Carried, not displayed",
+          "body": "A backpack takes more abuse than any other bag in the range, so this one is built around its straps: full-grain, stitched through the back panel rather than riveted to it, on a spine that holds its shape when the bag is empty."
+        },
+        {
+          "heading": "Quill where it shows",
+          "body": "The quill field runs across the front panel and the outer pocket. The back panel and base are full-grain, because that is what sits against you and against the floor."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "400 mm high × 300 mm wide × 140 mm deep",
+          "Fits a 15-inch laptop, a folder and a day’s kit",
+          "Adjustable full-grain straps, stitched through the back panel",
+          "Weighs 1.3 kg empty"
+        ],
+        "Materials": [
+          "Full-quill ostrich front and outer pocket",
+          "Full-grain vegetable-tanned back panel, base and straps",
+          "Solid brass zips and fittings, unplated",
+          "Leather-faced padded laptop divider"
+        ],
+        "Details": [
+          "Twin-zip main opening that lies flat when open",
+          "Quilled front pocket on its own zip",
+          "Two internal slip pockets and a pen slot",
+          "Brass shank at the top handle, stamped with your initials"
+        ],
+        "The Making": [
+          "Cut and finished in the East London factory",
+          "Straps stitched through, never riveted alone",
+          "Six to eight weeks from deposit to collection"
+        ],
+        "Care": [
+          "Wipe with a dry cloth; never soak",
+          "Condition twice a year with a neutral cream",
+          "Empty it before storing so the spine keeps its shape",
+          "Bring it back for repair whenever it needs it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "weekender-1999",
+        "sovereign-attache"
+      ]
+    },
+    {
+      "id": "ostrich-bifold",
+      "ref": "AT-S02",
+      "category": "Small Goods",
+      "name": "The Ostrich Bifold",
+      "hide": "Ostrich",
+      "price": null,
+      "priceNote": "Quoted per hide and specification. VAT and delivery anywhere in South Africa included.",
+      "materialLine": "Full-quill ostrich outer, full-grain interior. Eight cards, two note sleeves. No lining foam.",
+      "moodLine": "The piece most people meet the house through.",
+      "images": [
+        {
+          "src": "images/product-wallet-01",
+          "alt": "The Ostrich Bifold wallet closed, showing the quill field"
+        },
+        {
+          "src": "images/product-wallet-02",
+          "alt": "The bifold open, showing card slots and note sleeves"
+        },
+        {
+          "src": "images/product-wallet-03",
+          "alt": "Edge detail of the wallet, hand-burnished and waxed"
+        }
+      ],
+      "video": "",
+      "hideOptions": [
+        "Ostrich",
+        "Crocodile",
+        "Springbok"
+      ],
+      "personalisation": {
+        "enabled": true,
+        "maxChars": 3,
+        "label": "Brass shank, stamped with your initials"
+      },
+      "editorial": [
+        {
+          "heading": "Thin, on purpose",
+          "body": "A wallet gets thick where it is over-built. This one is skived down at every fold and stitched at 0.6 mm thread, so eight cards and a fold of notes still sit flat in a jacket."
+        },
+        {
+          "heading": "Where the quill goes",
+          "body": "The outer is cut from the crown so the follicles read across the fold. Because the panel is small, we can be choosy about which part of the hide it comes from — and we are."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "110 mm × 95 mm closed",
+          "Eight card slots, two note sleeves",
+          "Sits flat in an inside jacket pocket"
+        ],
+        "Materials": [
+          "Full-quill ostrich outer",
+          "Vegetable-tanned full-grain interior",
+          "Waxed polyester thread, 0.6 mm",
+          "No foam, no bonded backing"
+        ],
+        "Details": [
+          "Skived at every fold so it closes flat",
+          "Edges hand-burnished and waxed, four passes",
+          "Initials blind-embossed inside, or stamped on a brass shank"
+        ],
+        "The Making": [
+          "Cut from the crown of the hide",
+          "Hand-finished in East London",
+          "Three to four weeks from deposit"
+        ],
+        "Care": [
+          "Keep it out of a back pocket if you want it to keep its shape",
+          "Condition once a year, sparingly",
+          "Wipe dry; never soak",
+          "Bring it back for repair whenever it needs it"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "ostrich-backpack",
+        "crocodile-watch-strap"
+      ]
+    },
+    {
+      "id": "crocodile-watch-strap",
+      "ref": "AT-A03",
+      "category": "Accessories",
+      "name": "The Crocodile Watch Strap",
+      "hide": "Crocodile",
+      "price": null,
+      "priceNote": "Quoted per hide and specification. VAT and delivery anywhere in South Africa included.",
+      "materialLine": "Nile crocodile belly, CITES-documented. Full-grain backing. Cut to your lug width.",
+      "moodLine": "Small, and the first thing anyone notices.",
+      "images": [
+        {
+          "src": "images/product-strap-01",
+          "alt": "The Crocodile Watch Strap on a watch, showing the belly scale"
+        },
+        {
+          "src": "images/product-strap-02",
+          "alt": "Close detail of the strap’s scale pattern and stitching"
+        },
+        {
+          "src": "images/product-strap-03",
+          "alt": "The full-grain backing and hand-finished edge of the strap"
+        }
+      ],
+      "video": "",
+      "hideOptions": [
+        "Crocodile",
+        "Ostrich",
+        "Springbok"
+      ],
+      "personalisation": {
+        "enabled": true,
+        "maxChars": 3,
+        "label": "Brass shank, stamped with your initials"
+      },
+      "editorial": [
+        {
+          "heading": "Cut to your watch",
+          "body": "Straps are made to your lug width and your wrist, not to a stock size. Send the measurement, or bring the watch in and we will take it off you and hand it back the same week."
+        },
+        {
+          "heading": "Documented, like the bags",
+          "body": "Crocodile is crocodile whether it is a briefcase or a strap: farm-sourced, CITES-documented, and the papers go with it. Keep them if you travel."
+        }
+      ],
+      "specs": {
+        "Size & Fit": [
+          "Made to your lug width, 18 – 24 mm",
+          "Tapered to the buckle, standard or long lengths",
+          "Quick-release pins on request"
+        ],
+        "Materials": [
+          "Nile crocodile belly, CITES-documented",
+          "Vegetable-tanned full-grain backing",
+          "Waxed polyester thread, 0.4 mm",
+          "Solid brass or steel buckle, your choice"
+        ],
+        "Details": [
+          "Hand-stitched, not glued",
+          "Edges burnished and waxed",
+          "Padded or flat profile"
+        ],
+        "The Making": [
+          "Scale run centred along the strap",
+          "Cut and stitched in East London",
+          "Two to three weeks from deposit"
+        ],
+        "Care": [
+          "Keep it off wet skin where you can; dry it after sport",
+          "Condition twice a year, very sparingly",
+          "Keep the CITES paperwork with the watch",
+          "Restitching is free for the life of the strap"
+        ]
+      },
+      "series1999": false,
+      "related": [
+        "sovereign-attache",
+        "ostrich-bifold"
+      ]
     }
   ]
 }

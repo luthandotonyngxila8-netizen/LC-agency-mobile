@@ -33,7 +33,7 @@ css/style.css       the whole design system, one file, sectioned and commented
 js/main.js          reveals, chrome sweep, marquee, drawer, search, toggles, forms
 js/collection.js    builds the collection grid
 js/product.js       builds the product page
-data/products.json  three seeded products
+data/products.json  six seeded products
 images/             placeholder imagery (WebP + JPEG) and the AT logo assets
 ```
 
@@ -72,35 +72,45 @@ There is no checkout anywhere. Every CTA is **START YOUR COMMISSION**, which bui
 `https://wa.me/…` link live from the product name, ref, selected hide and the initials
 you typed, URL-encoded.
 
+## What came from the 2024 business profile
+
+Real, and already in the site: the company description and 25-year history, the Durban
+footwear / Cape Town handbag influences, the Brazil and Italy design-school
+collaborations, the full international showcase list (Casablanca, Addis Ababa, Paris,
+São Paulo, Moscow, Hong Kong, London, Dubai, New York), the skills-transfer programme in
+East London and Mdantsane, the full material list, the product range, the three site
+addresses, both phone numbers and the email address.
+
 ## Before this goes live
 
 Placeholders that need a real answer, in rough priority order:
 
-1. **WhatsApp number** — `27XXXXXXXXX` in `js/main.js` (the `WHATSAPP` constant),
-   `data/products.json`, and the `href` fallbacks in every page's header, drawer, footer
-   and contact page. Search the repo for `27XXXXXXXXX`.
-2. **Photography** — everything in `images/` is a generated placeholder, labelled
+1. **Photography** — everything in `images/` is a generated placeholder, labelled
    *PLACEHOLDER IMAGE* on the face of it, at the aspect ratio the layout expects.
    Filenames say what belongs there (`hero-workshop`, `hide-ostrich`, `craft-cutting-table`,
    `product-weekender-01`…). Replace each `.jpg` **and** its `.webp` sibling.
    The AT monogram (`images/mark-at.png`, `images/logo-asekho-twaku.png`) is the real
    logo, keyed off its black background.
-3. **The founder quote** — marked as a placeholder on `index.html` and `heritage.html`.
+2. **The founder quote** — marked as a placeholder on `index.html` and `heritage.html`.
    Nothing has been invented for Asekho; the block is flagged in the page itself and
    needs his own words.
-4. **The Mark** — the three ideas behind the AT monogram are placeholder copy, also
+3. **The Mark** — the three ideas behind the AT monogram are placeholder copy, also
    flagged on the page. His call.
-5. **Company details** — registration and VAT numbers in `privacy.html`, the street
-   address on `contact.html`, and the `hello@asekhotwaku.co.za` address if it differs.
-6. **Forms** — the journal signup and the contact form validate and confirm on screen but
+4. **Company details** — registration and VAT numbers in `privacy.html`, and the trading
+   name: the profile says *Asekho Twaku Leather & Clothing*, the brief said *Asekho Twaku
+   Apparels*. The site uses Apparels as the brand and Leather & Clothing as the legal
+   entity — confirm that is right.
+5. **Forms** — the journal signup and the contact form validate and confirm on screen but
    post nowhere yet. Wire them to whatever the workshop actually reads (Formspree, a
    mailto handler, or a small endpoint) before launch.
-7. **Product film** — `product.html` supports an inline video in the gallery; the `video`
+6. **Product film** — `product.html` supports an inline video in the gallery; the `video`
    field in `products.json` is empty on all three products, so the slot is skipped. Drop
    in an MP4 path to turn it on.
 
-Prices, lead times and specification lines in `data/products.json` are written in the
-brand voice but are placeholders too — confirm them with the workshop.
+Product names, prices, dimensions, lead times and specification lines in
+`data/products.json` are written in the brand voice but are **not** from the profile —
+confirm every one of them. Three products carry a rand price, three are "price on
+request". Opening hours on `contact.html` are marked *(to confirm)* in the page itself.
 
 ## Quality floor
 
