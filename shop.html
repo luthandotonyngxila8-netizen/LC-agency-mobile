@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-ZA">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Shop — LASS Skincare</title>
     <meta
       name="description"
-      content="Nine formulas: cleansers, serums, moisturisers and oils. Clinically dosed actives, traceable botanicals, refillable glass."
+      content="The full LASS range: turmeric scrub and soap, brightening serum, honey face mask, tissue oil, body butter and more. Natural skincare made in South Africa."
     />
-    <meta name="theme-color" content="#faf7f2" />
+    <meta name="theme-color" content="#fbf8f3" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -16,35 +16,33 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/style.css" />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2317150f'/><text x='16' y='22' font-size='16' font-family='Georgia,serif' fill='%23faf7f2' text-anchor='middle'>L</text></svg>"
-    />
+    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
     <div class="ticker" role="region" aria-label="Announcements">
       <div class="ticker__track">
-        <span>Complimentary shipping over $95</span>
-        <span>Refill programme now open</span>
-        <span>Formulated &amp; filled in Cape Town</span>
-        <span>Complimentary shipping over $95</span>
-        <span>Refill programme now open</span>
-        <span>Formulated &amp; filled in Cape Town</span>
+        <span>Natural skincare, made in South Africa</span>
+        <span>Turmeric-led formulas for acne, dark marks &amp; scarring</span>
+        <span>Become a LASS consultant</span>
+        <span>Natural skincare, made in South Africa</span>
+        <span>Turmeric-led formulas for acne, dark marks &amp; scarring</span>
+        <span>Become a LASS consultant</span>
       </div>
     </div>
 
     <header class="header">
       <div class="wrap header__inner">
-        <a class="brand" href="index.html" aria-label="LASS home">
-          Lass <small>Skincare</small>
+        <a class="brand" href="index.html">
+          <img src="assets/img/lass-logo.png" width="449" height="224" alt="LASS Skincare — take care of your skin" />
         </a>
         <nav class="nav" aria-label="Primary">
           <a href="shop.html" aria-current="page">Shop</a>
-          <a href="about.html">House</a>
+          <a href="about.html">Our story</a>
           <a href="index.html#ingredients">Ingredients</a>
-          <a href="index.html#ritual">Ritual</a>
+          <a href="index.html#routine">Routine</a>
+          <a href="index.html#consultants">Become a consultant</a>
           <a href="contact.html">Contact</a>
         </nav>
         <div class="header__actions">
@@ -56,9 +54,7 @@
             <span class="cart-count" data-cart-count aria-hidden="true">0</span>
           </button>
           <button class="icon-btn menu-btn" type="button" data-drawer-open="menu-drawer" aria-label="Open menu">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M4 8h16M4 16h16" />
-            </svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16" /></svg>
           </button>
         </div>
       </div>
@@ -68,10 +64,10 @@
       <section class="page-head">
         <div class="wrap">
           <p class="crumbs"><a href="index.html">Home</a> — Shop</p>
-          <h1 class="h-1">The complete collection</h1>
+          <h1 class="h-1">The LASS range</h1>
           <p class="lede">
-            Nine formulas, blended in batches of 400 and dated by hand. Every
-            vessel is refillable; every active is printed at percentage.
+            Face and body care built on turmeric, honey, lemon, vitamin C and
+            pomegranate — for acne, dark marks, uneven tone, scars and dry skin.
           </p>
         </div>
       </section>
@@ -80,10 +76,10 @@
         <div class="wrap">
           <div class="filters" role="group" aria-label="Filter products">
             <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="chip" type="button" data-filter="face" aria-pressed="false">Face</button>
+            <button class="chip" type="button" data-filter="body" aria-pressed="false">Body</button>
             <button class="chip" type="button" data-filter="cleanse" aria-pressed="false">Cleanse</button>
-            <button class="chip" type="button" data-filter="treat" aria-pressed="false">Treat</button>
-            <button class="chip" type="button" data-filter="hydrate" aria-pressed="false">Hydrate</button>
-            <button class="chip" type="button" data-filter="night" aria-pressed="false">Night</button>
+            <button class="chip" type="button" data-filter="brighten" aria-pressed="false">Brighten</button>
           </div>
 
           <p class="eyebrow" style="margin-bottom: 2rem">
@@ -92,191 +88,214 @@
 
           <div class="products">
             <!-- 1 -->
-            <article class="card" id="renewal-serum" data-category="treat night">
-              <div class="card__media card__media--sand">
-                <span class="card__flag">Bestseller</span>
-                <div data-bottle="serum" data-tone="amber" data-label="RENEWAL No.1"></div>
+            <article class="card" id="turmeric-scrub" data-category="face cleanse brighten">
+              <div class="card__media card__media--turmeric">
+                <span class="card__flag">Turmeric</span>
+                <div data-bottle="jar" data-tone="turmeric" data-label="FACIAL SCRUB"></div>
                 <button class="btn btn--block card__add" type="button" data-add
-                  data-id="renewal-serum" data-name="Renewal Serum No.1" data-price="8600"
-                  data-size="30ml" data-kind="serum" data-tone="amber">Add to bag</button>
+                  data-id="turmeric-scrub" data-name="Turmeric Facial Scrub" data-price="8000"
+                  data-size="150ml" data-kind="jar" data-tone="turmeric">Add to bag</button>
               </div>
               <div class="card__body">
                 <div class="card__row">
-                  <h2 class="card__name">Renewal Serum No.1</h2>
-                  <span class="card__price">$86</span>
+                  <h2 class="card__name">Turmeric Facial Scrub</h2>
+                  <span class="card__price">R80</span>
                 </div>
-                <p class="card__desc">3% bakuchiol · squalane · 30ml</p>
-                <p class="stars" aria-label="Rated 4.9 out of 5">★★★★★ <span class="card__desc">4.9 (612)</span></p>
+                <p class="card__desc">
+                  Removes dead skin cells and impurities, unclogs pores and helps
+                  soften the look of dark spots · 150ml
+                </p>
               </div>
             </article>
 
             <!-- 2 -->
-            <article class="card" id="ceramide-veil" data-category="hydrate">
-              <div class="card__media card__media--sage">
-                <div data-bottle="jar" data-tone="sage" data-label="CERAMIDE VEIL"></div>
+            <article class="card" id="honey-mask" data-category="face brighten">
+              <div class="card__media card__media--honey">
+                <span class="card__flag">Honey</span>
+                <div data-bottle="jar" data-tone="honey" data-label="FACE MASK"></div>
                 <button class="btn btn--block card__add" type="button" data-add
-                  data-id="ceramide-veil" data-name="Ceramide Veil Moisturiser" data-price="7200"
-                  data-size="50ml" data-kind="jar" data-tone="sage">Add to bag</button>
+                  data-id="honey-mask" data-name="Turmeric &amp; Honey Face Mask" data-price="7500"
+                  data-size="125ml" data-kind="jar" data-tone="honey">Add to bag</button>
               </div>
               <div class="card__body">
                 <div class="card__row">
-                  <h2 class="card__name">Ceramide Veil</h2>
-                  <span class="card__price">$72</span>
+                  <h2 class="card__name">Turmeric &amp; Honey Face Mask</h2>
+                  <span class="card__price">R75</span>
                 </div>
-                <p class="card__desc">2% ceramide complex · rooibos · 50ml</p>
-                <p class="stars" aria-label="Rated 4.8 out of 5">★★★★★ <span class="card__desc">4.8 (441)</span></p>
+                <p class="card__desc">
+                  Nourishes and moisturises, calms redness and helps even out skin
+                  tone · 125ml
+                </p>
               </div>
             </article>
 
             <!-- 3 -->
-            <article class="card" id="midnight-oil" data-category="night treat">
-              <div class="card__media card__media--night">
-                <span class="card__flag">Limited</span>
-                <div data-bottle="oil" data-tone="night" data-label="MIDNIGHT"></div>
+            <article class="card" id="brightening-serum" data-category="face brighten">
+              <div class="card__media card__media--amber">
+                <span class="card__flag">Vitamin C</span>
+                <div data-bottle="serum" data-tone="amber" data-label="BRIGHTENING"></div>
                 <button class="btn btn--block card__add" type="button" data-add
-                  data-id="midnight-oil" data-name="Midnight Repair Oil" data-price="9400"
-                  data-size="30ml" data-kind="oil" data-tone="night">Add to bag</button>
+                  data-id="brightening-serum" data-name="Vitamin C Brightening Serum" data-price="7000"
+                  data-size="30ml" data-kind="serum" data-tone="amber">Add to bag</button>
               </div>
               <div class="card__body">
                 <div class="card__row">
-                  <h2 class="card__name">Midnight Repair Oil</h2>
-                  <span class="card__price">$94</span>
+                  <h2 class="card__name">Vitamin C Brightening Serum</h2>
+                  <span class="card__price">R70</span>
                 </div>
-                <p class="card__desc">Marula · buchu · 30ml</p>
-                <p class="stars" aria-label="Rated 5 out of 5">★★★★★ <span class="card__desc">5.0 (208)</span></p>
+                <p class="card__desc">
+                  Targets dark spots and pigmentation and brightens a dull
+                  complexion · 30ml
+                </p>
               </div>
             </article>
 
             <!-- 4 -->
-            <article class="card" id="hydra-dew" data-category="hydrate">
-              <div class="card__media card__media--rose">
-                <div data-bottle="mist" data-tone="rose" data-label="HYDRA-DEW"></div>
+            <article class="card" id="face-wash" data-category="face cleanse">
+              <div class="card__media card__media--lemon">
+                <span class="card__flag">Lemon</span>
+                <div data-bottle="tube" data-tone="lemon" data-label="FACE WASH"></div>
                 <button class="btn btn--block card__add" type="button" data-add
-                  data-id="hydra-dew" data-name="Hydra-Dew Essence Mist" data-price="4800"
-                  data-size="120ml" data-kind="mist" data-tone="rose">Add to bag</button>
+                  data-id="face-wash" data-name="Lemon Exfoliating Face Wash" data-price="6500"
+                  data-size="150ml" data-kind="tube" data-tone="lemon">Add to bag</button>
               </div>
               <div class="card__body">
                 <div class="card__row">
-                  <h2 class="card__name">Hydra-Dew Essence</h2>
-                  <span class="card__price">$48</span>
+                  <h2 class="card__name">Lemon Exfoliating Face Wash</h2>
+                  <span class="card__price">R65</span>
                 </div>
-                <p class="card__desc">Polyglutamic acid · glycerin · 120ml</p>
-                <p class="stars" aria-label="Rated 4.7 out of 5">★★★★★ <span class="card__desc">4.7 (389)</span></p>
+                <p class="card__desc">
+                  Brightens dull skin, lifts excess oil and smooths texture · 150ml
+                </p>
               </div>
             </article>
 
             <!-- 5 -->
-            <article class="card" id="marula-balm" data-category="cleanse">
-              <div class="card__media card__media--stone">
-                <div data-bottle="jar" data-tone="clay" data-label="MARULA BALM"></div>
+            <article class="card" id="day-cream" data-category="face">
+              <div class="card__media card__media--cream">
+                <div data-bottle="jar" data-tone="cream" data-label="DAY CREAM"></div>
                 <button class="btn btn--block card__add" type="button" data-add
-                  data-id="marula-balm" data-name="Marula Cleansing Balm" data-price="5400"
-                  data-size="100ml" data-kind="jar" data-tone="clay">Add to bag</button>
+                  data-id="day-cream" data-name="Anti-Blemish Day Cream" data-price="4000"
+                  data-size="100ml" data-kind="jar" data-tone="cream">Add to bag</button>
               </div>
               <div class="card__body">
                 <div class="card__row">
-                  <h2 class="card__name">Marula Cleansing Balm</h2>
-                  <span class="card__price">$54</span>
+                  <h2 class="card__name">Anti-Blemish Day Cream</h2>
+                  <span class="card__price">R40</span>
                 </div>
-                <p class="card__desc">Cold-pressed marula · 100ml</p>
-                <p class="stars" aria-label="Rated 4.9 out of 5">★★★★★ <span class="card__desc">4.9 (527)</span></p>
+                <p class="card__desc">
+                  Hydrates acne-prone skin without clogging pores and helps balance
+                  oil · 100ml
+                </p>
               </div>
             </article>
 
             <!-- 6 -->
-            <article class="card" id="enzyme-cleanser" data-category="cleanse">
-              <div class="card__media card__media--stone">
-                <div data-bottle="tube" data-tone="stone" data-label="ENZYME"></div>
+            <article class="card" id="tissue-oil" data-category="body">
+              <div class="card__media card__media--amber">
+                <span class="card__flag">Vitamin E</span>
+                <div data-bottle="oil" data-tone="amber" data-label="TISSUE OIL"></div>
                 <button class="btn btn--block card__add" type="button" data-add
-                  data-id="enzyme-cleanser" data-name="Polishing Enzyme Cleanser" data-price="4600"
-                  data-size="120ml" data-kind="tube" data-tone="stone">Add to bag</button>
+                  data-id="tissue-oil" data-name="Tissue Oil" data-price="5000"
+                  data-size="150ml" data-kind="oil" data-tone="amber">Add to bag</button>
               </div>
               <div class="card__body">
                 <div class="card__row">
-                  <h2 class="card__name">Polishing Enzyme Cleanser</h2>
-                  <span class="card__price">$46</span>
+                  <h2 class="card__name">Tissue Oil</h2>
+                  <span class="card__price">R50</span>
                 </div>
-                <p class="card__desc">Papain · rice bran · 120ml</p>
-                <p class="stars" aria-label="Rated 4.6 out of 5">★★★★★ <span class="card__desc">4.6 (318)</span></p>
+                <p class="card__desc">
+                  Helps repair damaged skin and soften the look of scars and
+                  stretch marks · 150ml
+                </p>
               </div>
             </article>
 
             <!-- 7 -->
-            <article class="card" id="buchu-cream" data-category="hydrate night">
-              <div class="card__media card__media--sage">
-                <div data-bottle="jar" data-tone="stone" data-label="BUCHU"></div>
+            <article class="card" id="body-butter" data-category="body">
+              <div class="card__media card__media--pomegranate">
+                <span class="card__flag">Pomegranate</span>
+                <div data-bottle="jar" data-tone="pomegranate" data-label="BODY BUTTER"></div>
                 <button class="btn btn--block card__add" type="button" data-add
-                  data-id="buchu-cream" data-name="Buchu Barrier Cream" data-price="6800"
-                  data-size="50ml" data-kind="jar" data-tone="stone">Add to bag</button>
+                  data-id="body-butter" data-name="Pomegranate Body Butter" data-price="5500"
+                  data-size="150ml" data-kind="jar" data-tone="pomegranate">Add to bag</button>
               </div>
               <div class="card__body">
                 <div class="card__row">
-                  <h2 class="card__name">Buchu Barrier Cream</h2>
-                  <span class="card__price">$68</span>
+                  <h2 class="card__name">Pomegranate Body Butter</h2>
+                  <span class="card__price">R55</span>
                 </div>
-                <p class="card__desc">Cederberg buchu · shea · 50ml</p>
-                <p class="stars" aria-label="Rated 4.8 out of 5">★★★★★ <span class="card__desc">4.8 (194)</span></p>
+                <p class="card__desc">
+                  Softens and hydrates dry skin and improves elasticity · 150ml
+                </p>
               </div>
             </article>
 
-            <!-- 8 -->
-            <article class="card" id="lucent-ampoule" data-category="treat">
-              <div class="card__media card__media--amber">
-                <span class="card__flag">New</span>
-                <div data-bottle="serum" data-tone="clay" data-label="LUCENT C"></div>
-                <button class="btn btn--block card__add" type="button" data-add
-                  data-id="lucent-ampoule" data-name="Lucent Vitamin C Ampoule" data-price="9200"
-                  data-size="20ml" data-kind="serum" data-tone="clay">Add to bag</button>
+            <!-- 8 — price not published online -->
+            <article class="card" id="turmeric-soap" data-category="face body cleanse brighten">
+              <div class="card__media card__media--turmeric">
+                <span class="card__flag">Turmeric</span>
+                <div data-bottle="bar" data-tone="turmeric" data-label="TURMERIC SOAP"></div>
+                <a class="btn btn--block card__add" href="contact.html">Enquire</a>
               </div>
               <div class="card__body">
                 <div class="card__row">
-                  <h2 class="card__name">Lucent Vitamin C Ampoule</h2>
-                  <span class="card__price">$92</span>
+                  <h2 class="card__name">Turmeric Soap</h2>
+                  <span class="card__price card__price--ask">Ask a consultant</span>
                 </div>
-                <p class="card__desc">15% L-ascorbic acid · ferulic · 20ml</p>
-                <p class="stars" aria-label="Rated 4.7 out of 5">★★★★★ <span class="card__desc">4.7 (156)</span></p>
+                <p class="card__desc">
+                  Daily cleansing bar for face and body, for congestion and uneven
+                  tone · 140g
+                </p>
               </div>
             </article>
 
-            <!-- 9 -->
-            <article class="card" id="quiet-eye" data-category="treat night">
-              <div class="card__media card__media--rose">
-                <div data-bottle="serum" data-tone="rose" data-label="QUIET EYE"></div>
-                <button class="btn btn--block card__add" type="button" data-add
-                  data-id="quiet-eye" data-name="Quiet Eye Concentrate" data-price="6400"
-                  data-size="15ml" data-kind="serum" data-tone="rose">Add to bag</button>
+            <!-- 9 — price not published online -->
+            <article class="card" id="brightening-roll-on" data-category="body brighten">
+              <div class="card__media card__media--honey">
+                <div data-bottle="rollon" data-tone="honey" data-label="ROLL-ON"></div>
+                <a class="btn btn--block card__add" href="contact.html">Enquire</a>
               </div>
               <div class="card__body">
                 <div class="card__row">
-                  <h2 class="card__name">Quiet Eye Concentrate</h2>
-                  <span class="card__price">$64</span>
+                  <h2 class="card__name">Brightening Roll-On</h2>
+                  <span class="card__price card__price--ask">Ask a consultant</span>
                 </div>
-                <p class="card__desc">Caffeine · peptide blend · 15ml</p>
-                <p class="stars" aria-label="Rated 4.5 out of 5">★★★★★ <span class="card__desc">4.5 (231)</span></p>
+                <p class="card__desc">
+                  For underarms and other areas prone to darkening · 50ml
+                </p>
               </div>
             </article>
           </div>
+
+          <p class="muted" style="margin-top: 2.5rem; font-size: 0.85rem">
+            Prices shown are recommended retail in South African rand and may vary
+            by consultant. Two products are sold through consultants only —
+            <a class="link-quiet" href="contact.html">ask us for current pricing</a>.
+          </p>
         </div>
       </section>
 
       <section class="section band">
         <div class="wrap grid grid--split">
           <div class="stack">
-            <p class="eyebrow">Refill programme</p>
-            <h2 class="h-1">Keep the glass.<br />Replace the formula.</h2>
+            <p class="eyebrow">Buy the range</p>
+            <h2 class="h-1">Order direct,<br />or through a consultant</h2>
+            <hr class="arch-rule" />
             <p class="lede">
-              Return your empty vessel or simply keep it — refill pods arrive in
-              recyclable aluminium at 30% less than the original, for as long as
-              you use the product.
+              LASS products are sold across South Africa by independent
+              consultants. If you would rather buy from someone near you — or
+              become that person — get in touch and we will point you the right
+              way.
             </p>
-            <p><a class="link-line" href="contact.html">Join the programme</a></p>
+            <p><a class="link-line" href="index.html#consultants">About the consultant programme</a></p>
           </div>
-          <div class="facts" style="border-color: rgba(250,247,242,.18)">
+          <div class="facts" style="border-color: rgba(251, 248, 243, 0.18)">
             <div class="fact" style="background: transparent; color: inherit">
-              <strong>30%</strong><span class="eyebrow">Refill saving</span>
+              <strong>R40</strong><span class="eyebrow">Entry price</span>
             </div>
             <div class="fact" style="background: transparent; color: inherit">
-              <strong>82%</strong><span class="eyebrow">Less packaging</span>
+              <strong>9</strong><span class="eyebrow">Products in the range</span>
             </div>
           </div>
         </div>
@@ -287,43 +306,45 @@
       <div class="wrap">
         <div class="footer__grid">
           <div class="stack">
-            <a class="brand" href="index.html">Lass <small>Skincare</small></a>
-            <p style="max-width: 32ch; color: rgba(250,247,242,.7)">
-              Clinical botanicals, formulated and filled in Cape Town. Nine
-              formulas, made in small batches, refillable for life.
+            <a class="brand brand--footer" href="index.html">
+              <img src="assets/img/lass-logo-light.png" width="449" height="224" alt="LASS Skincare — take care of your skin" />
+            </a>
+            <p style="max-width: 34ch; color: rgba(251, 248, 243, 0.7)">
+              Natural South African skincare for acne, hyperpigmentation, dark
+              marks and scarring. Made in Randburg, Gauteng.
             </p>
           </div>
           <div>
             <h4>Shop</h4>
             <ul>
               <li><a href="shop.html">All products</a></li>
-              <li><a href="shop.html#renewal-serum">Serums</a></li>
-              <li><a href="shop.html#marula-balm">Cleansers</a></li>
-              <li><a href="contact.html">Refills</a></li>
+              <li><a href="shop.html#turmeric-scrub">Face care</a></li>
+              <li><a href="shop.html#tissue-oil">Body care</a></li>
+              <li><a href="shop.html#turmeric-soap">Soaps</a></li>
             </ul>
           </div>
           <div>
-            <h4>House</h4>
+            <h4>Brand</h4>
             <ul>
-              <li><a href="about.html">Our standard</a></li>
+              <li><a href="about.html">Our story</a></li>
               <li><a href="index.html#ingredients">Ingredients</a></li>
-              <li><a href="index.html#ritual">The ritual</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="index.html#routine">Routine</a></li>
+              <li><a href="index.html#consultants">Become a consultant</a></li>
             </ul>
           </div>
           <div>
-            <h4>Care</h4>
+            <h4>Contact</h4>
             <ul>
-              <li><a href="contact.html">Shipping &amp; returns</a></li>
-              <li><a href="contact.html">Refill programme</a></li>
-              <li><a href="contact.html">Skin consultation</a></li>
-              <li><a href="contact.html">Stockists</a></li>
+              <li><a href="tel:+27780085989">078 008 5989</a></li>
+              <li><a href="tel:+27115682166">011 568 2166</a></li>
+              <li><a href="https://www.instagram.com/lass_skincare/" rel="noopener">Instagram</a></li>
+              <li><a href="https://www.facebook.com/p/LASS-Skin-Care-100064054091182/" rel="noopener">Facebook</a></li>
             </ul>
           </div>
         </div>
         <div class="footer__bar">
           <p>© <span data-year>2026</span> LASS Skincare. All rights reserved.</p>
-          <p>Cape Town · Copenhagen · London</p>
+          <p>Unit 40, KyaSands Business Park, Randburg, Gauteng</p>
         </div>
       </div>
     </footer>
@@ -340,13 +361,14 @@
         <nav class="drawer__body" aria-label="Mobile">
           <ul class="menu-list">
             <li><a href="shop.html">Shop</a></li>
-            <li><a href="about.html">House</a></li>
+            <li><a href="about.html">Our story</a></li>
             <li><a href="index.html#ingredients">Ingredients</a></li>
-            <li><a href="index.html#ritual">Ritual</a></li>
+            <li><a href="index.html#routine">Routine</a></li>
+            <li><a href="index.html#consultants">Become a consultant</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </nav>
-        <div class="drawer__foot"><p class="eyebrow">Complimentary shipping over $95</p></div>
+        <div class="drawer__foot"><p class="eyebrow">078 008 5989 · Randburg, Gauteng</p></div>
       </div>
     </div>
 
@@ -361,7 +383,7 @@
         </div>
         <div class="drawer__body" data-cart-list></div>
         <div class="drawer__foot" data-cart-foot hidden>
-          <div class="cart-total"><span>Subtotal</span><span data-cart-total>$0</span></div>
+          <div class="cart-total"><span>Subtotal</span><span data-cart-total>R0</span></div>
           <button class="btn btn--block" type="button" data-checkout>Checkout</button>
           <p style="margin-top: 0.9rem; text-align: center">
             <button class="link-quiet" type="button" data-cart-clear>Empty bag</button>

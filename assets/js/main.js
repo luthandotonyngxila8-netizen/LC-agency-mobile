@@ -14,12 +14,13 @@
 
   /* ------------------------------------------------------ bottle artwork */
   var TONES = {
-    amber: { glass: "#c79a5c", deep: "#a97c42", cap: "#2c2b26" },
-    sage: { glass: "#8d9c81", deep: "#6f7e64", cap: "#2f3a29" },
-    rose: { glass: "#d8b3a8", deep: "#c0968a", cap: "#3b2f2b" },
-    stone: { glass: "#cfc7ba", deep: "#b4ab9c", cap: "#2c2b26" },
-    night: { glass: "#8f95a6", deep: "#727888", cap: "#1d2029" },
-    clay: { glass: "#c9a68b", deep: "#ae8a6e", cap: "#33291f" }
+    turmeric: { glass: "#d69a24", deep: "#b57c15", cap: "#16130f" },
+    honey: { glass: "#e0ae52", deep: "#c08f38", cap: "#16130f" },
+    lemon: { glass: "#e2cf6a", deep: "#c7b34e", cap: "#16130f" },
+    pomegranate: { glass: "#c2685f", deep: "#a44f47", cap: "#16130f" },
+    cream: { glass: "#efe0c4", deep: "#d9c6a3", cap: "#16130f" },
+    amber: { glass: "#c79a5c", deep: "#a97c42", cap: "#16130f" },
+    stone: { glass: "#d9d1c2", deep: "#bfb5a3", cap: "#16130f" }
   };
 
   function label(y, name) {
@@ -59,13 +60,42 @@
 
   /**
    * Returns inline SVG markup for a product vessel.
-   * kind: serum | jar | tube | oil | mist
+   * kind: serum | jar | tube | oil | mist | bar | rollon
    */
   function bottleArt(kind, tone, name) {
-    var t = TONES[tone] || TONES.amber;
+    var t = TONES[tone] || TONES.turmeric;
     var body = "";
 
-    if (kind === "jar") {
+    if (kind === "bar") {
+      /* soap bar, seen slightly from above */
+      body =
+        '<path d="M22 92h76a8 8 0 0 1 8 8v40a8 8 0 0 1-8 8H22a8 8 0 0 1-8-8v-40a8 8 0 0 1 8-8z" fill="' +
+        t.deep +
+        '"/>' +
+        '<path d="M22 78h76a8 8 0 0 1 8 8v34a8 8 0 0 1-8 8H22a8 8 0 0 1-8-8V86a8 8 0 0 1 8-8z" fill="' +
+        t.glass +
+        '"/>' +
+        '<rect x="34" y="88" width="52" height="14" rx="2" fill="#fffdfa" opacity="0.9"/>' +
+        '<text x="60" y="99" text-anchor="middle" font-family="Cormorant Garamond, Garamond, serif"' +
+        ' font-size="9" letter-spacing="2.4" fill="#16130f">LASS</text>' +
+        '<text x="60" y="116" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif"' +
+        ' font-size="4" letter-spacing="0.8" fill="#16130f" opacity="0.55">' +
+        (name || "").slice(0, 16) +
+        "</text>";
+    } else if (kind === "rollon") {
+      body =
+        '<rect x="40" y="72" width="40" height="98" rx="12" fill="' +
+        t.glass +
+        '"/>' +
+        '<circle cx="60" cy="70" r="11" fill="' +
+        t.deep +
+        '"/>' +
+        '<rect x="46" y="30" width="28" height="42" rx="12" fill="' +
+        t.cap +
+        '"/>' +
+        shine(47, 86, 6, 60) +
+        label(100, name);
+    } else if (kind === "jar") {
       body =
         '<rect x="24" y="98" width="72" height="62" rx="10" fill="' +
         t.glass +
@@ -252,8 +282,9 @@
     }
   }
 
+  /* prices are held in cents so quantity maths stays exact; South African rand */
   function money(cents) {
-    return "$" + (cents / 100).toFixed(2).replace(/\.00$/, "");
+    return "R" + (cents / 100).toFixed(2).replace(/\.00$/, "");
   }
 
   function cartCount() {
@@ -371,7 +402,7 @@
         price: parseInt(add.getAttribute("data-price"), 10),
         size: add.getAttribute("data-size") || "",
         kind: add.getAttribute("data-kind") || "serum",
-        tone: add.getAttribute("data-tone") || "amber"
+        tone: add.getAttribute("data-tone") || "turmeric"
       });
       return;
     }
@@ -397,7 +428,7 @@
     }
 
     if (e.target.closest("[data-checkout]")) {
-      toast("Checkout is not connected in this demo");
+      toast("Checkout is not connected yet — call 078 008 5989 to order");
     }
   });
 

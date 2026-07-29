@@ -4,26 +4,29 @@
    ========================================================================== */
 
 /* --------------------------------------------------------- tokens */
+/* Palette is taken straight from the LASS logo: near-black lettering,
+   a gold arch and a warm off-white ground. */
 :root {
   /* surface */
-  --bone: #faf7f2;
-  --sand: #f2ebe1;
-  --clay: #e6dacb;
-  --shell: #fffdfa;
+  --bone: #fbf8f3;
+  --sand: #f4ecdf;
+  --clay: #e9dcc4;
+  --shell: #fffdf9;
 
   /* ink */
-  --ink: #17150f;
-  --ink-70: #4a443a;
-  --ink-45: #7d7568;
-  --line: rgba(23, 21, 15, 0.12);
-  --line-soft: rgba(23, 21, 15, 0.07);
+  --ink: #16130f;
+  --ink-70: #4a4237;
+  --ink-45: #7e7466;
+  --line: rgba(22, 19, 15, 0.12);
+  --line-soft: rgba(22, 19, 15, 0.07);
 
-  /* brand */
-  --sage: #46543e;
-  --sage-deep: #2f3a29;
-  --sage-mist: #dfe4d8;
-  --gold: #b08a51;
-  --gold-soft: #d9bd91;
+  /* brand — the gold arch */
+  --gold: #b08535;
+  --gold-deep: #8a6224;
+  --gold-soft: #e2c58f;
+  --gold-mist: #f3e6cc;
+  --ink-deep: #14120e;
+  --arch: linear-gradient(135deg, #8a6224 0%, #c9973f 38%, #e8cd94 62%, #a9762a 100%);
 
   /* type */
   --serif: "Cormorant Garamond", "Cormorant", Didot, "Bodoni MT", Garamond,
@@ -141,12 +144,12 @@ ol {
 }
 
 :focus-visible {
-  outline: 2px solid var(--sage);
+  outline: 2px solid var(--gold-deep);
   outline-offset: 3px;
 }
 
 ::selection {
-  background: var(--sage);
+  background: var(--gold-deep);
   color: var(--bone);
 }
 
@@ -163,8 +166,8 @@ h3 {
 }
 
 .h-hero {
-  font-size: clamp(3rem, 12vw, 8.5rem);
-  line-height: 0.92;
+  font-size: clamp(2.9rem, 10vw, 7rem);
+  line-height: 0.95;
 }
 
 .h-1 {
@@ -196,8 +199,8 @@ h3 {
   color: var(--ink-45);
 }
 
-.eyebrow--sage {
-  color: var(--sage);
+.eyebrow--gold {
+  color: var(--gold-deep);
 }
 
 .muted {
@@ -297,7 +300,7 @@ article[id] {
 }
 
 .btn:hover {
-  --btn-bg: var(--sage);
+  --btn-bg: var(--gold-deep);
   transform: translateY(-1px);
 }
 
@@ -352,7 +355,7 @@ article[id] {
 
 /* --------------------------------------------------------- announcement */
 .ticker {
-  background: var(--sage-deep);
+  background: var(--ink-deep);
   color: var(--bone);
   font-size: 0.68rem;
   letter-spacing: 0.22em;
@@ -413,24 +416,30 @@ article[id] {
   min-height: 4.25rem;
 }
 
+/* the logo itself — never re-typeset, always the supplied artwork */
 .brand {
   display: inline-flex;
-  align-items: baseline;
-  gap: 0.55rem;
-  font-family: var(--serif);
-  font-size: 1.6rem;
-  letter-spacing: 0.34em;
-  text-indent: 0.34em;
-  text-transform: uppercase;
-  line-height: 1;
+  align-items: center;
+  line-height: 0;
 }
 
-.brand small {
-  font-family: var(--sans);
-  font-size: 0.52rem;
-  letter-spacing: 0.24em;
-  color: var(--ink-45);
-  text-indent: 0;
+.brand img {
+  width: auto;
+  height: 2.75rem;
+}
+
+@media (min-width: 48rem) {
+  .brand img {
+    height: 3.35rem;
+  }
+}
+
+.brand--lg img {
+  height: 4.25rem;
+}
+
+.brand--footer img {
+  height: 3.5rem;
 }
 
 .nav {
@@ -488,7 +497,7 @@ article[id] {
 }
 
 .icon-btn:hover {
-  color: var(--sage);
+  color: var(--gold-deep);
 }
 
 .icon-btn svg {
@@ -504,7 +513,7 @@ article[id] {
   height: 1.2rem;
   padding-inline: 0.3rem;
   border-radius: 999px;
-  background: var(--sage);
+  background: var(--gold-deep);
   color: var(--bone);
   font-size: 0.62rem;
   font-family: var(--sans);
@@ -605,7 +614,7 @@ article[id] {
 }
 
 .menu-list a:hover {
-  color: var(--sage);
+  color: var(--gold-deep);
 }
 
 /* --------------------------------------------------------- hero */
@@ -624,8 +633,8 @@ article[id] {
   right: -14rem;
   background: radial-gradient(
     circle,
-    rgba(217, 189, 145, 0.4) 0%,
-    rgba(217, 189, 145, 0) 62%
+    rgba(201, 151, 63, 0.34) 0%,
+    rgba(201, 151, 63, 0) 62%
   );
   pointer-events: none;
 }
@@ -667,7 +676,7 @@ article[id] {
 
 .hero__title .accent {
   font-style: italic;
-  color: var(--sage);
+  color: var(--gold-deep);
 }
 
 @keyframes rise {
@@ -695,7 +704,7 @@ article[id] {
 .hero__meta strong {
   display: block;
   font-family: var(--serif);
-  font-size: 1.9rem;
+  font-size: clamp(1.35rem, 5vw, 1.9rem);
   font-weight: 300;
   line-height: 1;
 }
@@ -811,17 +820,17 @@ article[id] {
   aspect-ratio: 5 / 6;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: linear-gradient(150deg, var(--sage-mist), #c9d0bf);
+  background: linear-gradient(150deg, var(--gold-mist), #e0cba2);
   display: grid;
   place-items: center;
 }
 
 .figure-card--warm {
-  background: linear-gradient(150deg, #f4e9da, #e0cfb6);
+  background: linear-gradient(150deg, #fbeed4, #e5c894);
 }
 
 .figure-card--stone {
-  background: linear-gradient(150deg, #ece7e0, #d5cdc2);
+  background: linear-gradient(150deg, #f4efe6, #ddd2be);
 }
 
 .figure-card__note {
@@ -888,24 +897,26 @@ article[id] {
   transition: transform var(--slow);
 }
 
-.card__media--sage {
-  background: linear-gradient(160deg, #e6ead f 0%, #cfd7c5 100%);
-  background: linear-gradient(160deg, #e6eadf 0%, #cfd7c5 100%);
+.card__media--turmeric {
+  background: linear-gradient(160deg, #fbeccb 0%, #e8c47a 100%);
 }
-.card__media--sand {
-  background: linear-gradient(160deg, #f4ebdd 0%, #e2d2ba 100%);
+.card__media--honey {
+  background: linear-gradient(160deg, #fbf0d8 0%, #edcf95 100%);
 }
-.card__media--rose {
-  background: linear-gradient(160deg, #f6e9e5 0%, #e5cfc8 100%);
+.card__media--lemon {
+  background: linear-gradient(160deg, #fcf6dd 0%, #e9dda2 100%);
 }
-.card__media--stone {
-  background: linear-gradient(160deg, #eeeae4 0%, #d8d1c7 100%);
+.card__media--pomegranate {
+  background: linear-gradient(160deg, #f9e9e6 0%, #e0bdb6 100%);
 }
-.card__media--night {
-  background: linear-gradient(160deg, #dfe0e6 0%, #b9bcc7 100%);
+.card__media--cream {
+  background: linear-gradient(160deg, #fdf7ec 0%, #ecdfc8 100%);
 }
 .card__media--amber {
-  background: linear-gradient(160deg, #f7ecd8 0%, #e6c896 100%);
+  background: linear-gradient(160deg, #f8eeda 0%, #e3c391 100%);
+}
+.card__media--stone {
+  background: linear-gradient(160deg, #f4f0e8 0%, #ded4c3 100%);
 }
 
 .card:hover .card__media {
@@ -932,7 +943,7 @@ article[id] {
   font-size: 0.6rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--sage);
+  color: var(--gold-deep);
 }
 
 .card__add {
@@ -1035,7 +1046,7 @@ article[id] {
 
 /* --------------------------------------------------------- dark band */
 .band {
-  background: var(--sage-deep);
+  background: var(--ink-deep);
   color: var(--bone);
 }
 
@@ -1144,7 +1155,8 @@ article[id] {
   margin-top: 1rem;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #6f7d63, #2c3626 70%);
+  background: radial-gradient(circle at 34% 28%, #e8cd94, #a9762a 62%, #6d4a17 100%);
+  color: var(--ink-deep);
   display: grid;
   place-items: center;
   box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.35);
@@ -1291,15 +1303,15 @@ article[id] {
 .post__media {
   aspect-ratio: 3 / 2;
   border-radius: var(--radius-lg);
-  background: linear-gradient(140deg, #ece4d8, #d7cab6);
+  background: linear-gradient(140deg, #fbeed4, #e3c68f);
   transition: opacity var(--fast);
 }
 
 .post:nth-child(2) .post__media {
-  background: linear-gradient(140deg, #e3e8dc, #c6cfba);
+  background: linear-gradient(140deg, #f6efdd, #ddc9a0);
 }
 .post:nth-child(3) .post__media {
-  background: linear-gradient(140deg, #f1e6e3, #dcc7c0);
+  background: linear-gradient(140deg, #f9e9e6, #ddb9b1);
 }
 
 .post:hover .post__media {
@@ -1374,7 +1386,7 @@ article[id] {
 .field input:focus,
 .field textarea:focus {
   outline: none;
-  border-bottom-color: var(--sage);
+  border-bottom-color: var(--gold-deep);
 }
 
 .band .field input:focus {
@@ -1410,7 +1422,7 @@ article[id] {
 }
 
 .form-note.is-ok {
-  color: var(--sage);
+  color: var(--gold-deep);
 }
 
 .band .form-note.is-ok {
@@ -1730,4 +1742,94 @@ article[id] {
 
 .skip-link:focus {
   top: 0.5rem;
+}
+
+/* --------------------------------------------------------- brand accents */
+/* A short gold bar echoing the arch in the logo. */
+.arch-rule {
+  width: 3.5rem;
+  height: 3px;
+  border: 0;
+  border-radius: 3px;
+  background: var(--arch);
+  margin: 0;
+}
+
+.band .arch-rule {
+  background: var(--arch);
+}
+
+.gold-text {
+  background: var(--arch);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* credentials strip (replaces a press marquee — these are the brand's own) */
+.creds__track span {
+  color: var(--ink-70);
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 5rem);
+}
+
+.creds__track span::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex: none;
+}
+
+/* concern → routine cards */
+.concern {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  background: var(--shell);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+.concern h3 {
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+}
+
+.concern ul {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+
+.concern li {
+  font-size: 0.9rem;
+  color: var(--ink-70);
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.concern li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+/* price-on-request state */
+.card__price--ask {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
 }
