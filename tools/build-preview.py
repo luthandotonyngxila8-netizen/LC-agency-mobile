@@ -6,6 +6,7 @@ The only additions are (a) data-URI images so the file has no external requests
 and (b) a small router that swaps which page section is on screen.
 """
 import base64
+import json
 import pathlib
 import re
 
@@ -41,8 +42,29 @@ def data_uri(rel, mime):
     return "data:%s;base64,%s" % (mime, base64.b64encode(raw).decode("ascii"))
 
 
-LOGO = data_uri("assets/img/lass-logo.png", "image/png")
-LOGO_LIGHT = data_uri("assets/img/lass-logo-light.png", "image/png")
+MIME = {".png": "image/png", ".webp": "image/webp", ".jpg": "image/jpeg",
+        ".jpeg": "image/jpeg", ".svg": "image/svg+xml"}
+
+
+def collect_assets(chunk):
+    """Find every assets/img reference and encode each file exactly once.
+
+    A naive replace embeds the same photo up to four times — the card image
+    and the bag's data-shot, on both the shop and the home page — which is
+    most of a megabyte of duplicate base64. Instead each file becomes one
+    entry in a lookup the page hydrates from at load.
+    """
+    used = {}
+    for asset in sorted((ROOT / "assets/img").iterdir()):
+        ref = "assets/img/" + asset.name
+        mime = MIME.get(asset.suffix.lower())
+        if mime and ref in chunk:
+            used[asset.name] = data_uri(ref, mime)
+
+    # img src and the bag's data-shot both become keys into that lookup
+    chunk = re.sub(r'src="assets/img/([\w.-]+)"', r'data-asset="\1"', chunk)
+    chunk = re.sub(r'data-shot="assets/img/([\w.-]+)"', r'data-shot-asset="\1"', chunk)
+    return chunk, used
 
 css = (ROOT / "assets/css/style.css").read_text()
 js = (ROOT / "assets/js/main.js").read_text()
@@ -104,8 +126,24 @@ body = "\n".join(
      menu_drawer, cart_drawer, '<div class="toast" role="status" aria-live="polite"></div>']
 )
 body = rewrite_links(body)
-body = body.replace('src="assets/img/lass-logo.png"', 'src="%s"' % LOGO)
-body = body.replace('src="assets/img/lass-logo-light.png"', 'src="%s"' % LOGO_LIGHT)
+body, ASSETS = collect_assets(body)
+
+HYDRATE = """
+/* ---- asset hydration ----------------------------------------------------
+   Every image lives once in ASSETS; the markup carries keys into it. This
+   has to run before the site script, so the bag reads a real data-shot. */
+(function () {
+  var ASSETS = __ASSETS__;
+  document.querySelectorAll("[data-asset]").forEach(function (el) {
+    var uri = ASSETS[el.getAttribute("data-asset")];
+    if (uri) el.setAttribute("src", uri);
+  });
+  document.querySelectorAll("[data-shot-asset]").forEach(function (el) {
+    var uri = ASSETS[el.getAttribute("data-shot-asset")];
+    if (uri) el.setAttribute("data-shot", uri);
+  });
+})();
+"""
 
 ROUTER = """
 /* ---- single-file router -------------------------------------------------
@@ -178,7 +216,8 @@ ROUTER = """
 
 # the site script expects one page's worth of DOM; it copes with all four,
 # but the router has to run after it so the initial panel state wins.
-script = js + "\n" + ROUTER
+hydrate = HYDRATE.replace("__ASSETS__", json.dumps(ASSETS))
+script = hydrate + "\n" + js + "\n" + ROUTER
 
 html = """<title>LASS Skincare &#8212; site preview</title>
 <meta name="description" content="Preview of the LASS Skincare website: home, shop, our story and contact." />

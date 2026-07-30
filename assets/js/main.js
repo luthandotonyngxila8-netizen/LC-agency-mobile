@@ -338,7 +338,9 @@
         return (
           '<article class="cart-line">' +
           '<div class="cart-line__thumb">' +
-          bottleArt(item.kind, item.tone, "") +
+          (item.shot
+            ? '<img class="shot" src="' + item.shot + '" alt="" loading="lazy">'
+            : bottleArt(item.kind, item.tone, "")) +
           "</div>" +
           "<div>" +
           '<div class="card__row"><h4>' +
@@ -393,6 +395,7 @@
         size: data.size,
         kind: data.kind,
         tone: data.tone,
+        shot: data.shot,
         qty: 1
       });
     }
@@ -414,7 +417,8 @@
         price: parseInt(add.getAttribute("data-price"), 10),
         size: add.getAttribute("data-size") || "",
         kind: add.getAttribute("data-kind") || "serum",
-        tone: add.getAttribute("data-tone") || "turmeric"
+        tone: add.getAttribute("data-tone") || "turmeric",
+        shot: add.getAttribute("data-shot") || ""
       });
       return;
     }

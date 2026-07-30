@@ -909,6 +909,7 @@ article[id] {
   width: min(58%, 17rem);
   filter: drop-shadow(0 24px 34px rgba(23, 21, 15, 0.22));
   animation: float 9s ease-in-out infinite;
+  pointer-events: none;
 }
 
 @keyframes float {
@@ -919,6 +920,24 @@ article[id] {
   50% {
     transform: translateY(1.2%);
   }
+}
+
+/* Real product photography, staged exactly like the drawn vessels.
+   The range mixes tall bottles with wide jars, so both axes are capped —
+   whichever is the long edge governs, and every card reads at one weight. */
+.shot {
+  position: relative;
+  z-index: 1;
+  width: auto;
+  height: auto;
+  max-width: 62%;
+  max-height: 74%;
+  object-fit: contain;
+  filter: drop-shadow(0 22px 30px rgba(23, 21, 15, 0.2));
+  animation: float 9s ease-in-out infinite;
+  /* the artwork is decorative and overlaps the add button — it must never
+     swallow the click meant for it */
+  pointer-events: none;
 }
 
 /* --------------------------------------------------------- marquee logos */
@@ -1065,7 +1084,15 @@ article[id] {
   transition: transform var(--slow);
 }
 
-.card:hover .card__media .bottle {
+.card__media .shot {
+  max-width: 60%;
+  max-height: 70%;
+  animation: none;
+  transition: transform var(--slow);
+}
+
+.card:hover .card__media .bottle,
+.card:hover .card__media .shot {
   transform: scale(1.05);
 }
 
@@ -1084,6 +1111,7 @@ article[id] {
 
 .card__add {
   position: absolute;
+  z-index: 2;
   left: 0.85rem;
   right: 0.85rem;
   bottom: 0.85rem;
@@ -1584,6 +1612,13 @@ article[id] {
 
 .cart-line__thumb .bottle {
   width: 55%;
+  animation: none;
+  filter: none;
+}
+
+.cart-line__thumb .shot {
+  max-width: 66%;
+  max-height: 78%;
   animation: none;
   filter: none;
 }

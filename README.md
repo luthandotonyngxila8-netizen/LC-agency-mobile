@@ -40,14 +40,28 @@ material and reseller listings:
 
 Turmeric Facial Scrub R80 · Turmeric & Honey Face Mask R75 · Vitamin C
 Brightening Serum R70 · Lemon Exfoliating Face Wash R65 · Anti-Blemish Day Cream
-R40 · Tissue Oil R50 · Pomegranate Body Butter R55 · Turmeric Soap and
-Brightening Roll-On (no published price — these two show "Ask a consultant" and
-link to the contact page rather than carry an invented figure).
+R40 · Tissue Oil R50 · Pomegranate Body Butter R55 · Brightening Roll-On R45 ·
+Turmeric Soap (no published price — it shows "Ask a consultant" and links to the
+contact page rather than carry an invented figure).
 
-Product artwork is generated as inline SVG (`bottleArt()` in
-`assets/js/main.js`): seven vessel shapes across seven ingredient tones, so the
-site ships with no product photography. **Replace these with real product
-photos before launch** — they are stand-ins, not a design decision to keep.
+The roll-on's R45 and its alpha-arbutin / 48-hour anti-perspirant description
+come from the supplied product shot. Its 50ml volume does **not** — no volume is
+legible on that label, so that figure is inherited from the earlier draft and
+still needs checking.
+
+Five products now carry real photography, cut from the supplied storefront
+shots by `tools/cut-products.py` and committed as transparent WebP in
+`assets/img/product-*.webp`: the honey mask, brightening serum, tissue oil,
+body butter and brightening roll-on. The cut is a crop and an alpha matte
+only — no packaging pixel is redrawn, so every label, claim and barcode is
+exactly as photographed. Backgrounds come off by flood fill from the image
+border rather than a brightness threshold, because most of this range is white
+packaging on a white sweep and a threshold eats the product.
+
+The remaining four — turmeric scrub, lemon face wash, day cream and turmeric
+soap — still use the generated SVG vessels (`bottleArt()` in
+`assets/js/main.js`). **The range currently reads as a mix of photography and
+stand-ins.** Supply those four shots and the same script handles them.
 
 ## What's implemented
 
@@ -135,5 +149,11 @@ index.html  shop.html  about.html  contact.html
 assets/
   css/style.css   design tokens, layout, components
   js/main.js      product artwork, bag, drawers, filters, forms, reveals
-  img/            logo (light + dark variants), favicon
+  img/            logo (light + dark variants), favicon, product shots
+tools/
+  cut-products.py    storefront screenshots -> transparent product WebP
+  build-preview.py   the four pages -> one self-contained dist/lass-preview.html
+  fonts-inline.css   Cormorant Garamond + Inter, latin subsets, as data URIs
+dist/
+  lass-preview.html  generated; the file you send a client
 ```
