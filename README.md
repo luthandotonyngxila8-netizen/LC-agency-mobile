@@ -131,13 +131,19 @@ addresses, both phone numbers and the email address.
 
 Placeholders that need a real answer, in rough priority order:
 
-1. **The remaining photography** — product shots are the client's own and are done.
-   Still standing in, and still labelled *PLACEHOLDER IMAGE* on the face of them:
-   the workshop and craft shots (`hero-workshop`, `craft-cutting-table`,
-   `craft-east-london`), the five hide swatches (`hide-ostrich`, `hide-crocodile`,
-   `hide-nguni`, `hide-springbok`, `hide-zebra`), the toggle pair, the founder
-   portrait, `series-1999-circle`, and the `bespoke` / `heritage` / `contact` heroes.
-   Replace each `.jpg` **and** its `.webp` sibling. The AT monogram
+1. **Photography.** The product shots are the client's own. The hide, workshop
+   and hero imagery is **AI-generated** (Higgsfield, `z_image`) standing in for
+   real photography — see `tools/image-prompts.md` for what each frame is meant
+   to be. It reads as mood rather than documentation, which is worth knowing
+   before it goes in front of customers; the five hide studies in particular
+   would be better as real photographs, and they are the easiest to shoot.
+
+   Two are wrong and need redoing: **`hide-ostrich`** and **`skin-ostrich`** came
+   back as plain smooth leather with no quill field, directly contradicting the
+   caption next to them ("The quill field, read across a room").
+
+   Still outstanding: **`founder-asekho-twaku`**, which needs a real photograph
+   of Asekho and should not be generated. The AT monogram
    (`images/mark-at.png`, `images/logo-asekho-twaku.png`) is the real logo.
 2. **The founder quote** — marked as a placeholder on `index.html` and `heritage.html`.
    Nothing has been invented for Asekho; the block is flagged in the page itself and
