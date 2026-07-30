@@ -92,6 +92,31 @@ plausible ones.
 The contact and newsletter forms validate and then stop; wire them to an inbox
 or form service before launch.
 
+## Sending it to a client
+
+`tools/build-preview.py` folds the four pages into a single self-contained
+file at `dist/lass-preview.html` — one document, no external requests at all.
+The stylesheet and script are inlined verbatim, the logos become data URIs,
+Cormorant Garamond and Inter ride along as embedded woff2 (latin subsets, in
+`tools/fonts-inline.css`), and a small router swaps which page is on screen so
+the nav, footer links and mobile drawer all still work.
+
+```bash
+python3 tools/build-preview.py     # -> dist/lass-preview.html
+```
+
+The output is pure ASCII, with every non-ASCII character escaped, so it cannot
+be mangled by a host that serves the wrong charset. Open it from disk, mail it,
+or publish it anywhere — it needs nothing beside it.
+
+Two notes on the preview specifically. It pins the brand ground regardless of
+the viewer's light/dark preference, because a client reviewing the site should
+see the real palette rather than an inverted one. And it is a snapshot: rerun
+the script after changing any page, or the link will show the old build.
+
+`dist/` is generated. It is committed so the current preview is easy to grab,
+but the four source pages remain the thing you edit.
+
 ## Running it
 
 ```bash
