@@ -361,6 +361,22 @@ article[id] {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   overflow: hidden;
+  /* the strip reads as contained rather than cut off at the viewport edge */
+  --ticker-fade: clamp(2rem, 12vw, 8rem);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--ticker-fade),
+    #000 calc(100% - var(--ticker-fade)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--ticker-fade),
+    #000 calc(100% - var(--ticker-fade)),
+    transparent 100%
+  );
 }
 
 .ticker__track {
@@ -408,6 +424,24 @@ article[id] {
   border-bottom-color: var(--line-soft);
 }
 
+/* a hairline of brand gold appears only once the header has left the top */
+.header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--arch);
+  opacity: 0;
+  transition: opacity 0.2s var(--ease);
+  pointer-events: none;
+}
+
+.header.is-stuck::after {
+  opacity: 0.6;
+}
+
 .header__inner {
   display: flex;
   align-items: center;
@@ -421,11 +455,35 @@ article[id] {
   display: inline-flex;
   align-items: center;
   line-height: 0;
+  position: relative;
+}
+
+/* a faint gold wash behind the mark on hover — the artwork itself stays sharp */
+.header .brand::before {
+  content: "";
+  position: absolute;
+  inset: -18% -12%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at 50% 55%,
+    rgba(176, 133, 53, 0.22),
+    rgba(176, 133, 53, 0.07) 45%,
+    transparent 72%
+  );
+  opacity: 0;
+  transition: opacity 0.35s var(--ease);
+  pointer-events: none;
+}
+
+.header .brand:hover::before,
+.header .brand:focus-visible::before {
+  opacity: 1;
 }
 
 .brand img {
   width: auto;
   height: 2.75rem;
+  position: relative;
 }
 
 @media (min-width: 48rem) {
@@ -463,13 +521,37 @@ article[id] {
   right: 100%;
   bottom: 0;
   height: 1px;
-  background: currentColor;
-  transition: right var(--fast);
+  background: var(--arch);
+  opacity: 0;
+  transition: right var(--fast), opacity var(--fast);
 }
 
 .nav a:hover::after,
+.nav a:focus-visible::after,
 .nav a[aria-current="page"]::after {
   right: 0;
+  opacity: 1;
+}
+
+/* on load the links settle in one after another — 80ms apart */
+.js .nav a {
+  opacity: 0;
+  transform: translateY(-4px);
+  animation: navSettle 0.5s var(--ease) forwards;
+}
+
+.js .nav a:nth-child(1) { animation-delay: 0.08s; }
+.js .nav a:nth-child(2) { animation-delay: 0.16s; }
+.js .nav a:nth-child(3) { animation-delay: 0.24s; }
+.js .nav a:nth-child(4) { animation-delay: 0.32s; }
+.js .nav a:nth-child(5) { animation-delay: 0.4s; }
+.js .nav a:nth-child(6) { animation-delay: 0.48s; }
+
+@keyframes navSettle {
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .header__actions {
@@ -527,6 +609,30 @@ article[id] {
 
 .cart-count.is-on {
   transform: scale(1);
+}
+
+/* one pulse when the count appears or changes, then it sits still */
+.cart-count.is-pulsing {
+  animation: cartPulse 0.6s var(--ease);
+}
+
+@keyframes cartPulse {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* the gold accents stay — only the movement goes */
+@media (prefers-reduced-motion: reduce) {
+  .js .nav a {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    animation-delay: 0s !important;
+  }
+  .cart-count.is-pulsing {
+    animation: none;
+  }
 }
 
 .menu-btn {
@@ -766,20 +872,33 @@ article[id] {
   text-transform: none;
 }
 
-.hero__art {
+/* the settle-in is JS-driven, so it only applies when JS is actually running */
+.js .hero__art {
   will-change: transform;
-  transition: opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition: opacity 0.6s var(--ease);
   opacity: 0.6;
 }
 
-.hero__art.is-visible {
+.js .hero__art.is-visible {
   opacity: 1;
 }
 
+.hero__spark {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .hero__art {
+  .js .hero__art {
     transform: none !important;
     opacity: 1;
+  }
+  .hero__spark {
+    display: none;
   }
 }
 

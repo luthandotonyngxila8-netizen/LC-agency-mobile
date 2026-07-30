@@ -185,6 +185,10 @@
   });
 
   /* ------------------------------------------------------ header state */
+  /* only opt into JS-driven header motion once we know scripting is running,
+     so the nav never sits invisible for a visitor without JavaScript */
+  document.documentElement.classList.add("js");
+
   var header = $(".header");
   if (header) {
     var onScroll = function () {
@@ -303,8 +307,16 @@
     var badge = $("[data-cart-count]");
     if (badge) {
       var n = cartCount();
+      var changed = badge.textContent !== String(n);
       badge.textContent = n;
       badge.classList.toggle("is-on", n > 0);
+      /* pulse once whenever the number moves — restarting the animation
+         needs the class removed and a reflow forced before re-adding it */
+      if (changed && n > 0) {
+        badge.classList.remove("is-pulsing");
+        void badge.offsetWidth;
+        badge.classList.add("is-pulsing");
+      }
     }
 
     var list = $("[data-cart-list]");
@@ -585,111 +597,133 @@
   });
 
   /* ------------------------------------------------------ interactive hero */
-  var prefersMotion = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var prefersMotion = !window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
   var hero = $(".hero");
   var heroArt = $(".hero__art");
 
-  if (hero && heroArt && prefersMotion) {
-    var particles = [];
-    var canvas = document.createElement("canvas");
-    var ctx = canvas.getContext("2d");
-    var container = hero;
-
-    canvas.style.cssText =
-      "position: absolute; top: 0; left: 0; pointer-events: none; width: 100%; height: 100%;";
-    hero.style.position = "relative";
-    container.insertBefore(canvas, container.firstChild);
-
-    function resizeCanvas() {
-      canvas.width = hero.offsetWidth;
-      canvas.height = hero.offsetHeight;
-    }
-    resizeCanvas();
-
-    function Particle(x, y) {
-      this.x = x;
-      this.y = y;
-      this.vx = (Math.random() - 0.5) * 2;
-      this.vy = (Math.random() - 0.5) * 3 - 1;
-      this.life = 1;
-      this.size = Math.random() * 2 + 1;
-      this.color = ["#b08535", "#e2cf6a", "#d69a24"][Math.floor(Math.random() * 3)];
-    }
-
-    Particle.prototype.update = function () {
-      this.x += this.vx;
-      this.y += this.vy;
-      this.vy += 0.05;
-      this.life -= 0.02;
-    };
-
-    Particle.prototype.draw = function (ctx) {
-      ctx.globalAlpha = this.life;
-      ctx.fillStyle = this.color;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.globalAlpha = 1;
-    };
-
-    var mouseX = canvas.width / 2;
-    var mouseY = canvas.height / 2;
-    var lastParticleTime = 0;
-
-    document.addEventListener("mousemove", function (e) {
-      var rect = canvas.getBoundingClientRect();
-      mouseX = e.clientX - rect.left;
-      mouseY = e.clientY - rect.top;
-
-      var now = Date.now();
-      if (now - lastParticleTime > 50) {
-        for (var i = 0; i < 2; i++) {
-          particles.push(
-            new Particle(
-              mouseX + (Math.random() - 0.5) * 20,
-              mouseY + (Math.random() - 0.5) * 20
-            )
-          );
-        }
-        lastParticleTime = now;
-      }
-    });
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles = particles.filter(function (p) {
-        return p.life > 0;
-      });
-      particles.forEach(function (p) {
-        p.update();
-        p.draw(ctx);
-      });
-      requestAnimationFrame(animate);
-    }
-    animate();
-
-    window.addEventListener("resize", resizeCanvas);
-
-    var heroArtStyle = heroArt.style;
-    if (prefersMotion) {
-      document.addEventListener("scroll", function () {
-        var heroRect = hero.getBoundingClientRect();
-        var progress = Math.max(0, 1 - heroRect.top / window.innerHeight);
-        var offset = progress * 30;
-        heroArtStyle.transform = "translateY(" + offset + "px)";
-      });
-
-      var observer = new IntersectionObserver(
+  if (hero && heroArt) {
+    /* the artwork settles from dim to full once it is on screen */
+    if (!("IntersectionObserver" in window)) {
+      heroArt.classList.add("is-visible");
+    } else {
+      var heroIo = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              heroArt.classList.add("is-visible");
-            }
+            if (!entry.isIntersecting) return;
+            heroArt.classList.add("is-visible");
+            heroIo.unobserve(entry.target);
           });
         },
         { threshold: 0.2 }
       );
-      observer.observe(heroArt);
+      heroIo.observe(heroArt);
+    }
+  }
+
+  if (hero && heroArt && prefersMotion) {
+    /* parallax — the vessel drifts a little slower than the page */
+    var parallaxQueued = false;
+
+    var applyParallax = function () {
+      parallaxQueued = false;
+      var top = hero.getBoundingClientRect().top;
+      var progress = Math.min(1, Math.max(0, -top / window.innerHeight));
+      heroArt.style.transform = "translateY(" + progress * 30 + "px)";
+    };
+
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (parallaxQueued) return;
+        parallaxQueued = true;
+        requestAnimationFrame(applyParallax);
+      },
+      { passive: true }
+    );
+    applyParallax();
+
+    /* citrus motes that trail the cursor across the hero */
+    var canvas = document.createElement("canvas");
+    var ctx = canvas.getContext && canvas.getContext("2d");
+
+    if (ctx) {
+      var SPARK_COLOURS = ["#b08535", "#e2cf6a", "#d69a24"];
+      var motes = [];
+      var running = false;
+      var lastSpawn = 0;
+
+      canvas.className = "hero__spark";
+      canvas.setAttribute("aria-hidden", "true");
+      hero.insertBefore(canvas, hero.firstChild);
+
+      var sizeCanvas = function () {
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = hero.offsetWidth * dpr;
+        canvas.height = hero.offsetHeight * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      };
+      sizeCanvas();
+
+      var spawn = function (x, y) {
+        motes.push({
+          x: x + (Math.random() - 0.5) * 20,
+          y: y + (Math.random() - 0.5) * 20,
+          vx: (Math.random() - 0.5) * 1.6,
+          vy: -Math.random() * 1.2 - 0.2,
+          life: 1,
+          fade: 0.014 + Math.random() * 0.012,
+          size: Math.random() * 2 + 1,
+          colour: SPARK_COLOURS[Math.floor(Math.random() * SPARK_COLOURS.length)]
+        });
+      };
+
+      var frame = function () {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        motes = motes.filter(function (m) {
+          return m.life > 0;
+        });
+
+        motes.forEach(function (m) {
+          m.x += m.vx;
+          m.y += m.vy;
+          m.vy += 0.02;
+          m.life -= m.fade;
+          ctx.globalAlpha = Math.max(0, m.life) * 0.75;
+          ctx.fillStyle = m.colour;
+          ctx.beginPath();
+          ctx.arc(m.x, m.y, m.size, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        ctx.globalAlpha = 1;
+
+        if (motes.length) {
+          requestAnimationFrame(frame);
+        } else {
+          running = false;
+        }
+      };
+
+      hero.addEventListener("pointermove", function (e) {
+        if (e.pointerType === "touch") return;
+        var now = Date.now();
+        if (now - lastSpawn < 50) return;
+        lastSpawn = now;
+
+        var rect = canvas.getBoundingClientRect();
+        spawn(e.clientX - rect.left, e.clientY - rect.top);
+        spawn(e.clientX - rect.left, e.clientY - rect.top);
+
+        if (!running) {
+          running = true;
+          requestAnimationFrame(frame);
+        }
+      });
+
+      window.addEventListener("resize", sizeCanvas);
     }
   }
 

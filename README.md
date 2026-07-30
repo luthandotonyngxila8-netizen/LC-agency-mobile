@@ -63,9 +63,17 @@ photos before launch** — they are stand-ins, not a design decision to keep.
   `Escape` all close them, with body scroll locking.
 - **Ingredient accordion**, scroll reveals via `IntersectionObserver`, and
   client-side form validation with inline `aria-live` status messaging.
+- **Header detail** — the ticker fades out at both edges, the logo picks up a
+  faint gold halo on hover, nav underlines are drawn in the brand gradient and
+  settle in 80ms apart on load, the bag badge pulses once whenever the count
+  moves, and a gold hairline fades in under the header once it leaves the top.
+- **Live hero** — gold motes trail the cursor across the hero on a canvas
+  layer, the product vessel drifts on a `requestAnimationFrame` parallax, and
+  the artwork settles from dim to full when it enters the viewport.
 - **Accessibility** — skip link, landmarks, visible focus rings, labelled
   controls, `aria-pressed` filter chips, and a `prefers-reduced-motion` path that
-  disables every animation and reveal.
+  disables every animation and reveal — including the hero motes, the parallax
+  and the header cascade, while the gold accents themselves stay visible.
 - **Graceful degradation** — all copy, navigation and product information is in
   the HTML. Without JavaScript the site reads and navigates fine; only the bag,
   filters and accordion go quiet.
