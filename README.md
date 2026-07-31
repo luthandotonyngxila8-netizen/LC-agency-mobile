@@ -81,6 +81,18 @@ The transparent cut-outs in `assets/img/product-*.webp` are still generated and
 still used, but only for the bag's line thumbnails, where a small product on a
 plain ground reads better than a whole scene shrunk to 60px.
 
+The ingredients disc on the home page (`assets/img/ingredients.webp`) is also
+generated — a still life of the five ingredients on dark slate, framed so the
+centre stays open for the "Turmeric led" type. It carries no packaging and so
+no label text to corrupt, which is why it was made on the cheapest model
+rather than the text-accurate one. The disc keeps its gold gradient underneath
+the photograph, so it is never empty if the image fails to load.
+
+Note for future generations: `nano_banana` is the cheapest model in the
+catalogue but is gated behind a paid plan and returns
+`job_minimum_basic_plan_required` on a free account. The cheapest that
+actually runs is **GPT Image 2 at `quality: low`, 0.5 credits**.
+
 ### Label fidelity — read before using a scene large
 
 The generator re-rendered packaging text and it did not all survive. Every

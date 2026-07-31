@@ -1406,20 +1406,48 @@ article[id] {
   margin-top: 1rem;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
+  overflow: hidden;
+  /* the gradient stays as the ground: it shows through if the photograph
+     ever fails to load, so the disc is never empty */
   background: radial-gradient(circle at 34% 28%, #e8cd94, #a9762a 62%, #6d4a17 100%);
-  color: var(--ink-deep);
+  color: var(--bone);
   display: grid;
   place-items: center;
   box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.35);
 }
 
+.ing__figure img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* the still life is busy at its edges and open in the middle, so the type
+   only needs the centre held back to stay readable */
+.ing__figure::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(12, 10, 7, 0.72) 0%,
+    rgba(12, 10, 7, 0.45) 42%,
+    rgba(12, 10, 7, 0) 68%
+  );
+}
+
 .ing__figure b {
+  position: relative;
+  z-index: 1;
   font-family: var(--serif);
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 300;
   text-align: center;
   padding-inline: 2rem;
   line-height: 1.1;
+  text-shadow: 0 2px 18px rgba(12, 10, 7, 0.55);
 }
 
 /* --------------------------------------------------------- ritual */
