@@ -219,8 +219,8 @@ ROUTER = """
 hydrate = HYDRATE.replace("__ASSETS__", json.dumps(ASSETS))
 script = hydrate + "\n" + js + "\n" + ROUTER
 
-html = """<title>LASS Skincare &#8212; site preview</title>
-<meta name="description" content="Preview of the LASS Skincare website: home, shop, our story and contact." />
+html = """<title>LASS Skincare &#8212; Take care of your skin</title>
+<meta name="description" content="LASS is a South African natural skincare brand. Turmeric-led formulas for acne, hyperpigmentation, dark marks and scarring, made in Randburg, Gauteng." />
 <style>
 /* Cormorant Garamond and Inter, latin subsets, embedded so the preview
    renders in the real brand faces with no external requests. */
