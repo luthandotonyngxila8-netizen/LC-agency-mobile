@@ -36,7 +36,7 @@ SOURCES = {
     "turmeric-scrub": "07fd49a0-9845cb6bc72444bbb20d53f0879d270a.jpeg",
     "face-wash": "2851cfb0-92b79935f4b442c1ace924d404a8b470.jpeg",
     "day-cream": "d050895c-defc431fe0854b76bed61a80bf6ddff3.jpeg",
-    "turmeric-soap": "dbb3a976-9415d2a1d83c40b2854ae572c8716d22.jpeg",
+    "turmeric-soap": "29079722-IMG_6253.jpeg",
     "sweater": "e739340d-e2bdda89e87e44f089ee4d056d10f5d7.jpeg",
     "tshirt": "536a6974-704974c71223495ba6646eb09c06fbe4.jpeg",
 }
@@ -52,7 +52,7 @@ SEARCH = {
     "turmeric-scrub": (0.02, 0.74),
     "face-wash": (0.02, 0.71),
     "day-cream": (0.04, 0.63),
-    "turmeric-soap": (0.10, 0.66),
+    "turmeric-soap": (0.0, 1.0),
     "sweater": (0.01, 0.80),
     "tshirt": (0.02, 0.70),
 }

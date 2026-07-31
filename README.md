@@ -87,10 +87,10 @@ exists.
 python3 tools/cut-products.py /path/to/source/screenshots
 ```
 
-**One known blemish:** the turmeric soap shot has the storefront's NEW badge
-physically overlapping the box, hiding a corner of the packaging and part of
-the SABS mark. No masking can recover what the photo does not contain — that
-one needs a clean re-shoot.
+The turmeric soap is the one product shot from a clean studio original rather
+than a storefront screenshot — the screenshot had the NEW badge physically
+covering a corner of the box, which no masking could recover. Its entry in
+`SEARCH` uses the whole frame because there is no chrome to avoid.
 
 ## What's implemented
 
