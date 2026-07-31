@@ -70,36 +70,52 @@ twice.
 
 ## Product photography
 
-Five products carry **AI-restaged photography** in `assets/img/scene-*.webp`:
-the honey mask, turmeric soap, detox tea, sweater and t-shirt. These fill their
-card rather than floating on a tinted wash (`.card__media--scene`), and the
-honey mask and soap also carry the home page's hero and story figure. The
-transparent cut-outs are still used for the bag's line thumbnails, where a
-small product on a plain ground reads better than a scene.
+**All twelve products use AI-restaged photography** in `assets/img/scene-*.webp`.
+Each fills its card frame rather than floating on a tinted wash
+(`.card__media--scene`), and the honey mask and turmeric soap also carry the
+home page's hero and story figure. They share one visual language — warm cream
+ground, the brand's gold arch behind the product, an ingredient prop — so the
+grid reads as a single shoot.
 
-### Read this before using the scenes anywhere larger
+The transparent cut-outs in `assets/img/product-*.webp` are still generated and
+still used, but only for the bag's line thumbnails, where a small product on a
+plain ground reads better than a whole scene shrunk to 60px.
 
-The generator re-rendered packaging text, and it did not all survive. Checked
-against the original photographs:
+### Label fidelity — read before using a scene large
+
+The generator re-rendered packaging text and it did not all survive. Every
+scene was checked against the original photograph:
 
 | Scene | Label fidelity |
 | --- | --- |
-| Sweater | Clean — logo and strapline both correct |
-| Turmeric soap | Near-clean — only the SABS roundel reads "POYUUFCC" |
-| Honey mask | Headline correct; logo strapline and ingredient panel are gibberish |
-| Detox tea | Headline correct; claims block reads "BODY TOSINS", "GONC & BREAKOUT", "IHWENTENS" |
+| Day cream | Clean |
+| Face wash | Clean |
+| Tissue oil | Clean |
+| Brightening serum | Clean |
+| Sweater | Clean |
+| Body butter | Copy clean; the barcode digits differ from the real one |
+| Turmeric soap | Copy clean; the SABS roundel reads "POYUUFCC" |
+| Turmeric scrub | "THKE CARE OF YOUR SKIN", "Exfaliating", "Unciogs pores" |
+| Brightening roll-on | "TEAR CAREI OF FOOR BEAT", "Natural pH Rastere" |
+| Honey mask | Headline fine; logo strapline and ingredient panel are gibberish |
+| Detox tea | Headline fine; claims read "BODY TOSINS", "GONC & BREAKOUT" |
 | **T-shirt** | **Strapline reads "TINE CARE OF ÈGOCTION"** |
 
-At card size none of this is legible, which is why the grid still looks right.
-It becomes a problem the moment one is used large, zoomed, or in print. The
-t-shirt is the one worth regenerating first: that strapline is the brand's own
-line, rendered as nonsense, on a garment being sold.
+None of this is legible at card size, which is why the grid looks right. It
+becomes a problem the moment a scene is used large, zoomed, or in print. In
+priority order the t-shirt, honey mask and roll-on are worth regenerating —
+the first two because a mangled strapline is the brand's own line, the honey
+mask additionally because it is the home page hero.
 
-Underneath them, all twelve products also carry cut-out photography, cut from the supplied storefront
-shots by `tools/cut-products.py` and committed as transparent WebP in
-`assets/img/product-*.webp`. The cut is a crop and an alpha matte only — no
-packaging pixel is redrawn, so every label, claim and barcode is exactly as
-photographed.
+Reverting any one card to its cut-out is a two-attribute change: swap
+`card__media--scene` back to the tone class and `class="scene" src=".../scene-*.webp"`
+back to `class="shot" src=".../product-*.webp"`.
+
+## Cut-out photography
+
+`tools/cut-products.py` lifts each product off its storefront screenshot as a
+transparent WebP. The cut is a crop and an alpha matte only — no packaging
+pixel is redrawn, so labels and barcodes are exactly as photographed.
 
 Backgrounds come off by flood fill from the image border rather than a
 brightness threshold, because most of this range is white packaging on a white
@@ -112,10 +128,9 @@ exists.
 python3 tools/cut-products.py /path/to/source/screenshots
 ```
 
-The turmeric soap is the one product shot from a clean studio original rather
-than a storefront screenshot — the screenshot had the NEW badge physically
-covering a corner of the box, which no masking could recover. Its entry in
-`SEARCH` uses the whole frame because there is no chrome to avoid.
+The turmeric soap is cut from a clean studio original rather than a storefront
+screenshot — the screenshot had the NEW badge physically covering a corner of
+the box, which no masking could recover.
 
 ## What's implemented
 
