@@ -32,6 +32,13 @@ SOURCES = {
     "tissue-oil": "835d736f-7c6b482b0a55418eada10dcde71f9638.jpeg",
     "brightening-roll-on": "9e1df071-b2717a64cc584428890b66559fabc22c.jpeg",
     "honey-mask": "074e3db7-4398ed536f924837948b3e99052cdf6b.jpeg",
+    "detox-tea": "6391b424-c9edcbc652aa47fc878a88c5569460ce.jpeg",
+    "turmeric-scrub": "07fd49a0-9845cb6bc72444bbb20d53f0879d270a.jpeg",
+    "face-wash": "2851cfb0-92b79935f4b442c1ace924d404a8b470.jpeg",
+    "day-cream": "d050895c-defc431fe0854b76bed61a80bf6ddff3.jpeg",
+    "turmeric-soap": "dbb3a976-9415d2a1d83c40b2854ae572c8716d22.jpeg",
+    "sweater": "e739340d-e2bdda89e87e44f089ee4d056d10f5d7.jpeg",
+    "tshirt": "536a6974-704974c71223495ba6646eb09c06fbe4.jpeg",
 }
 
 # Vertical slice holding the product, above the title row. Fractions of height.
@@ -41,12 +48,25 @@ SEARCH = {
     "tissue-oil": (0.02, 0.70),
     "brightening-roll-on": (0.02, 0.62),
     "honey-mask": (0.04, 0.60),
+    "detox-tea": (0.02, 0.72),
+    "turmeric-scrub": (0.02, 0.74),
+    "face-wash": (0.02, 0.71),
+    "day-cream": (0.04, 0.63),
+    "turmeric-soap": (0.10, 0.66),
+    "sweater": (0.01, 0.80),
+    "tshirt": (0.02, 0.70),
 }
 
 BACKDROP = 11     # how far off pure white still counts as sweep
+
+# White garments photographed on a white sweep need a far tighter definition
+# of "backdrop": the sweep is 254-255 while the fabric runs 221-252, so the
+# default tolerance eats the clothing. Measured per product, not guessed.
+BACKDROP_OVERRIDE = {"sweater": 1, "tshirt": 1}
 EDGE = 4          # local contrast that counts as a packaging outline
 MIN_BLOB = 4000   # px; smaller leftovers are badge shards, not product
 SLIVER = 0.12     # min:max bbox ratio below which a blob is a border hairline
+MINOR = 0.25      # blobs under this share of the main object are not the product
 
 
 def drop_chrome(rgb):
@@ -56,18 +76,31 @@ def drop_chrome(rgb):
     mx, mn = a.max(2), a.min(2)
     sat = mx - mn
 
-    green_flag = (g > r + 25) & (g > b + 25) & (sat > 40)
+    green = (g > r + 25) & (g > b + 25) & (sat > 40)
+
+    # Only the storefront's NEW flag counts as chrome. Green also appears on
+    # the packaging itself - the soap carries a "100% natural" roundel - so
+    # match on position, not colour alone: the flag always hangs off the far
+    # left edge, while packaging art sits within the product.
+    green_flag = np.zeros_like(green)
+    tagged, n = ndimage.label(green)
+    for i, box in enumerate(ndimage.find_objects(tagged), start=1):
+        if box[1].start < green.shape[1] * 0.12:
+            green_flag |= tagged == i
     social_rail = (sat > 55) & (mx > 70) & ~green_flag
     # the rail lives hard against the right edge; keep product colour elsewhere
     rail = np.zeros_like(green_flag)
     rail[:, int(rail.shape[1] * 0.86):] = True
+
+    # the flag's white lettering is not green, so grow the mask over it
+    green_flag = ndimage.binary_dilation(green_flag, np.ones((3, 3)), iterations=14)
 
     out = rgb.copy()
     out[green_flag | (social_rail & rail)] = 255
     return out
 
 
-def backdrop_alpha(rgb):
+def backdrop_alpha(rgb, backdrop=BACKDROP):
     """Alpha from a border flood fill: 0 on sweep, 255 on product.
 
     Half this range is white packaging photographed on a white sweep, where
@@ -76,7 +109,7 @@ def backdrop_alpha(rgb):
     escapes through the softest pixel of the rim and hollows the bottle out.
     """
     grey = rgb.astype(np.int16).max(2)
-    nearly_white = grey >= (255 - BACKDROP)
+    nearly_white = grey >= (255 - backdrop)
 
     # local contrast marks every packaging edge, however faint
     g = grey.astype(np.uint8)
@@ -113,7 +146,10 @@ def backdrop_alpha(rgb):
             ys, xs = boxes[i]
             h, w = ys.stop - ys.start, xs.stop - xs.start
             sliver = min(h, w) / max(h, w) < SLIVER
-            if size >= MIN_BLOB and size >= biggest * 0.05 and not sliver:
+            # every product in this range is one object, so anything much
+            # smaller than the main blob is leftover chrome: a badge ghost,
+            # a scrollbar line, a card border
+            if size >= MIN_BLOB and size >= biggest * MINOR and not sliver:
                 keep.append(i + 1)
         solid = np.isin(blobs, keep)
     return (solid * 255).astype(np.uint8)
@@ -126,7 +162,7 @@ def cut(name, filename):
 
     band = np.asarray(im)[top:bottom]
     band = drop_chrome(band)
-    alpha = backdrop_alpha(band)
+    alpha = backdrop_alpha(band, BACKDROP_OVERRIDE.get(name, BACKDROP))
 
     if not alpha.any():
         raise SystemExit(f"{name}: found no product")

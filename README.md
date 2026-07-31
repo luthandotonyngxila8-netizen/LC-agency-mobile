@@ -10,7 +10,7 @@ runs.
 | File | Purpose |
 | --- | --- |
 | `index.html` | Home — hero, credentials, brand story, featured products, ingredients, routine, concern finder, consultant programme |
-| `shop.html` | The full nine-product range with category filters |
+| `shop.html` | All twelve products across skincare, wellness and wear, with category filters |
 | `about.html` | Our story, the vision, what the brand stands for, where to find it |
 | `contact.html` | Office and phone details, contact form, FAQs, consultant enquiry |
 
@@ -35,33 +35,62 @@ still reads correctly if Google Fonts is blocked or the machine is offline.
 
 ## Products
 
-The nine products, prices (ZAR) and descriptions come from LASS's own published
-material and reseller listings:
+Twelve products across three groups. Every price, size and description below
+is read off the supplied product photography.
 
-Turmeric Facial Scrub R80 · Turmeric & Honey Face Mask R75 · Vitamin C
-Brightening Serum R70 · Lemon Exfoliating Face Wash R65 · Anti-Blemish Day Cream
-R40 · Tissue Oil R50 · Pomegranate Body Butter R55 · Brightening Roll-On R45 ·
-Turmeric Soap (no published price — it shows "Ask a consultant" and links to the
-contact page rather than carry an invented figure).
+**Skincare (9)** — Turmeric Facial Scrub R80 · 150ml · Turmeric & Honey Face
+Mask R75 · 125ml · Vitamin C Brightening Serum R70 · 30ml · Lemon Exfoliating
+Face Wash R65 · 150ml · Anti-Blemish Day Cream R40 · Tissue Oil R50 · 150ml ·
+Pomegranate Body Butter R55 · 150ml · Turmeric Soap R55 · 140g · Brightening
+Roll-On R45 · 50ml
 
-The roll-on's R45 and its alpha-arbutin / 48-hour anti-perspirant description
-come from the supplied product shot. Its 50ml volume does **not** — no volume is
-legible on that label, so that figure is inherited from the earlier draft and
-still needs checking.
+**Wellness (1)** — Turmeric Detox Tea R90 · 20 bags · 50g
 
-Five products now carry real photography, cut from the supplied storefront
+**Wear (2)** — LASS Sweater R320 · LASS T-Shirt R250
+
+Filters are Face, Body, Cleanse, Brighten, Wellness and Wear. Garments carry a
+size picker; because the bag already keys a line by product *and* size, a
+medium and a large of the same sweater are two lines rather than one product
+twice.
+
+### Still to confirm
+
+- **Garment sizes.** The picker offers S–XXL. That range is assumed, not taken
+  from any source you supplied — correct it in `shop.html` if the real stock
+  differs.
+- **Day cream volume.** Shown as 100ml, inherited from the first draft. No
+  volume is legible on its label.
+- **Roll-on volume.** Shown as 50ml, same situation.
+- **The detox tea's claims.** Its box claims it reduces inflammation and body
+  pain, aids digestion and regulates blood sugar. Those read as medicinal
+  rather than cosmetic, and an ingestible making them is regulated differently
+  in South Africa. The site deliberately does **not** repeat them: the card
+  describes what the tea is, not what it treats. Have someone check the
+  packaging claims before promoting it.
+
+## Product photography
+
+All twelve products carry real photography, cut from the supplied storefront
 shots by `tools/cut-products.py` and committed as transparent WebP in
-`assets/img/product-*.webp`: the honey mask, brightening serum, tissue oil,
-body butter and brightening roll-on. The cut is a crop and an alpha matte
-only — no packaging pixel is redrawn, so every label, claim and barcode is
-exactly as photographed. Backgrounds come off by flood fill from the image
-border rather than a brightness threshold, because most of this range is white
-packaging on a white sweep and a threshold eats the product.
+`assets/img/product-*.webp`. The cut is a crop and an alpha matte only — no
+packaging pixel is redrawn, so every label, claim and barcode is exactly as
+photographed.
 
-The remaining four — turmeric scrub, lemon face wash, day cream and turmeric
-soap — still use the generated SVG vessels (`bottleArt()` in
-`assets/js/main.js`). **The range currently reads as a mix of photography and
-stand-ins.** Supply those four shots and the same script handles them.
+Backgrounds come off by flood fill from the image border rather than a
+brightness threshold, because most of this range is white packaging on a white
+sweep and a threshold eats the product. Packaging outlines become walls the
+fill cannot cross. The two garments need a tighter threshold still (the sweep
+is 254–255 while the fabric runs 221–252), which is why `BACKDROP_OVERRIDE`
+exists.
+
+```bash
+python3 tools/cut-products.py /path/to/source/screenshots
+```
+
+**One known blemish:** the turmeric soap shot has the storefront's NEW badge
+physically overlapping the box, hiding a corner of the packaging and part of
+the SABS mark. No masking can recover what the photo does not contain — that
+one needs a clean re-shoot.
 
 ## What's implemented
 
@@ -72,7 +101,7 @@ stand-ins.** Supply those four shots and the same script handles them.
   in rand, persisted to `localStorage` (`lass.cart.v1`) across pages and
   reloads. Checkout is a deliberate stub: it transmits nothing and tells the
   visitor to phone the office.
-- **Category filters** (Face, Body, Cleanse, Brighten) with a live result count.
+- **Category filters** (Face, Body, Cleanse, Brighten, Wellness, Wear) with a live result count.
 - **Slide-in drawers** for the mobile menu and bag — scrim, close button and
   `Escape` all close them, with body scroll locking.
 - **Ingredient accordion**, scroll reveals via `IntersectionObserver`, and

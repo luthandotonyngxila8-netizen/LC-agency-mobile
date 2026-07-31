@@ -381,9 +381,17 @@
     }
   }
 
+  /* the size picker sits in the same card as its add button */
+  function chosenSize(add) {
+    var card = add.closest(".card");
+    var select = card && $("[data-size-for]", card);
+    return select ? select.value : "";
+  }
+
   function addToCart(data) {
+    /* a medium and a large are two different lines, not one product twice */
     var existing = cart.filter(function (item) {
-      return item.id === data.id;
+      return item.id === data.id && item.size === data.size;
     })[0];
     if (existing) {
       existing.qty += 1;
@@ -415,7 +423,8 @@
         id: add.getAttribute("data-id"),
         name: add.getAttribute("data-name"),
         price: parseInt(add.getAttribute("data-price"), 10),
-        size: add.getAttribute("data-size") || "",
+        /* garments carry a size picker; whatever is chosen is what goes in */
+        size: chosenSize(add) || add.getAttribute("data-size") || "",
         kind: add.getAttribute("data-kind") || "serum",
         tone: add.getAttribute("data-tone") || "turmeric",
         shot: add.getAttribute("data-shot") || ""

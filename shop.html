@@ -6,7 +6,7 @@
     <title>Shop — LASS Skincare</title>
     <meta
       name="description"
-      content="The full LASS range: turmeric scrub and soap, brightening serum, honey face mask, tissue oil, body butter and more. Natural skincare made in South Africa."
+      content="The full LASS range: turmeric scrub and soap, brightening serum, honey face mask, tissue oil, body butter, brightening roll-on, turmeric detox tea and LASS wear. Natural skincare made in South Africa."
     />
     <meta name="theme-color" content="#fbf8f3" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -68,6 +68,7 @@
           <p class="lede">
             Face and body care built on turmeric, honey, lemon, vitamin C and
             pomegranate — for acne, dark marks, uneven tone, scars and dry skin.
+            Plus a turmeric tea to drink alongside it, and the LASS wear.
           </p>
         </div>
       </section>
@@ -80,40 +81,41 @@
             <button class="chip" type="button" data-filter="body" aria-pressed="false">Body</button>
             <button class="chip" type="button" data-filter="cleanse" aria-pressed="false">Cleanse</button>
             <button class="chip" type="button" data-filter="brighten" aria-pressed="false">Brighten</button>
+            <button class="chip" type="button" data-filter="wellness" aria-pressed="false">Wellness</button>
+            <button class="chip" type="button" data-filter="wear" aria-pressed="false">Wear</button>
           </div>
 
           <p class="eyebrow" style="margin-bottom: 2rem">
-            <span data-result-count>9 products</span>
+            <span data-result-count>12 products</span>
           </p>
 
           <div class="products">
-            <!-- 1 -->
             <article class="card" id="turmeric-scrub" data-category="face cleanse brighten">
               <div class="card__media card__media--turmeric">
                 <span class="card__flag">Turmeric</span>
-                <div data-bottle="jar" data-tone="turmeric" data-label="FACIAL SCRUB"></div>
+                <img class="shot" src="assets/img/product-turmeric-scrub.webp"
+                  width="564" height="1100" loading="lazy" decoding="async"
+                  alt="LASS Turmeric Facial Scrub" />
                 <button class="btn btn--block card__add" type="button" data-add
                   data-id="turmeric-scrub" data-name="Turmeric Facial Scrub" data-price="8000"
-                  data-size="150ml" data-kind="jar" data-tone="turmeric">Add to bag</button>
+                  data-size="150ml" data-kind="jar" data-tone="turmeric"
+                  data-shot="assets/img/product-turmeric-scrub.webp">Add to bag</button>
               </div>
               <div class="card__body">
                 <div class="card__row">
                   <h2 class="card__name">Turmeric Facial Scrub</h2>
                   <span class="card__price">R80</span>
                 </div>
-                <p class="card__desc">
-                  Removes dead skin cells and impurities, unclogs pores and helps
-                  soften the look of dark spots · 150ml
-                </p>
+                <p class="card__desc">Removes dead skin cells and impurities, unclogs pores and helps soften the look of pigmentation and dark spots · 150ml</p>
               </div>
             </article>
 
-            <!-- 2 -->
             <article class="card" id="honey-mask" data-category="face brighten">
               <div class="card__media card__media--honey">
                 <span class="card__flag">Honey</span>
-                <img class="shot" src="assets/img/product-honey-mask.webp" width="994" height="1100"
-                  loading="lazy" decoding="async" alt="LASS Turmeric and Honey Mask, 125ml jar" />
+                <img class="shot" src="assets/img/product-honey-mask.webp"
+                  width="960" height="1100" loading="lazy" decoding="async"
+                  alt="LASS Turmeric and Honey Face Mask" />
                 <button class="btn btn--block card__add" type="button" data-add
                   data-id="honey-mask" data-name="Turmeric &amp; Honey Face Mask" data-price="7500"
                   data-size="125ml" data-kind="jar" data-tone="honey"
@@ -124,22 +126,19 @@
                   <h2 class="card__name">Turmeric &amp; Honey Face Mask</h2>
                   <span class="card__price">R75</span>
                 </div>
-                <p class="card__desc">
-                  Nourishes and moisturises, calms redness and helps even out skin
-                  tone · 125ml
-                </p>
+                <p class="card__desc">Nourishes and moisturises, calms redness and helps improve discoloration and dark marks · 125ml</p>
               </div>
             </article>
 
-            <!-- 3 -->
             <article class="card" id="brightening-serum" data-category="face brighten">
               <div class="card__media card__media--amber">
                 <span class="card__flag">Vitamin C</span>
-                <img class="shot" src="assets/img/product-brightening-serum.webp" width="391" height="1100"
-                  loading="lazy" decoding="async" alt="LASS Vitamin C Brightening Serum, 30ml pump bottle" />
+                <img class="shot" src="assets/img/product-brightening-serum.webp"
+                  width="391" height="1100" loading="lazy" decoding="async"
+                  alt="LASS Vitamin C Brightening Serum" />
                 <button class="btn btn--block card__add" type="button" data-add
                   data-id="brightening-serum" data-name="Vitamin C Brightening Serum" data-price="7000"
-                  data-size="30ml" data-kind="serum" data-tone="amber"
+                  data-size="30ml" data-kind="jar" data-tone="amber"
                   data-shot="assets/img/product-brightening-serum.webp">Add to bag</button>
               </div>
               <div class="card__body">
@@ -147,62 +146,58 @@
                   <h2 class="card__name">Vitamin C Brightening Serum</h2>
                   <span class="card__price">R70</span>
                 </div>
-                <p class="card__desc">
-                  Targets dark spots and pigmentation and brightens a dull
-                  complexion · 30ml
-                </p>
+                <p class="card__desc">Targets dark spots and pigmentation and enhances the skin&rsquo;s natural glow · 30ml</p>
               </div>
             </article>
 
-            <!-- 4 -->
-            <article class="card" id="face-wash" data-category="face cleanse">
+            <article class="card" id="face-wash" data-category="face cleanse brighten">
               <div class="card__media card__media--lemon">
                 <span class="card__flag">Lemon</span>
-                <div data-bottle="tube" data-tone="lemon" data-label="FACE WASH"></div>
+                <img class="shot" src="assets/img/product-face-wash.webp"
+                  width="576" height="1100" loading="lazy" decoding="async"
+                  alt="LASS Lemon Exfoliating Face Wash" />
                 <button class="btn btn--block card__add" type="button" data-add
                   data-id="face-wash" data-name="Lemon Exfoliating Face Wash" data-price="6500"
-                  data-size="150ml" data-kind="tube" data-tone="lemon">Add to bag</button>
+                  data-size="150ml" data-kind="jar" data-tone="lemon"
+                  data-shot="assets/img/product-face-wash.webp">Add to bag</button>
               </div>
               <div class="card__body">
                 <div class="card__row">
                   <h2 class="card__name">Lemon Exfoliating Face Wash</h2>
                   <span class="card__price">R65</span>
                 </div>
-                <p class="card__desc">
-                  Brightens dull skin, lifts excess oil and smooths texture · 150ml
-                </p>
+                <p class="card__desc">Brightens, unclogs pores and helps reduce hyperpigmentation · 150ml</p>
               </div>
             </article>
 
-            <!-- 5 -->
             <article class="card" id="day-cream" data-category="face">
               <div class="card__media card__media--cream">
-                <div data-bottle="jar" data-tone="cream" data-label="DAY CREAM"></div>
+                <img class="shot" src="assets/img/product-day-cream.webp"
+                  width="1100" height="958" loading="lazy" decoding="async"
+                  alt="LASS Anti-Blemish Day Cream" />
                 <button class="btn btn--block card__add" type="button" data-add
                   data-id="day-cream" data-name="Anti-Blemish Day Cream" data-price="4000"
-                  data-size="100ml" data-kind="jar" data-tone="cream">Add to bag</button>
+                  data-size="100ml" data-kind="jar" data-tone="cream"
+                  data-shot="assets/img/product-day-cream.webp">Add to bag</button>
               </div>
               <div class="card__body">
                 <div class="card__row">
                   <h2 class="card__name">Anti-Blemish Day Cream</h2>
                   <span class="card__price">R40</span>
                 </div>
-                <p class="card__desc">
-                  Hydrates acne-prone skin without clogging pores and helps balance
-                  oil · 100ml
-                </p>
+                <p class="card__desc">Moisturises acne-prone skin without clogging pores and helps lighten blemishes · 100ml</p>
               </div>
             </article>
 
-            <!-- 6 -->
             <article class="card" id="tissue-oil" data-category="body">
               <div class="card__media card__media--amber">
                 <span class="card__flag">Vitamin E</span>
-                <img class="shot" src="assets/img/product-tissue-oil.webp" width="330" height="1100"
-                  loading="lazy" decoding="async" alt="LASS Tissue Oil, 150ml bottle" />
+                <img class="shot" src="assets/img/product-tissue-oil.webp"
+                  width="330" height="1100" loading="lazy" decoding="async"
+                  alt="LASS Tissue Oil" />
                 <button class="btn btn--block card__add" type="button" data-add
                   data-id="tissue-oil" data-name="Tissue Oil" data-price="5000"
-                  data-size="150ml" data-kind="oil" data-tone="amber"
+                  data-size="150ml" data-kind="jar" data-tone="amber"
                   data-shot="assets/img/product-tissue-oil.webp">Add to bag</button>
               </div>
               <div class="card__body">
@@ -210,19 +205,16 @@
                   <h2 class="card__name">Tissue Oil</h2>
                   <span class="card__price">R50</span>
                 </div>
-                <p class="card__desc">
-                  Helps repair damaged skin and soften the look of scars and
-                  stretch marks · 150ml
-                </p>
+                <p class="card__desc">Reduces the appearance of scars, blemishes and stretch marks · 150ml</p>
               </div>
             </article>
 
-            <!-- 7 -->
             <article class="card" id="body-butter" data-category="body">
               <div class="card__media card__media--pomegranate">
                 <span class="card__flag">Pomegranate</span>
-                <img class="shot" src="assets/img/product-body-butter.webp" width="1071" height="1100"
-                  loading="lazy" decoding="async" alt="LASS Pomegranate Body Butter, 150ml tub" />
+                <img class="shot" src="assets/img/product-body-butter.webp"
+                  width="1070" height="1100" loading="lazy" decoding="async"
+                  alt="LASS Pomegranate Body Butter" />
                 <button class="btn btn--block card__add" type="button" data-add
                   data-id="body-butter" data-name="Pomegranate Body Butter" data-price="5500"
                   data-size="150ml" data-kind="jar" data-tone="pomegranate"
@@ -233,40 +225,39 @@
                   <h2 class="card__name">Pomegranate Body Butter</h2>
                   <span class="card__price">R55</span>
                 </div>
-                <p class="card__desc">
-                  Softens and hydrates dry skin and improves elasticity · 150ml
-                </p>
+                <p class="card__desc">High in antioxidants, nourishes and hydrates skin and helps protect it from damage · 150ml</p>
               </div>
             </article>
 
-            <!-- 8 — price not published online -->
             <article class="card" id="turmeric-soap" data-category="face body cleanse brighten">
               <div class="card__media card__media--turmeric">
-                <span class="card__flag">Turmeric</span>
-                <div data-bottle="bar" data-tone="turmeric" data-label="TURMERIC SOAP"></div>
-                <a class="btn btn--block card__add" href="contact.html">Enquire</a>
+                <span class="card__flag">SABS approved</span>
+                <img class="shot" src="assets/img/product-turmeric-soap.webp"
+                  width="1100" height="772" loading="lazy" decoding="async"
+                  alt="LASS Turmeric Soap" />
+                <button class="btn btn--block card__add" type="button" data-add
+                  data-id="turmeric-soap" data-name="Turmeric Soap" data-price="5500"
+                  data-size="140g" data-kind="jar" data-tone="turmeric"
+                  data-shot="assets/img/product-turmeric-soap.webp">Add to bag</button>
               </div>
               <div class="card__body">
                 <div class="card__row">
                   <h2 class="card__name">Turmeric Soap</h2>
-                  <span class="card__price card__price--ask">Ask a consultant</span>
+                  <span class="card__price">R55</span>
                 </div>
-                <p class="card__desc">
-                  Daily cleansing bar for face and body, for congestion and uneven
-                  tone · 140g
-                </p>
+                <p class="card__desc">Anti-inflammatory daily cleansing bar for face and body &mdash; for acne, dark marks and pigmentation · 140g</p>
               </div>
             </article>
 
-            <!-- 9 -->
             <article class="card" id="brightening-roll-on" data-category="body brighten">
               <div class="card__media card__media--stone">
                 <span class="card__flag">Alpha arbutin</span>
-                <img class="shot" src="assets/img/product-brightening-roll-on.webp" width="470" height="1100"
-                  loading="lazy" decoding="async" alt="LASS Brightening Roll On with alpha arbutin" />
+                <img class="shot" src="assets/img/product-brightening-roll-on.webp"
+                  width="470" height="1100" loading="lazy" decoding="async"
+                  alt="LASS Brightening Roll-On" />
                 <button class="btn btn--block card__add" type="button" data-add
                   data-id="brightening-roll-on" data-name="Brightening Roll-On" data-price="4500"
-                  data-size="50ml" data-kind="rollon" data-tone="stone"
+                  data-size="50ml" data-kind="jar" data-tone="stone"
                   data-shot="assets/img/product-brightening-roll-on.webp">Add to bag</button>
               </div>
               <div class="card__body">
@@ -274,18 +265,83 @@
                   <h2 class="card__name">Brightening Roll-On</h2>
                   <span class="card__price">R45</span>
                 </div>
-                <p class="card__desc">
-                  Alpha arbutin for dark underarms, with 48-hour anti-perspirant
-                  protection and natural pH restore · 50ml
-                </p>
+                <p class="card__desc">Alpha arbutin for dark underarms, with 48-hour anti-perspirant protection and natural pH restore · 50ml</p>
+              </div>
+            </article>
+
+            <article class="card" id="detox-tea" data-category="wellness">
+              <div class="card__media card__media--turmeric">
+                <span class="card__flag">Wellness</span>
+                <img class="shot" src="assets/img/product-detox-tea.webp"
+                  width="696" height="1100" loading="lazy" decoding="async"
+                  alt="LASS Turmeric Detox Tea" />
+                <button class="btn btn--block card__add" type="button" data-add
+                  data-id="detox-tea" data-name="Turmeric Detox Tea" data-price="9000"
+                  data-size="20 bags · 50g" data-kind="jar" data-tone="turmeric"
+                  data-shot="assets/img/product-detox-tea.webp">Add to bag</button>
+              </div>
+              <div class="card__body">
+                <div class="card__row">
+                  <h2 class="card__name">Turmeric Detox Tea</h2>
+                  <span class="card__price">R90</span>
+                </div>
+                <p class="card__desc">Turmeric and chai blended with rooibos extract &mdash; a daily cup alongside your routine · 20 bags · 50g</p>
+              </div>
+            </article>
+
+            <article class="card" id="sweater" data-category="wear">
+              <div class="card__media card__media--stone">
+                <span class="card__flag">Wear</span>
+                <img class="shot" src="assets/img/product-sweater.webp"
+                  width="952" height="1100" loading="lazy" decoding="async"
+                  alt="LASS Sweater" />
+                <div class="card__size">
+                  <label class="sr-only" for="size-sweater">Size</label>
+                  <select id="size-sweater" data-size-for="sweater"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="XXL">XXL</option></select>
+                </div>
+                <button class="btn btn--block card__add" type="button" data-add
+                  data-id="sweater" data-name="LASS Sweater" data-price="32000"
+                  data-size="M" data-kind="jar" data-tone="stone"
+                  data-shot="assets/img/product-sweater.webp">Add to bag</button>
+              </div>
+              <div class="card__body">
+                <div class="card__row">
+                  <h2 class="card__name">LASS Sweater</h2>
+                  <span class="card__price">R320</span>
+                </div>
+                <p class="card__desc">Cotton-blend crew-neck sweater with the LASS arch across the chest</p>
+              </div>
+            </article>
+
+            <article class="card" id="tshirt" data-category="wear">
+              <div class="card__media card__media--stone">
+                <span class="card__flag">Wear</span>
+                <img class="shot" src="assets/img/product-tshirt.webp"
+                  width="1050" height="1100" loading="lazy" decoding="async"
+                  alt="LASS T-Shirt" />
+                <div class="card__size">
+                  <label class="sr-only" for="size-tshirt">Size</label>
+                  <select id="size-tshirt" data-size-for="tshirt"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="XXL">XXL</option></select>
+                </div>
+                <button class="btn btn--block card__add" type="button" data-add
+                  data-id="tshirt" data-name="LASS T-Shirt" data-price="25000"
+                  data-size="M" data-kind="jar" data-tone="stone"
+                  data-shot="assets/img/product-tshirt.webp">Add to bag</button>
+              </div>
+              <div class="card__body">
+                <div class="card__row">
+                  <h2 class="card__name">LASS T-Shirt</h2>
+                  <span class="card__price">R250</span>
+                </div>
+                <p class="card__desc">Cotton crew-neck tee with the LASS arch across the chest</p>
               </div>
             </article>
           </div>
 
           <p class="muted" style="margin-top: 2.5rem; font-size: 0.85rem">
             Prices shown are recommended retail in South African rand and may vary
-            by consultant. Two products are sold through consultants only —
-            <a class="link-quiet" href="contact.html">ask us for current pricing</a>.
+            by consultant. Garment sizes are confirmed when your order is placed —
+            <a class="link-quiet" href="contact.html">talk to us</a> if you are between sizes.
           </p>
         </div>
       </section>
@@ -309,7 +365,7 @@
               <strong>R40</strong><span class="eyebrow">Entry price</span>
             </div>
             <div class="fact" style="background: transparent; color: inherit">
-              <strong>9</strong><span class="eyebrow">Products in the range</span>
+              <strong>12</strong><span class="eyebrow">Products in the range</span>
             </div>
           </div>
         </div>
@@ -335,6 +391,8 @@
               <li><a href="shop.html#turmeric-scrub">Face care</a></li>
               <li><a href="shop.html#tissue-oil">Body care</a></li>
               <li><a href="shop.html#turmeric-soap">Soaps</a></li>
+              <li><a href="shop.html#detox-tea">Wellness</a></li>
+              <li><a href="shop.html#sweater">LASS wear</a></li>
             </ul>
           </div>
           <div>

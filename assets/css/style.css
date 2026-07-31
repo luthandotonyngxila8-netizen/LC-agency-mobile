@@ -988,8 +988,20 @@ article[id] {
   background: linear-gradient(150deg, #f4efe6, #ddd2be);
 }
 
+/* the hero and the story figure stage a photo larger than a card does */
+.hero__art .shot {
+  max-width: 66%;
+  max-height: 68%;
+}
+
+.figure-card .shot {
+  max-width: 68%;
+  max-height: 70%;
+}
+
 .figure-card__note {
   position: absolute;
+  z-index: 1;
   top: 1.25rem;
   left: 1.25rem;
   font-size: 0.65rem;
@@ -1107,6 +1119,48 @@ article[id] {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--gold-deep);
+}
+
+/* garments need a size before they can go in the bag; the picker rides just
+   above the add button and appears with it */
+.card__size {
+  position: absolute;
+  z-index: 2;
+  left: 0.85rem;
+  right: 0.85rem;
+  bottom: 3.75rem;
+  opacity: 0;
+  transform: translateY(0.6rem);
+  transition: opacity var(--fast), transform var(--fast);
+}
+
+.card__size select {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: rgba(255, 253, 250, 0.92);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.card:hover .card__size,
+.card:focus-within .card__size {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (hover: none) {
+  .card__size {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .card__add {
