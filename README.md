@@ -189,14 +189,18 @@ or form service before launch.
 
 ## Where the site is published
 
-GitHub Pages serves this repository from the **`lass-skincare-site`** branch,
-folder `/ (root)`:
+GitHub Pages serves this repository from **`main`**, folder `/ (root)`:
 
 **https://luthandotonyngxila8-netizen.github.io/LC-agency-mobile/**
 
-Work on that branch. Pages republishes on every push to it, so a commit that
-lands anywhere else will not reach the live site — which fails quietly, because
+Work on `main`. Pages republishes on every push to it, so a commit that lands
+anywhere else will not reach the live site — which fails quietly, because
 nothing errors, the site simply stops changing.
+
+The site originally 404'd because Pages defaults its branch dropdown to `main`
+while the work sat on a feature branch, so Pages was serving a branch holding
+nothing but a README. Keeping the site on `main` removes that whole class of
+mistake.
 
 Two things to know about this arrangement:
 
@@ -209,7 +213,8 @@ Two things to know about this arrangement:
   other branches of this repo cannot be served at the same time; each needs its
   own repository, or its own subfolder on the published branch.
 
-`main` is still at the initial commit and would serve a blank site.
+`lass-skincare-site` and `claude/lass-skincare-premium-site-63ray4` are earlier
+branches kept only as history; neither is published and neither needs updating.
 
 ## Sending it to a client
 
