@@ -994,6 +994,17 @@ article[id] {
   max-height: 68%;
 }
 
+/* a staged photograph brings its own highlight, so the painted one would
+   only wash it out */
+.hero__art:has(.scene)::after,
+.figure-card:has(.scene) {
+  background: var(--sand);
+}
+
+.hero__art:has(.scene)::after {
+  display: none;
+}
+
 .figure-card .shot {
   max-width: 68%;
   max-height: 70%;
@@ -1103,6 +1114,27 @@ article[id] {
   transition: transform var(--slow);
 }
 
+/* Staged photography arrives with its own ground and lighting, so it fills
+   the frame instead of floating on a tinted wash. */
+.card__media--scene {
+  background: var(--sand);
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+  transition: transform var(--slow);
+}
+
+.card:hover .card__media .scene {
+  transform: scale(1.04);
+}
+
 .card:hover .card__media .bottle,
 .card:hover .card__media .shot {
   transform: scale(1.05);
@@ -1110,6 +1142,7 @@ article[id] {
 
 .card__flag {
   position: absolute;
+  z-index: 2;
   top: 0.85rem;
   left: 0.85rem;
   padding: 0.3rem 0.65rem;

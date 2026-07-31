@@ -70,7 +70,32 @@ twice.
 
 ## Product photography
 
-All twelve products carry real photography, cut from the supplied storefront
+Five products carry **AI-restaged photography** in `assets/img/scene-*.webp`:
+the honey mask, turmeric soap, detox tea, sweater and t-shirt. These fill their
+card rather than floating on a tinted wash (`.card__media--scene`), and the
+honey mask and soap also carry the home page's hero and story figure. The
+transparent cut-outs are still used for the bag's line thumbnails, where a
+small product on a plain ground reads better than a scene.
+
+### Read this before using the scenes anywhere larger
+
+The generator re-rendered packaging text, and it did not all survive. Checked
+against the original photographs:
+
+| Scene | Label fidelity |
+| --- | --- |
+| Sweater | Clean — logo and strapline both correct |
+| Turmeric soap | Near-clean — only the SABS roundel reads "POYUUFCC" |
+| Honey mask | Headline correct; logo strapline and ingredient panel are gibberish |
+| Detox tea | Headline correct; claims block reads "BODY TOSINS", "GONC & BREAKOUT", "IHWENTENS" |
+| **T-shirt** | **Strapline reads "TINE CARE OF ÈGOCTION"** |
+
+At card size none of this is legible, which is why the grid still looks right.
+It becomes a problem the moment one is used large, zoomed, or in print. The
+t-shirt is the one worth regenerating first: that strapline is the brand's own
+line, rendered as nonsense, on a garment being sold.
+
+Underneath them, all twelve products also carry cut-out photography, cut from the supplied storefront
 shots by `tools/cut-products.py` and committed as transparent WebP in
 `assets/img/product-*.webp`. The cut is a crop and an alpha matte only — no
 packaging pixel is redrawn, so every label, claim and barcode is exactly as
