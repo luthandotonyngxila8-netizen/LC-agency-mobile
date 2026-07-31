@@ -187,6 +187,30 @@ plausible ones.
 The contact and newsletter forms validate and then stop; wire them to an inbox
 or form service before launch.
 
+## Where the site is published
+
+GitHub Pages serves this repository from the **`lass-skincare-site`** branch,
+folder `/ (root)`:
+
+**https://luthandotonyngxila8-netizen.github.io/LC-agency-mobile/**
+
+Work on that branch. Pages republishes on every push to it, so a commit that
+lands anywhere else will not reach the live site — which fails quietly, because
+nothing errors, the site simply stops changing.
+
+Two things to know about this arrangement:
+
+- It is a *project* Pages site, so everything is served under the
+  `/LC-agency-mobile/` subpath rather than the domain root. Every path in the
+  site is relative for exactly that reason. **Do not introduce a root-absolute
+  path** (`href="/assets/..."`) — it will 404 in production while working fine
+  locally.
+- Pages publishes one source per repository. Other client projects living on
+  other branches of this repo cannot be served at the same time; each needs its
+  own repository, or its own subfolder on the published branch.
+
+`main` is still at the initial commit and would serve a blank site.
+
 ## Sending it to a client
 
 `tools/build-preview.py` folds the four pages into a single self-contained
