@@ -38,9 +38,16 @@ across the first two commits (`61fd507`, `54fc396`) before this plan file existe
       remove, share add/update/remove, and the in-memory fallback path when
       `localStorage` is unavailable. Added `src/lib/store.test.ts` (11 tests,
       using a minimal in-memory `Storage` mock so no jsdom dependency is needed).
-- [ ] Consider light interaction coverage for the dialog flow (open → edit → save)
-      once a component-testing setup exists — none is wired up yet (no
-      `@testing-library/react` in devDependencies).
+- [x] Light interaction coverage for the dialog flow (open → edit → save). Added
+      `src/App.test.tsx` (5 tests) covering opening a task from the dashboard,
+      editing and saving a title, persistence through the store, changing status,
+      and closing the dialog. Wired up `@testing-library/react`,
+      `@testing-library/user-event` and `jsdom` as devDependencies; the component
+      tests opt into jsdom per-file via a `// @vitest-environment jsdom` docblock
+      so the existing node-environment lib tests are untouched.
+
+All planned week-one scope is complete: 32 tests passing across `progress.ts`,
+`store.ts` and the App dialog flow, with `npm run lint` and `npm run build` clean.
 
 ## Notes
 
