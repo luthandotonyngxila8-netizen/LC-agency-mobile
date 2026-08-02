@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Full-bleed square so the OS can apply its own mask. The mark stays
+       inside the maskable safe zone (the inner 80%, i.e. 51–461 here).
+
+       Two rows of week segments: weeks behind you, the week you're in, and
+       the weeks still ahead — the same idea the app itself opens with. -->
+  <rect width="512" height="512" fill="#0d1117" />
+  <g>
+    <rect x="96" y="176" width="96" height="60" rx="30" fill="#35c48a" />
+    <rect x="208" y="176" width="96" height="60" rx="30" fill="#35c48a" />
+    <rect x="320" y="176" width="96" height="60" rx="30" fill="#f2b544" />
+  </g>
+  <g fill="#2b3a4a">
+    <rect x="96" y="276" width="96" height="60" rx="30" />
+    <rect x="208" y="276" width="96" height="60" rx="30" />
+    <rect x="320" y="276" width="96" height="60" rx="30" />
+  </g>
+</svg>

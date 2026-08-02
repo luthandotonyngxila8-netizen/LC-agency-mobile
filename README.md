@@ -16,16 +16,28 @@ npm run build    # production build into dist/
 The build output in `dist/` is plain static files — it can be dropped on any host
 (Netlify, Vercel, Cloudflare Pages, S3, a folder on a server).
 
+### Installing it on a phone
+
+The production build is a PWA. Open it, then use the browser's "Add to Home Screen"
+and it installs as an app: its own icon, no browser chrome, and it opens with no
+connection at all (the app shell is precached).
+
+On iPhone this step is not optional if notifications matter — iOS delivers web push
+**only** to a web app that has been added to the Home Screen.
+
 ### Sharing the demo as one file
 
 ```bash
-npm run build && npm run build:demo
+npm run build:demo
 ```
 
 That writes `demo/finini-dashboard-demo.html`: the whole app — markup, styles and
 JavaScript — inlined into a single file with no external references. It can be emailed,
 opened straight off a phone, or hosted anywhere. Handy for sending the client something
 to click without standing up hosting first.
+
+It builds in a separate `demo` mode with the service worker disabled, since a single
+self-contained file has no origin to serve one from.
 
 ## What the demo covers
 
