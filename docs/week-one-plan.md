@@ -6,9 +6,9 @@ mobile-first.
 
 ## Status
 
-**The validation demo is complete. The week-one build is half done:** notes,
-activity events and stall detection are in; auth, the PWA and the Supabase
-skeleton are not.
+**The validation demo is complete. The week-one build is two-thirds done:**
+notes, activity events, stall detection and the PWA are in; the auth shell and
+the Supabase skeleton are not.
 
 The demo and the build are different things and the distinction matters. The
 demo exists to show the client the timeline concept; week one is the first paid
@@ -30,7 +30,7 @@ Built across `61fd507`, `54fc396`, `232f388` and `a04d669`.
 - [x] Test coverage across `progress.test.ts`, `store.test.ts`,
       `format.test.ts` and `App.test.tsx` — 61 passing, lint and build clean
 
-## The week-one build — 3 of 6 done
+## The week-one build — 4 of 6 done
 
 Ordered by dependency.
 
@@ -47,8 +47,10 @@ Ordered by dependency.
 - [ ] **Auth UI shell.** Login and signup screens, unauthenticated state, and a
       `useAuth` hook stubbed behind the same swappable-adapter pattern as
       `TaskStore`. No real backend in week one.
-- [ ] **PWA.** Manifest, icons, service worker registration, installable to home
-      screen. Required before push notifications can work at all on iOS.
+- [x] **PWA** (`17c429d`). Manifest, generated icons, service worker via
+      vite-plugin-pwa. Installs to the home screen and loads with the network
+      off — verified in a browser. Required before push notifications can reach
+      an iPhone at all.
 - [ ] **`SupabaseTaskStore` skeleton.** Full `TaskStore` interface plus SQL
       migrations for `tasks`, `task_notes`, `task_events`, `shares`, `profiles`.
       Written against the schema, not connected — no credentials in the repo.
