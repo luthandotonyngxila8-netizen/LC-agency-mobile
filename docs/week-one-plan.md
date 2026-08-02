@@ -6,9 +6,10 @@ mobile-first.
 
 ## Status
 
-**The validation demo is complete. The week-one build is two-thirds done:**
-notes, activity events, stall detection and the PWA are in; the auth shell and
-the Supabase skeleton are not.
+**The validation demo is complete. The week-one build is nearly done:** notes,
+activity events, stall detection, the PWA and the auth shell are in. Only the
+Supabase skeleton is left — and it is the one item blocked on the unresolved
+user-model question.
 
 The demo and the build are different things and the distinction matters. The
 demo exists to show the client the timeline concept; week one is the first paid
@@ -30,7 +31,7 @@ Built across `61fd507`, `54fc396`, `232f388` and `a04d669`.
 - [x] Test coverage across `progress.test.ts`, `store.test.ts`,
       `format.test.ts` and `App.test.tsx` — 61 passing, lint and build clean
 
-## The week-one build — 4 of 6 done
+## The week-one build — 5 of 6 done
 
 Ordered by dependency.
 
@@ -44,9 +45,10 @@ Ordered by dependency.
       `progress.ts`, threshold `STALL_THRESHOLD_DAYS` = 7. Surfaced as a card tag
       and a notice in the detail pop-up. Finished and not-yet-started tasks never
       flag. Not wired to email or push — that's week two.
-- [ ] **Auth UI shell.** Login and signup screens, unauthenticated state, and a
-      `useAuth` hook stubbed behind the same swappable-adapter pattern as
-      `TaskStore`. No real backend in week one.
+- [x] **Auth UI shell** (`804dc9f`). Sign-in and sign-up screens behind an
+      `AuthProvider` interface shaped like `TaskStore`. The demo opens signed in
+      so the dashboard is the first thing seen; sign out reveals the screens. The
+      stub accepts anything and never stores a password.
 - [x] **PWA** (`17c429d`). Manifest, generated icons, service worker via
       vite-plugin-pwa. Installs to the home screen and loads with the network
       off — verified in a browser. Required before push notifications can reach
