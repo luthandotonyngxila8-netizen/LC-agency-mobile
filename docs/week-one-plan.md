@@ -1,57 +1,67 @@
 # Finini Dashboard — Week One Plan
 
-Personal task/project management demo for Luyanda Finini + one helper. React 19 +
-TypeScript + Vite, plain CSS with design tokens, mobile-first.
+Personal task/project management app for Luyanda Finini, with per-task access for
+one helper. React 19 + TypeScript + Vite, plain CSS with design tokens,
+mobile-first.
 
-This plan is kept in sync with what's actually in the repo. Status reflects the
-codebase as found, not just what was requested — items below were already built
-across the first two commits (`61fd507`, `54fc396`) before this plan file existed.
+## Status
 
-## Scope
+**The validation demo is complete. The week-one build is not started.**
 
-- [x] React 19 + TypeScript + Vite project scaffold
-- [x] Plain CSS with design tokens, mobile-first (`src/index.css`, breakpoints at
-      640px/960px)
-- [x] `TaskStore` interface with a `localStorage` implementation; all persistence
-      goes through it (`src/lib/store.ts`) — no component talks to storage directly
-- [x] Week maths, health, urgency ordering in `src/lib/progress.ts`, covered by
-      `src/lib/progress.test.ts` (16 tests passing: inclusive ranges, day-7/8
-      rollover, partial final weeks, phases, health, urgency sort)
-- [x] `Dashboard` — summary stats, focus card (closest deadline), filterable task list
-- [x] `TaskCard` — compact row with health pill, week progress, status/share tags
-- [x] `TaskDetail` — pop-up with timeline, status control, description, end state,
-      dates, access list
-- [x] `TaskForm` — create/edit with live timeline preview and validation
-- [x] `ShareDialog` — per-task invite, permission levels (view/comment/edit), share
-      link, revoke
-- [x] `Modal` — dialog shell, bottom-sheet on mobile, Escape-to-close, focus on open
-- [x] `WeekProgress` — segmented week bar (hero + card variants), falls back to a
-      continuous bar past 14 weeks
-- [x] `useTasks` hook — single source of truth for the task list, wraps the store
-- [x] Seed data (`src/lib/seed.ts`) generated relative to today
-- [x] `npm test`, `npm run lint`, `npm run build` all passing
-- [x] Single-file demo bundle (`npm run build:demo` → `demo/finini-dashboard-demo.html`)
+Those are different things and the distinction matters. The demo exists to show
+the client the timeline concept; week one is the first paid increment that turns
+it into something he can actually use across two devices.
 
-## Remaining / next up
+## Done — the validation demo
 
-- [x] Test coverage for `src/lib/store.ts` (`LocalTaskStore`) — create, update,
-      remove, share add/update/remove, and the in-memory fallback path when
-      `localStorage` is unavailable. Added `src/lib/store.test.ts` (11 tests,
-      using a minimal in-memory `Storage` mock so no jsdom dependency is needed).
-- [x] Light interaction coverage for the dialog flow (open → edit → save). Added
-      `src/App.test.tsx` (5 tests) covering opening a task from the dashboard,
-      editing and saving a title, persistence through the store, changing status,
-      and closing the dialog. Wired up `@testing-library/react`,
-      `@testing-library/user-event` and `jsdom` as devDependencies; the component
-      tests opt into jsdom per-file via a `// @vitest-environment jsdom` docblock
-      so the existing node-environment lib tests are untouched.
+Built across `61fd507`, `54fc396`, `232f388` and `a04d669`.
 
-All planned week-one scope is complete: 32 tests passing across `progress.ts`,
-`store.ts` and the App dialog flow, with `npm run lint` and `npm run build` clean.
+- [x] React 19 + TypeScript + Vite scaffold
+- [x] Plain CSS with design tokens, mobile-first (breakpoints at 640px / 960px)
+- [x] `TaskStore` interface with a localStorage implementation — all persistence
+      goes through it, no component touches storage directly
+- [x] Week maths, health and urgency ordering in `src/lib/progress.ts`
+- [x] `Dashboard`, `TaskCard`, `TaskDetail`, `TaskForm`, `ShareDialog`, `Modal`,
+      `WeekProgress`, `useTasks`
+- [x] Seed data generated relative to today
+- [x] Single-file demo bundle (`npm run build:demo`)
+- [x] Test coverage: `progress.test.ts` (16), `store.test.ts` (11),
+      `App.test.tsx` (5) — 32 passing, lint and build clean
+
+## Not started — the week-one build
+
+None of the below exists yet. Ordered by dependency.
+
+- [ ] **Notes against tasks.** `TaskNote` type, store methods, UI in `TaskDetail`.
+      Prerequisite for both stall detection and AI summaries — without notes
+      there is nothing to summarise beyond the client's own form fields.
+- [ ] **Status-change history.** `TaskEvent` type; every status transition
+      recorded through the store. Foundation for stall detection.
+- [ ] **`stalledFor(task)` helper.** Days since last recorded movement, with
+      tests for no-events, recent-movement and long-stall cases. Not wired to
+      alerts in week one.
+- [ ] **Auth UI shell.** Login and signup screens, unauthenticated state, and a
+      `useAuth` hook stubbed behind the same swappable-adapter pattern as
+      `TaskStore`. No real backend in week one.
+- [ ] **PWA.** Manifest, icons, service worker registration, installable to home
+      screen. Required before push notifications can work at all on iOS.
+- [ ] **`SupabaseTaskStore` skeleton.** Full `TaskStore` interface plus SQL
+      migrations for `tasks`, `task_notes`, `task_events`, `shares`, `profiles`.
+      Written against the schema, not connected — no credentials in the repo.
+
+## Blocked pending client input
+
+- **User model.** One user with an occasional helper, or several administrators?
+  This changes the schema and every row-level security policy. Build single-user
+  until answered; the Supabase migrations are where it would diverge.
+- **Report format.** A sample of the progress report the client currently
+  compiles by hand. Blocks the consolidated reporting work in week three.
 
 ## Notes
 
-- Storage, auth, and sync are deliberately mocked (see `README.md`) — the
-  `TaskStore` interface is the seam for swapping in a real backend later.
-- No scope items are blocked; everything above is either done or a coverage
-  improvement on already-shipped code.
+- Storage, auth and sync are deliberately mocked in the demo. The `TaskStore`
+  interface is the seam for swapping in a real backend.
+- Component tests opt into jsdom per-file via a `// @vitest-environment jsdom`
+  docblock, so the node-environment lib tests are unaffected. Setting jsdom
+  globally breaks `store.test.ts`, which stubs `localStorage` — worth preserving
+  if anyone revisits the test config.
