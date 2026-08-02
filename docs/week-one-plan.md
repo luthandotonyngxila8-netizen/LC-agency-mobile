@@ -32,14 +32,16 @@ Built across `61fd507`, `54fc396`, `232f388` and `a04d669`.
 
 None of the below exists yet. Ordered by dependency.
 
-- [ ] **Notes against tasks.** `TaskNote` type, store methods, UI in `TaskDetail`.
-      Prerequisite for both stall detection and AI summaries — without notes
-      there is nothing to summarise beyond the client's own form fields.
-- [ ] **Status-change history.** `TaskEvent` type; every status transition
-      recorded through the store. Foundation for stall detection.
-- [ ] **`stalledFor(task)` helper.** Days since last recorded movement, with
-      tests for no-events, recent-movement and long-stall cases. Not wired to
-      alerts in week one.
+- [x] **Notes against tasks** (`50769d1`). Append-only, newest first, through
+      the `TaskStore` interface. The store backfills the field on read so tasks
+      saved by the previous build don't throw.
+- [x] **Activity events** (`0b3fd3e`). `TaskEvent` discriminated union recording
+      status transitions, date moves and notes. Renames and rewordings record
+      nothing, so tidying a stalled task can't make it look alive.
+- [x] **Stall detection** (`1689146`). `isStalled` / `daysSinceMovement` in
+      `progress.ts`, threshold `STALL_THRESHOLD_DAYS` = 7. Surfaced as a card tag
+      and a notice in the detail pop-up. Finished and not-yet-started tasks never
+      flag. Not wired to email or push — that's week two.
 - [ ] **Auth UI shell.** Login and signup screens, unauthenticated state, and a
       `useAuth` hook stubbed behind the same swappable-adapter pattern as
       `TaskStore`. No real backend in week one.
