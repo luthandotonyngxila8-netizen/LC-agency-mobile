@@ -113,6 +113,40 @@ export function plural(count: number, word: string): string {
   return count === 1 ? word : `${word}s`
 }
 
+/**
+ * Days of silence before a task is treated as stalled.
+ *
+ * One flat number on purpose: the client has to be able to explain the rule
+ * to himself in a sentence. Worth revisiting once he's used it and knows his
+ * own rhythm — a two-week job and a twelve-week one may not deserve the same
+ * patience.
+ */
+export const STALL_THRESHOLD_DAYS = 7
+
+/**
+ * Days since anything actually happened on this task.
+ *
+ * Falls back to `updatedAt` for tasks saved before events were recorded, so
+ * older data degrades to "last touched" rather than reporting nonsense.
+ */
+export function daysSinceMovement(task: Task, today: Date = new Date()): number {
+  const last = task.events[0]?.at ?? task.updatedAt
+  return Math.max(0, differenceInCalendarDays(today, parseISO(last)))
+}
+
+/**
+ * Whether a task has gone quiet — the question the client actually asked,
+ * and the one a deadline can't answer.
+ *
+ * A finished task can't stall. Neither can one that hasn't started: silence
+ * before the start date is the task waiting its turn, not a problem.
+ */
+export function isStalled(task: Task, today: Date = new Date()): boolean {
+  if (task.status === 'done') return false
+  if (getWeekProgress(task, today).phase === 'upcoming') return false
+  return daysSinceMovement(task, today) >= STALL_THRESHOLD_DAYS
+}
+
 const HEALTH_ORDER: Record<Health, number> = {
   overdue: 0,
   due_soon: 1,

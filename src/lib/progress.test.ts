@@ -1,11 +1,14 @@
 import { describe, expect, it } from 'vitest'
-import { parseISO } from 'date-fns'
+import { parseISO, subDays } from 'date-fns'
 import {
+  daysSinceMovement,
   getDeadlineNote,
   getHealth,
   getProgressHeadline,
   getWeekProgress,
+  isStalled,
   sortByUrgency,
+  STALL_THRESHOLD_DAYS,
 } from './progress'
 import type { Task, TaskStatus } from '../types'
 
@@ -142,6 +145,83 @@ describe('getHealth', () => {
     expect(getHealth(task('2026-06-01', '2026-06-28', 'done'), on('2026-07-01'))).toBe(
       'done',
     )
+  })
+})
+
+describe('daysSinceMovement', () => {
+  const withEvents = (offsets: number[], from: Date): Task => ({
+    ...task('2026-06-01', '2026-06-28'),
+    events: offsets.map((days, index) => ({
+      id: `ev-${index}`,
+      at: subDays(from, days).toISOString(),
+      type: 'note_added' as const,
+    })),
+  })
+
+  it('measures from the most recent event', () => {
+    const now = on('2026-06-15')
+    expect(daysSinceMovement(withEvents([3, 9, 20], now), now)).toBe(3)
+  })
+
+  it('falls back to updatedAt when a task has no events', () => {
+    const now = on('2026-06-15')
+    const legacy: Task = {
+      ...task('2026-06-01', '2026-06-28'),
+      events: [],
+      updatedAt: subDays(now, 5).toISOString(),
+    }
+    expect(daysSinceMovement(legacy, now)).toBe(5)
+  })
+
+  it('never reports negative days for an event stamped in the future', () => {
+    const now = on('2026-06-15')
+    expect(daysSinceMovement(withEvents([-2], now), now)).toBe(0)
+  })
+})
+
+describe('isStalled', () => {
+  const quietFor = (days: number, status: TaskStatus = 'in_progress'): Task => {
+    const base = task('2026-06-01', '2026-06-28', status)
+    return {
+      ...base,
+      events: [
+        {
+          id: 'ev-1',
+          at: subDays(on('2026-06-15'), days).toISOString(),
+          type: 'note_added',
+        },
+      ],
+    }
+  }
+
+  const now = on('2026-06-15')
+
+  it('flags a task once it passes the threshold', () => {
+    expect(isStalled(quietFor(STALL_THRESHOLD_DAYS - 1), now)).toBe(false)
+    expect(isStalled(quietFor(STALL_THRESHOLD_DAYS), now)).toBe(true)
+    expect(isStalled(quietFor(30), now)).toBe(true)
+  })
+
+  it('never flags a finished task, however long ago it was touched', () => {
+    expect(isStalled(quietFor(90, 'done'), now)).toBe(false)
+  })
+
+  it('never flags a task that has not started yet', () => {
+    const upcoming: Task = {
+      ...task('2026-07-01', '2026-07-28', 'not_started'),
+      events: [{ id: 'ev-1', at: subDays(now, 60).toISOString(), type: 'created' }],
+    }
+    expect(isStalled(upcoming, now)).toBe(false)
+  })
+
+  it('flags a started-but-untouched task even while its deadline is comfortable', () => {
+    // The case the client raised: the timeline still looks fine, the work isn't moving.
+    const roomy: Task = {
+      ...task('2026-06-01', '2026-09-01'),
+      events: [{ id: 'ev-1', at: subDays(now, 14).toISOString(), type: 'created' }],
+    }
+    expect(getHealth(roomy, now)).toBe('on_track')
+    expect(isStalled(roomy, now)).toBe(true)
   })
 })
 

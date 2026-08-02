@@ -1,5 +1,6 @@
 import { format, parseISO } from 'date-fns'
 import { PERMISSION_LABELS, STATUS_LABELS, type Task, type TaskStatus } from '../types'
+import { daysSinceMovement, isStalled, plural } from '../lib/progress'
 import { Modal } from './Modal'
 import { TaskNotes } from './TaskNotes'
 import { WeekProgress } from './WeekProgress'
@@ -53,6 +54,17 @@ export function TaskDetail({
       }
     >
       <WeekProgress task={task} variant="hero" />
+
+      {isStalled(task) && (
+        <p className="stall-notice">
+          Nothing has happened here for{' '}
+          <strong>
+            {daysSinceMovement(task)} {plural(daysSinceMovement(task), 'day')}
+          </strong>
+          . The timeline above only counts calendar time — it can&rsquo;t tell you
+          the work has stopped.
+        </p>
+      )}
 
       <section className="detail-section">
         <h4>Status</h4>

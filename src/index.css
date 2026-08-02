@@ -776,6 +776,26 @@ button {
   font-size: 12px;
 }
 
+/* --- stall ---------------------------------------------------------------- */
+
+.tag--stalled {
+  border-color: color-mix(in srgb, var(--warn) 45%, transparent);
+  color: var(--warn);
+}
+
+.stall-notice {
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--warn);
+  background: rgba(242, 181, 68, 0.08);
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.stall-notice strong {
+  color: var(--warn);
+}
+
 /* --- notes ---------------------------------------------------------------- */
 
 .note-form {

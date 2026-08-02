@@ -1,5 +1,11 @@
 import { STATUS_LABELS, type Task } from '../types'
-import { getHealth, HEALTH_LABELS } from '../lib/progress'
+import {
+  daysSinceMovement,
+  getHealth,
+  HEALTH_LABELS,
+  isStalled,
+  plural,
+} from '../lib/progress'
 import { WeekProgress } from './WeekProgress'
 
 interface Props {
@@ -9,6 +15,8 @@ interface Props {
 
 export function TaskCard({ task, onOpen }: Props) {
   const health = getHealth(task)
+  const stalled = isStalled(task)
+  const quietDays = daysSinceMovement(task)
 
   return (
     <article className="task-card" data-health={health}>
@@ -28,6 +36,11 @@ export function TaskCard({ task, onOpen }: Props) {
           <span className="tag" data-status={task.status}>
             {STATUS_LABELS[task.status]}
           </span>
+          {stalled && (
+            <span className="tag tag--stalled">
+              No movement in {quietDays} {plural(quietDays, 'day')}
+            </span>
+          )}
           {task.shares.length > 0 && (
             <span className="tag tag--muted">
               Shared with {task.shares.length}
