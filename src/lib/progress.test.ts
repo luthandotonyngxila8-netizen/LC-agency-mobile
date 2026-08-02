@@ -26,6 +26,7 @@ const task = (
   updatedAt: '2026-01-01T00:00:00.000Z',
   shares: [],
   notes: [],
+  events: [],
 })
 
 const on = (date: string) => parseISO(date)

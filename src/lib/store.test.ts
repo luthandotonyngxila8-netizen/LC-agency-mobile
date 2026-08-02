@@ -200,6 +200,121 @@ describe('LocalTaskStore with a working localStorage', () => {
     expect(tasks[0].title).toBe('Saved by an older build')
   })
 
+  it('opens a new task with a created event', async () => {
+    const store = new LocalTaskStore()
+    const created = await store.create(draft)
+
+    expect(created.events).toHaveLength(1)
+    expect(created.events[0].type).toBe('created')
+  })
+
+  it('records a status change with what it moved between', async () => {
+    const store = new LocalTaskStore()
+    const created = await store.create(draft)
+
+    const updated = await store.update(created.id, { status: 'in_progress' })
+
+    const event = updated.events[0]
+    expect(event.type).toBe('status_changed')
+    if (event.type !== 'status_changed') throw new Error('expected a status change')
+    expect(event.from).toBe('not_started')
+    expect(event.to).toBe('in_progress')
+  })
+
+  it('records nothing when the status is set to what it already was', async () => {
+    const store = new LocalTaskStore()
+    const created = await store.create(draft)
+
+    const updated = await store.update(created.id, { status: created.status })
+
+    expect(updated.events).toHaveLength(1)
+    expect(updated.events[0].type).toBe('created')
+  })
+
+  it('records a date change when a deadline moves', async () => {
+    const store = new LocalTaskStore()
+    const created = await store.create(draft)
+
+    const updated = await store.update(created.id, { endDate: '2026-02-01' })
+
+    expect(updated.events[0].type).toBe('dates_changed')
+  })
+
+  it('treats renaming and re-describing as housekeeping, not movement', async () => {
+    const store = new LocalTaskStore()
+    const created = await store.create(draft)
+
+    const updated = await store.update(created.id, {
+      title: 'A clearer title',
+      description: 'Reworded.',
+      endState: 'Tightened.',
+    })
+
+    expect(updated.events).toHaveLength(1)
+    expect(updated.events[0].type).toBe('created')
+  })
+
+  it('records both events when a status and a date change together', async () => {
+    const store = new LocalTaskStore()
+    const created = await store.create(draft)
+
+    const updated = await store.update(created.id, {
+      status: 'done',
+      endDate: '2026-03-01',
+    })
+
+    const types = updated.events.map((event) => event.type)
+    expect(types).toEqual(['status_changed', 'dates_changed', 'created'])
+  })
+
+  it('counts a note as movement but not deleting one', async () => {
+    const store = new LocalTaskStore()
+    const created = await store.create(draft)
+
+    const withNote = await store.addNote(created.id, 'Chased the accountant.')
+    expect(withNote.events[0].type).toBe('note_added')
+
+    const afterDelete = await store.removeNote(created.id, withNote.notes[0].id)
+    expect(afterDelete.events[0].type).toBe('note_added')
+    expect(afterDelete.events).toHaveLength(withNote.events.length)
+  })
+
+  it('keeps events newest first', async () => {
+    const store = new LocalTaskStore()
+    const created = await store.create(draft)
+    await store.update(created.id, { status: 'in_progress' })
+    const latest = await store.addNote(created.id, 'Latest thing that happened.')
+
+    const times = latest.events.map((event) => new Date(event.at).getTime())
+    const sorted = [...times].sort((a, b) => b - a)
+    expect(times).toEqual(sorted)
+    expect(latest.events[0].type).toBe('note_added')
+    expect(latest.events.at(-1)?.type).toBe('created')
+  })
+
+  it('backfills events on tasks saved before the field existed', async () => {
+    const legacy = {
+      id: 'legacy-3',
+      title: 'Older build',
+      description: '',
+      endState: '',
+      startDate: '2026-01-01',
+      endDate: '2026-01-15',
+      status: 'in_progress',
+      createdAt: '2026-01-01T00:00:00.000Z',
+      updatedAt: '2026-01-01T00:00:00.000Z',
+      shares: [],
+      notes: [],
+    }
+    localStorage.setItem('finini-dashboard/tasks/v1', JSON.stringify([legacy]))
+
+    const store = new LocalTaskStore()
+    expect((await store.list())[0].events).toEqual([])
+
+    const updated = await store.update('legacy-3', { status: 'done' })
+    expect(updated.events[0].type).toBe('status_changed')
+  })
+
   it('can add a note to a task saved before the field existed', async () => {
     const legacy = {
       id: 'legacy-2',

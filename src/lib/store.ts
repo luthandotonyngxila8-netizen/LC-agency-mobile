@@ -1,4 +1,4 @@
-import type { Permission, Task, TaskDraft } from '../types'
+import type { Permission, Task, TaskDraft, TaskEvent } from '../types'
 import { seedTasks } from './seed'
 
 /**
@@ -39,6 +39,7 @@ function normalize(tasks: Task[]): Task[] {
     ...task,
     shares: task.shares ?? [],
     notes: task.notes ?? [],
+    events: task.events ?? [],
   }))
 }
 
@@ -98,13 +99,42 @@ export class LocalTaskStore implements TaskStore {
       updatedAt: now,
       shares: [],
       notes: [],
+      events: [{ id: newId(), at: now, type: 'created' }],
     }
     this.write([...this.read(), task])
     return task
   }
 
+  /**
+   * Records an event for the kinds of change that count as the task moving:
+   * a status transition, or a shift in its dates. Renaming a task or fixing a
+   * typo in its description is housekeeping, not progress, and logging it
+   * would make a stalled task look active.
+   */
   async update(id: string, patch: Partial<TaskDraft>): Promise<Task> {
-    return this.mutate(id, (task) => ({ ...task, ...patch }))
+    return this.mutate(id, (task) => {
+      const at = new Date().toISOString()
+      const events: TaskEvent[] = []
+
+      if (patch.status !== undefined && patch.status !== task.status) {
+        events.push({
+          id: newId(),
+          at,
+          type: 'status_changed',
+          from: task.status,
+          to: patch.status,
+        })
+      }
+
+      const datesMoved =
+        (patch.startDate !== undefined && patch.startDate !== task.startDate) ||
+        (patch.endDate !== undefined && patch.endDate !== task.endDate)
+      if (datesMoved) {
+        events.push({ id: newId(), at, type: 'dates_changed' })
+      }
+
+      return { ...task, ...patch, events: [...events, ...task.events] }
+    })
   }
 
   async remove(id: string): Promise<void> {
@@ -145,15 +175,19 @@ export class LocalTaskStore implements TaskStore {
 
   async addNote(taskId: string, body: string): Promise<Task> {
     // Newest first: the point of a note is catching up on what just happened.
-    return this.mutate(taskId, (task) => ({
-      ...task,
-      notes: [
-        { id: newId(), body, createdAt: new Date().toISOString() },
-        ...task.notes,
-      ],
-    }))
+    return this.mutate(taskId, (task) => {
+      const at = new Date().toISOString()
+      return {
+        ...task,
+        notes: [{ id: newId(), body, createdAt: at }, ...task.notes],
+        // Writing a note is the user engaging with the task, so it counts as
+        // movement even when the status hasn't shifted.
+        events: [{ id: newId(), at, type: 'note_added' }, ...task.events],
+      }
+    })
   }
 
+  /** Deleting a note is a correction, so it records no event. */
   async removeNote(taskId: string, noteId: string): Promise<Task> {
     return this.mutate(taskId, (task) => ({
       ...task,

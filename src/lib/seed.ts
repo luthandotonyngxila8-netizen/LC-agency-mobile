@@ -12,14 +12,28 @@ export function seedTasks(today: Date = new Date()): Task[] {
   const now = today.toISOString()
 
   const base = (
-    task: Omit<Task, 'createdAt' | 'updatedAt' | 'shares' | 'notes'> & Partial<Task>,
+    task: Omit<Task, 'createdAt' | 'updatedAt' | 'shares' | 'notes' | 'events'> &
+      Partial<Task>,
   ): Task => ({
     createdAt: now,
     updatedAt: now,
     shares: [],
     notes: [],
+    events: [],
     ...task,
   })
+
+  /** Shorthand for the two events every seeded task opens with. */
+  const opened = (offset: number, id: string): Task['events'] => [
+    {
+      id: `${id}-ev-start`,
+      at: at(offset),
+      type: 'status_changed',
+      from: 'not_started',
+      to: 'in_progress',
+    },
+    { id: `${id}-ev-created`, at: at(offset), type: 'created' },
+  ]
 
   return [
     base({
@@ -40,6 +54,17 @@ export function seedTasks(today: Date = new Date()): Task[] {
           invitedAt: now,
           linkToken: 'a91c74be20f5',
         },
+      ],
+      notes: [
+        {
+          id: 'seed-note-4',
+          body: 'Logo lockup signed off. Palette needs one more pass — the amber fails contrast on the dark header.',
+          createdAt: at(-3),
+        },
+      ],
+      events: [
+        { id: 'seed-brand-ev-note', at: at(-3), type: 'note_added' },
+        ...opened(-16, 'seed-brand'),
       ],
     }),
     base({
@@ -72,6 +97,11 @@ export function seedTasks(today: Date = new Date()): Task[] {
           createdAt: at(-6),
         },
       ],
+      events: [
+        { id: 'seed-prop-ev-n1', at: at(-2), type: 'note_added' },
+        { id: 'seed-prop-ev-n2', at: at(-6), type: 'note_added' },
+        ...opened(-9, 'seed-prop'),
+      ],
     }),
     base({
       id: 'seed-certification',
@@ -82,6 +112,17 @@ export function seedTasks(today: Date = new Date()): Task[] {
       startDate: day(-38),
       endDate: day(45),
       status: 'in_progress',
+      notes: [
+        {
+          id: 'seed-note-5',
+          body: 'Module 6 done. Practice exam booked for the week of the 10th.',
+          createdAt: at(-4),
+        },
+      ],
+      events: [
+        { id: 'seed-cert-ev-note', at: at(-4), type: 'note_added' },
+        ...opened(-38, 'seed-cert'),
+      ],
     }),
     base({
       id: 'seed-tax-pack',
@@ -99,6 +140,12 @@ export function seedTasks(today: Date = new Date()): Task[] {
           createdAt: at(-11),
         },
       ],
+      // Deliberately quiet since that note: this is the task the dashboard
+      // should flag as stalled, and its status alone would never say so.
+      events: [
+        { id: 'seed-tax-ev-note', at: at(-11), type: 'note_added' },
+        ...opened(-20, 'seed-tax'),
+      ],
     }),
     base({
       id: 'seed-site-copy',
@@ -109,6 +156,16 @@ export function seedTasks(today: Date = new Date()): Task[] {
       startDate: day(-45),
       endDate: day(-17),
       status: 'done',
+      events: [
+        {
+          id: 'seed-copy-ev-done',
+          at: at(-17),
+          type: 'status_changed',
+          from: 'in_progress',
+          to: 'done',
+        },
+        ...opened(-45, 'seed-copy'),
+      ],
     }),
     base({
       id: 'seed-q4-planning',
@@ -119,6 +176,7 @@ export function seedTasks(today: Date = new Date()): Task[] {
       startDate: day(9),
       endDate: day(30),
       status: 'not_started',
+      events: [{ id: 'seed-q4-ev-created', at: at(-1), type: 'created' }],
     }),
   ]
 }

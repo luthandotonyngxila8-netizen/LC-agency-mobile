@@ -29,6 +29,23 @@ export interface TaskNote {
   createdAt: string
 }
 
+/**
+ * Something that actually happened to a task, with its timestamp.
+ *
+ * This exists so the app can answer a question the status field can't: when
+ * did this last move? The client's clearest ask was to be told when a task
+ * has gone quiet — not when a deadline is near, but when nothing has
+ * happened. That needs a record of activity, which nothing else here keeps.
+ *
+ * A discriminated union rather than optional fields, so a status change is
+ * the only shape that carries `from`/`to` and the compiler enforces it.
+ */
+export type TaskEvent =
+  | { id: string; at: string; type: 'created' }
+  | { id: string; at: string; type: 'status_changed'; from: TaskStatus; to: TaskStatus }
+  | { id: string; at: string; type: 'note_added' }
+  | { id: string; at: string; type: 'dates_changed' }
+
 export interface Task {
   id: string
   title: string
@@ -45,12 +62,14 @@ export interface Task {
   shares: Share[]
   /** Newest first. */
   notes: TaskNote[]
+  /** Newest first, so the most recent activity is `events[0]`. */
+  events: TaskEvent[]
 }
 
 /** Everything a caller supplies when creating a task; the rest is derived. */
 export type TaskDraft = Omit<
   Task,
-  'id' | 'createdAt' | 'updatedAt' | 'shares' | 'notes'
+  'id' | 'createdAt' | 'updatedAt' | 'shares' | 'notes' | 'events'
 >
 
 export const STATUS_LABELS: Record<TaskStatus, string> = {
