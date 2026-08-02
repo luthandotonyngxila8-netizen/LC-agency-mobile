@@ -95,7 +95,28 @@ interface TaskStore {
 ```
 
 Every method is async and no component talks to storage directly, so pointing the app at a
-hosted backend is one file. Two routes worth costing at the follow-up:
+hosted backend is one file.
+
+**The Supabase implementation is already written.** It is not connected — there is no
+project and no credentials in this repo — but it exists so switching over is a change of
+two exports rather than a piece of work nobody has looked at:
+
+```
+supabase/migrations/0001_initial_schema.sql   tables, row-level security, triggers
+src/lib/supabase-store.ts                     SupabaseTaskStore implements TaskStore
+src/lib/supabase-auth.ts                      SupabaseAuthProvider implements AuthProvider
+```
+
+To go live: create the project, run the migration, add `VITE_SUPABASE_URL` and
+`VITE_SUPABASE_ANON_KEY`, then replace the last line of `src/lib/store.ts` and
+`src/lib/auth.ts` with the Supabase versions. Nothing in `src/components` changes.
+
+Two things move into the database at that point, on purpose. Activity events are written
+by triggers rather than by the client, so the log cannot be bypassed or drift. And access
+is enforced by row-level security, so a helper with view-only access gets nothing back
+from a write — whatever the interface lets them click.
+
+Two routes worth costing at the follow-up:
 
 | Option | What it gives you | Trade-off |
 | --- | --- | --- |

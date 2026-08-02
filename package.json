@@ -12,6 +12,7 @@
     "build:demo": "vite build --mode demo && node scripts/build-demo.mjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.111.0",
     "date-fns": "^4.4.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
