@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import type { Permission, Task, TaskDraft, TaskStatus } from './types'
 import { useTasks } from './hooks/useTasks'
+import { useAuth } from './hooks/useAuth'
 import { resetDemoData } from './lib/store'
 import { Dashboard } from './components/Dashboard'
+import { SignIn } from './components/SignIn'
 import { TaskDetail } from './components/TaskDetail'
 import { TaskForm } from './components/TaskForm'
 import { ShareDialog } from './components/ShareDialog'
@@ -27,6 +29,7 @@ export default function App() {
     addNote,
     removeNote,
   } = useTasks()
+  const { user, loading: authLoading, signIn, signUp, signOut } = useAuth()
   const [dialog, setDialog] = useState<Dialog>({ kind: 'none' })
 
   const close = () => setDialog({ kind: 'none' })
@@ -70,6 +73,22 @@ export default function App() {
 
   const openTask = (task: Task) => setDialog({ kind: 'detail', taskId: task.id })
 
+  // Nothing renders until we know who's signed in, otherwise the sign-in screen
+  // flashes up for a moment on every load before the session resolves.
+  if (authLoading) {
+    return (
+      <div className="app">
+        <main className="app__main">
+          <p className="empty">Loading…</p>
+        </main>
+      </div>
+    )
+  }
+
+  if (!user) {
+    return <SignIn onSignIn={signIn} onSignUp={signUp} />
+  }
+
   return (
     <div className="app">
       <main className="app__main">
@@ -85,6 +104,13 @@ export default function App() {
       </main>
 
       <footer className="app__footer">
+        <span>Signed in as {user.name}</span>
+        <button type="button" className="link" onClick={() => void signOut()}>
+          Sign out
+        </button>
+        <span className="app__footer-sep" aria-hidden="true">
+          ·
+        </span>
         <span>Demo build — data is stored on this device only.</span>
         <button type="button" className="link" onClick={handleReset}>
           Reset demo data

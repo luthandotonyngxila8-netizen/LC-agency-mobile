@@ -182,3 +182,54 @@ describe('task notes', () => {
     expect(screen.getByText(/Pulled the three strongest case studies/)).toBeDefined()
   })
 })
+
+describe('signing out and back in', () => {
+  it('opens straight onto the dashboard rather than a login form', async () => {
+    render(<App />)
+    expect(await screen.findByRole('heading', { name: 'Where you are right now' })).toBeDefined()
+    expect(screen.queryByRole('heading', { name: 'Sign in' })).toBeNull()
+  })
+
+  it('shows the sign-in screen after signing out, and returns on sign-in', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    await user.click(await screen.findByRole('button', { name: 'Sign out' }))
+
+    expect(await screen.findByRole('heading', { name: 'Sign in' })).toBeDefined()
+    expect(screen.queryByRole('heading', { name: 'Where you are right now' })).toBeNull()
+
+    await user.type(screen.getByRole('textbox', { name: 'Email' }), 'thandi@example.com')
+    await user.type(screen.getByLabelText('Password'), 'password123')
+    await user.click(screen.getByRole('button', { name: 'Sign in' }))
+
+    await waitFor(() => {
+      expect(screen.getByRole('heading', { name: 'Where you are right now' })).toBeDefined()
+    })
+    expect(screen.getByText(/Signed in as thandi/)).toBeDefined()
+  })
+
+  it('rejects a short password before calling the provider', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Sign out' }))
+
+    await user.type(screen.getByRole('textbox', { name: 'Email' }), 'a@b.com')
+    await user.type(screen.getByLabelText('Password'), 'short')
+    await user.click(screen.getByRole('button', { name: 'Sign in' }))
+
+    expect(await screen.findByText(/at least 8 characters/)).toBeDefined()
+    expect(screen.queryByRole('heading', { name: 'Where you are right now' })).toBeNull()
+  })
+
+  it('can switch to creating an account', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    await user.click(await screen.findByRole('button', { name: 'Sign out' }))
+
+    await user.click(screen.getByRole('button', { name: 'Create one' }))
+
+    expect(await screen.findByRole('heading', { name: 'Create your account' })).toBeDefined()
+    expect(screen.getByRole('textbox', { name: 'Your name' })).toBeDefined()
+  })
+})
