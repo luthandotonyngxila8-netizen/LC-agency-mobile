@@ -6,10 +6,14 @@ mobile-first.
 
 ## Status
 
-**The validation demo is complete. The week-one build is nearly done:** notes,
-activity events, stall detection, the PWA and the auth shell are in. Only the
-Supabase skeleton is left — and it is the one item blocked on the unresolved
-user-model question.
+**Week one is complete.** Notes, activity events, stall detection, the PWA, the
+auth shell and the Supabase skeleton are all in. 80 tests passing, lint and
+build clean.
+
+Nothing is connected to a live backend yet — that is week two, and it cannot
+start until the accounts exist. The schema also assumes one owner with per-task
+sharing; if the answer to the user-model question turns out to be several
+administrators, the migration is a rewrite rather than an addition.
 
 The demo and the build are different things and the distinction matters. The
 demo exists to show the client the timeline concept; week one is the first paid
@@ -31,7 +35,7 @@ Built across `61fd507`, `54fc396`, `232f388` and `a04d669`.
 - [x] Test coverage across `progress.test.ts`, `store.test.ts`,
       `format.test.ts` and `App.test.tsx` — 61 passing, lint and build clean
 
-## The week-one build — 5 of 6 done
+## The week-one build — done
 
 Ordered by dependency.
 
@@ -53,9 +57,10 @@ Ordered by dependency.
       vite-plugin-pwa. Installs to the home screen and loads with the network
       off — verified in a browser. Required before push notifications can reach
       an iPhone at all.
-- [ ] **`SupabaseTaskStore` skeleton.** Full `TaskStore` interface plus SQL
-      migrations for `tasks`, `task_notes`, `task_events`, `shares`, `profiles`.
-      Written against the schema, not connected — no credentials in the repo.
+- [x] **Supabase skeleton** (`3d210e7`). Migrations with row-level security and
+      event triggers, plus `SupabaseTaskStore` and `SupabaseAuthProvider`.
+      Written, tested where testable, connected to nothing. Built single-user —
+      the migration marks where several administrators would change it.
 
 ## Blocked pending client input
 
