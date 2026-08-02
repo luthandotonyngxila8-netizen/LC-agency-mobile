@@ -72,6 +72,24 @@ export function useTasks() {
     [refresh],
   )
 
+  const addNote = useCallback(
+    async (taskId: string, body: string) => {
+      const task = await taskStore.addNote(taskId, body)
+      await refresh()
+      return task
+    },
+    [refresh],
+  )
+
+  const removeNote = useCallback(
+    async (taskId: string, noteId: string) => {
+      const task = await taskStore.removeNote(taskId, noteId)
+      await refresh()
+      return task
+    },
+    [refresh],
+  )
+
   return {
     tasks,
     loading,
@@ -82,5 +100,7 @@ export function useTasks() {
     addShare,
     updateShare,
     removeShare,
+    addNote,
+    removeNote,
   }
 }

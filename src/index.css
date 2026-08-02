@@ -776,6 +776,67 @@ button {
   font-size: 12px;
 }
 
+/* --- notes ---------------------------------------------------------------- */
+
+.note-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.note-form .field {
+  width: 100%;
+}
+
+.note-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.note {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+}
+
+.note__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.note__head time {
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+/* Outweighs `.detail-section p`, which would otherwise set the size. */
+.note .note__body {
+  font-size: 14px;
+  /* Notes are typed in a textarea — keep the line breaks the user made. */
+  white-space: pre-wrap;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* --- sharing -------------------------------------------------------------- */
 
 .share-scope {

@@ -140,6 +140,86 @@ describe('LocalTaskStore with a working localStorage', () => {
     expect(a).not.toBe(b)
     expect(a).toEqual(b)
   })
+
+  it('adds a note and puts the newest first', async () => {
+    const store = new LocalTaskStore()
+    const created = await store.create(draft)
+    expect(created.notes).toEqual([])
+
+    await store.addNote(created.id, 'Chased the bank statements again.')
+    const withTwo = await store.addNote(created.id, 'Statements arrived.')
+
+    expect(withTwo.notes).toHaveLength(2)
+    expect(withTwo.notes[0].body).toBe('Statements arrived.')
+    expect(withTwo.notes[1].body).toBe('Chased the bank statements again.')
+    expect(withTwo.notes[0].createdAt).toBeTruthy()
+  })
+
+  it('removes a note by id and leaves the others', async () => {
+    const store = new LocalTaskStore()
+    const created = await store.create(draft)
+    await store.addNote(created.id, 'First')
+    const withTwo = await store.addNote(created.id, 'Second')
+
+    const remaining = await store.removeNote(created.id, withTwo.notes[0].id)
+
+    expect(remaining.notes).toHaveLength(1)
+    expect(remaining.notes[0].body).toBe('First')
+  })
+
+  it('persists notes across store instances', async () => {
+    const created = await new LocalTaskStore().create(draft)
+    await new LocalTaskStore().addNote(created.id, 'Survives a reload.')
+
+    const tasks = await new LocalTaskStore().list()
+    expect(tasks.find((task) => task.id === created.id)?.notes[0].body).toBe(
+      'Survives a reload.',
+    )
+  })
+
+  it('backfills notes on tasks saved before the field existed', async () => {
+    // A task shaped like the previous release: no `notes` key at all. Without
+    // the backfill this is what makes the UI throw on `task.notes.map(...)`.
+    const legacy = {
+      id: 'legacy-1',
+      title: 'Saved by an older build',
+      description: '',
+      endState: '',
+      startDate: '2026-01-01',
+      endDate: '2026-01-15',
+      status: 'in_progress',
+      createdAt: '2026-01-01T00:00:00.000Z',
+      updatedAt: '2026-01-01T00:00:00.000Z',
+      shares: [],
+    }
+    localStorage.setItem('finini-dashboard/tasks/v1', JSON.stringify([legacy]))
+
+    const tasks = await new LocalTaskStore().list()
+
+    expect(tasks[0].notes).toEqual([])
+    expect(tasks[0].title).toBe('Saved by an older build')
+  })
+
+  it('can add a note to a task saved before the field existed', async () => {
+    const legacy = {
+      id: 'legacy-2',
+      title: 'Older build',
+      description: '',
+      endState: '',
+      startDate: '2026-01-01',
+      endDate: '2026-01-15',
+      status: 'not_started',
+      createdAt: '2026-01-01T00:00:00.000Z',
+      updatedAt: '2026-01-01T00:00:00.000Z',
+      shares: [],
+    }
+    localStorage.setItem('finini-dashboard/tasks/v1', JSON.stringify([legacy]))
+
+    const updated = await new LocalTaskStore().addNote('legacy-2', 'Works fine.')
+
+    expect(updated.notes).toHaveLength(1)
+    expect(updated.notes[0].body).toBe('Works fine.')
+  })
 })
 
 describe('LocalTaskStore when localStorage is unavailable', () => {

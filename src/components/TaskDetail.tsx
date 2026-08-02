@@ -1,6 +1,7 @@
 import { format, parseISO } from 'date-fns'
 import { PERMISSION_LABELS, STATUS_LABELS, type Task, type TaskStatus } from '../types'
 import { Modal } from './Modal'
+import { TaskNotes } from './TaskNotes'
 import { WeekProgress } from './WeekProgress'
 
 interface Props {
@@ -10,6 +11,8 @@ interface Props {
   onEdit: () => void
   onShare: () => void
   onDelete: () => void
+  onAddNote: (body: string) => void
+  onRemoveNote: (noteId: string) => void
 }
 
 const STATUSES: TaskStatus[] = ['not_started', 'in_progress', 'done']
@@ -25,6 +28,8 @@ export function TaskDetail({
   onEdit,
   onShare,
   onDelete,
+  onAddNote,
+  onRemoveNote,
 }: Props) {
   return (
     <Modal
@@ -65,6 +70,8 @@ export function TaskDetail({
           ))}
         </div>
       </section>
+
+      <TaskNotes task={task} onAdd={onAddNote} onRemove={onRemoveNote} />
 
       <section className="detail-section">
         <h4>What&rsquo;s involved</h4>

@@ -16,6 +16,8 @@ export interface TaskStore {
   addShare(taskId: string, invitee: string, permission: Permission): Promise<Task>
   updateShare(taskId: string, shareId: string, permission: Permission): Promise<Task>
   removeShare(taskId: string, shareId: string): Promise<Task>
+  addNote(taskId: string, body: string): Promise<Task>
+  removeNote(taskId: string, noteId: string): Promise<Task>
 }
 
 const STORAGE_KEY = 'finini-dashboard/tasks/v1'
@@ -24,6 +26,20 @@ function newId(): string {
   return typeof crypto !== 'undefined' && 'randomUUID' in crypto
     ? crypto.randomUUID()
     : `id-${Math.random().toString(36).slice(2, 10)}`
+}
+
+/**
+ * Tasks stored by an earlier build have no `notes` array, so reading them back
+ * would hand the UI an undefined and throw on the first `.map()`. Filling the
+ * collections in on read keeps otherwise-valid saved data working across the
+ * upgrade, rather than making the user reset their demo.
+ */
+function normalize(tasks: Task[]): Task[] {
+  return tasks.map((task) => ({
+    ...task,
+    shares: task.shares ?? [],
+    notes: task.notes ?? [],
+  }))
 }
 
 export class LocalTaskStore implements TaskStore {
@@ -40,7 +56,7 @@ export class LocalTaskStore implements TaskStore {
     if (this.fallback) return [...this.fallback]
     try {
       const raw = localStorage.getItem(STORAGE_KEY)
-      if (raw) return JSON.parse(raw) as Task[]
+      if (raw) return normalize(JSON.parse(raw) as Task[])
     } catch {
       // Corrupt or unreadable storage falls through to the seed below.
     }
@@ -81,6 +97,7 @@ export class LocalTaskStore implements TaskStore {
       createdAt: now,
       updatedAt: now,
       shares: [],
+      notes: [],
     }
     this.write([...this.read(), task])
     return task
@@ -123,6 +140,24 @@ export class LocalTaskStore implements TaskStore {
     return this.mutate(taskId, (task) => ({
       ...task,
       shares: task.shares.filter((share) => share.id !== shareId),
+    }))
+  }
+
+  async addNote(taskId: string, body: string): Promise<Task> {
+    // Newest first: the point of a note is catching up on what just happened.
+    return this.mutate(taskId, (task) => ({
+      ...task,
+      notes: [
+        { id: newId(), body, createdAt: new Date().toISOString() },
+        ...task.notes,
+      ],
+    }))
+  }
+
+  async removeNote(taskId: string, noteId: string): Promise<Task> {
+    return this.mutate(taskId, (task) => ({
+      ...task,
+      notes: task.notes.filter((note) => note.id !== noteId),
     }))
   }
 }

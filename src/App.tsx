@@ -24,6 +24,8 @@ export default function App() {
     addShare,
     updateShare,
     removeShare,
+    addNote,
+    removeNote,
   } = useTasks()
   const [dialog, setDialog] = useState<Dialog>({ kind: 'none' })
 
@@ -99,6 +101,8 @@ export default function App() {
           onEdit={() => setDialog({ kind: 'edit', taskId: activeTask.id })}
           onShare={() => setDialog({ kind: 'share', taskId: activeTask.id })}
           onDelete={handleDelete}
+          onAddNote={(body) => void addNote(activeTask.id, body)}
+          onRemoveNote={(noteId) => void removeNote(activeTask.id, noteId)}
         />
       )}
 

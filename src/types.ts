@@ -14,6 +14,21 @@ export interface Share {
   linkToken: string
 }
 
+/**
+ * A dated entry against a task — what happened, in the user's own words.
+ *
+ * Notes are append-only by design: this is a log of how the work actually
+ * went, not a document to revise. It's also what later summarisation reads
+ * from; without notes there is nothing to summarise beyond the task's own
+ * fields, which the user wrote themselves and already knows.
+ */
+export interface TaskNote {
+  id: string
+  body: string
+  /** ISO timestamp. */
+  createdAt: string
+}
+
 export interface Task {
   id: string
   title: string
@@ -28,10 +43,15 @@ export interface Task {
   createdAt: string
   updatedAt: string
   shares: Share[]
+  /** Newest first. */
+  notes: TaskNote[]
 }
 
 /** Everything a caller supplies when creating a task; the rest is derived. */
-export type TaskDraft = Omit<Task, 'id' | 'createdAt' | 'updatedAt' | 'shares'>
+export type TaskDraft = Omit<
+  Task,
+  'id' | 'createdAt' | 'updatedAt' | 'shares' | 'notes'
+>
 
 export const STATUS_LABELS: Record<TaskStatus, string> = {
   not_started: 'Not started',

@@ -109,3 +109,76 @@ describe('task dialog flow', () => {
     })
   })
 })
+
+describe('task notes', () => {
+  it('shows the notes already logged against a task', async () => {
+    const user = userEvent.setup()
+    const dialog = await openTaskDetail(user)
+
+    expect(within(dialog).getByText(/Rate card comparison done/)).toBeDefined()
+    expect(within(dialog).getByText(/Pulled the three strongest case studies/)).toBeDefined()
+  })
+
+  it('adds a note and shows it at the top of the list', async () => {
+    const user = userEvent.setup()
+    const dialog = await openTaskDetail(user)
+
+    const field = within(dialog).getByPlaceholderText(/What happened/)
+    await user.type(field, 'Sent the draft over for review.')
+    await user.click(within(dialog).getByRole('button', { name: 'Add note' }))
+
+    await waitFor(() => {
+      expect(screen.getByText('Sent the draft over for review.')).toBeDefined()
+    })
+
+    // Newest first — the new note should precede the previously-seeded one.
+    const bodies = screen.getAllByRole('listitem').map((li) => li.textContent ?? '')
+    const newest = bodies.findIndex((text) => text.includes('Sent the draft over'))
+    const older = bodies.findIndex((text) => text.includes('Rate card comparison'))
+    expect(newest).toBeGreaterThanOrEqual(0)
+    expect(newest).toBeLessThan(older)
+  })
+
+  it('persists a new note through the store', async () => {
+    const user = userEvent.setup()
+    const dialog = await openTaskDetail(user)
+
+    await user.type(
+      within(dialog).getByPlaceholderText(/What happened/),
+      'Persisted note.',
+    )
+    await user.click(within(dialog).getByRole('button', { name: 'Add note' }))
+
+    await waitFor(() => {
+      const raw = localStorage.getItem('finini-dashboard/tasks/v1')
+      const tasks = JSON.parse(raw!) as { title: string; notes: { body: string }[] }[]
+      const bodies = tasks.find((t) => t.title === SEEDED_TITLE)?.notes.map((n) => n.body)
+      expect(bodies).toContain('Persisted note.')
+    })
+  })
+
+  it('will not add a blank note', async () => {
+    const user = userEvent.setup()
+    const dialog = await openTaskDetail(user)
+
+    const add = within(dialog).getByRole('button', { name: 'Add note' })
+    expect(add.hasAttribute('disabled')).toBe(true)
+
+    await user.type(within(dialog).getByPlaceholderText(/What happened/), '   ')
+    expect(add.hasAttribute('disabled')).toBe(true)
+  })
+
+  it('deletes a note', async () => {
+    const user = userEvent.setup()
+    const dialog = await openTaskDetail(user)
+
+    const deleteButtons = within(dialog).getAllByRole('button', { name: 'Delete note' })
+    await user.click(deleteButtons[0])
+
+    await waitFor(() => {
+      expect(screen.queryByText(/Rate card comparison done/)).toBeNull()
+    })
+    // The other note is untouched.
+    expect(screen.getByText(/Pulled the three strongest case studies/)).toBeDefined()
+  })
+})

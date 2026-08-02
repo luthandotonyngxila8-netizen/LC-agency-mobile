@@ -8,12 +8,16 @@ import type { Task } from '../types'
  */
 export function seedTasks(today: Date = new Date()): Task[] {
   const day = (offset: number) => format(addDays(today, offset), 'yyyy-MM-dd')
+  const at = (offset: number) => addDays(today, offset).toISOString()
   const now = today.toISOString()
 
-  const base = (task: Omit<Task, 'createdAt' | 'updatedAt' | 'shares'> & Partial<Task>): Task => ({
+  const base = (
+    task: Omit<Task, 'createdAt' | 'updatedAt' | 'shares' | 'notes'> & Partial<Task>,
+  ): Task => ({
     createdAt: now,
     updatedAt: now,
     shares: [],
+    notes: [],
     ...task,
   })
 
@@ -56,6 +60,18 @@ export function seedTasks(today: Date = new Date()): Task[] {
           linkToken: '7d3fe1b8c402',
         },
       ],
+      notes: [
+        {
+          id: 'seed-note-1',
+          body: 'Rate card comparison done. Their current spend is 18% under what the new scope needs — worth raising on the call rather than burying it in the appendix.',
+          createdAt: at(-2),
+        },
+        {
+          id: 'seed-note-2',
+          body: 'Pulled the three strongest case studies. Waiting on sign-off from the client on the second one before it can go in.',
+          createdAt: at(-6),
+        },
+      ],
     }),
     base({
       id: 'seed-certification',
@@ -76,6 +92,13 @@ export function seedTasks(today: Date = new Date()): Task[] {
       startDate: day(-20),
       endDate: day(-7),
       status: 'in_progress',
+      notes: [
+        {
+          id: 'seed-note-3',
+          body: 'Still blocked on the bank statements for March and April — requested twice now. Everything else is reconciled and ready to hand over.',
+          createdAt: at(-11),
+        },
+      ],
     }),
     base({
       id: 'seed-site-copy',
