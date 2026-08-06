@@ -108,6 +108,34 @@ describe('task dialog flow', () => {
       expect(screen.queryByRole('dialog')).toBeNull()
     })
   })
+
+  it('closes on a click that both starts and ends on the backdrop', async () => {
+    const user = userEvent.setup()
+    const dialog = await openTaskDetail(user)
+
+    const backdrop = dialog.parentElement!
+    await user.click(backdrop)
+
+    await waitFor(() => {
+      expect(screen.queryByRole('dialog')).toBeNull()
+    })
+  })
+
+  it('stays open when a drag starts inside the panel and ends on the backdrop', async () => {
+    // Selecting text in a form field and overshooting the edge used to be
+    // read as a backdrop click, throwing away everything typed so far.
+    const user = userEvent.setup()
+    const dialog = await openTaskDetail(user)
+    const backdrop = dialog.parentElement!
+
+    await user.pointer([
+      { keys: '[MouseLeft>]', target: dialog },
+      { target: backdrop },
+      { keys: '[/MouseLeft]', target: backdrop },
+    ])
+
+    expect(screen.getByRole('dialog')).toBeDefined()
+  })
 })
 
 describe('task notes', () => {

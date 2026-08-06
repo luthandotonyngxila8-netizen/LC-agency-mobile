@@ -91,10 +91,31 @@ create table public.task_shares (
   permission text not null check (permission in ('view', 'comment', 'edit')),
   link_token text not null default encode(gen_random_bytes(9), 'hex'),
   invited_at timestamptz not null default now(),
+  -- One row per person per task. Case-insensitivity comes from the trigger
+  -- below normalising the address rather than from an expression index,
+  -- because PostgREST's upsert can only target a constraint on plain columns
+  -- — and re-inviting someone has to change their level, not fail.
   unique (task_id, invitee_email)
 );
 
-create index task_shares_email_idx on public.task_shares (lower(invitee_email));
+-- Helper@x.com and helper@x.com are one mailbox. Folding on the way in means
+-- the unique constraint above and the profile join below agree on that,
+-- whatever case the client sends.
+create function public.normalise_invitee_email()
+returns trigger
+language plpgsql
+as $$
+begin
+  new.invitee_email := lower(trim(new.invitee_email));
+  return new;
+end;
+$$;
+
+create trigger task_shares_normalise_email
+  before insert or update of invitee_email on public.task_shares
+  for each row execute function public.normalise_invitee_email();
+
+create index task_shares_email_idx on public.task_shares (invitee_email);
 
 alter table public.task_shares enable row level security;
 

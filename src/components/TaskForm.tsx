@@ -40,8 +40,12 @@ export function TaskForm({ task, onSubmit, onClose }: Props) {
   )
   const [error, setError] = useState<string | null>(null)
 
-  const set = <K extends keyof TaskDraft>(key: K, value: TaskDraft[K]) =>
+  // Clearing on edit rather than on the next submit: an error that stays put
+  // while you fix the thing it is complaining about reads as unfixable.
+  const set = <K extends keyof TaskDraft>(key: K, value: TaskDraft[K]) => {
     setDraft((current) => ({ ...current, [key]: value }))
+    setError(null)
+  }
 
   const datesValid =
     draft.startDate !== '' &&
@@ -130,11 +134,18 @@ export function TaskForm({ task, onSubmit, onClose }: Props) {
           </label>
         </div>
 
-        {preview && (
+        {preview ? (
           <p className="form-preview">
             Timeline: <strong>{preview.totalWeeks}</strong>{' '}
             {preview.totalWeeks === 1 ? 'week' : 'weeks'} ({preview.totalDays} days)
           </p>
+        ) : (
+          draft.startDate !== '' &&
+          draft.endDate !== '' && (
+            <p className="form-preview form-preview--bad">
+              The end date falls before the start date — no timeline to draw.
+            </p>
+          )
         )}
 
         <fieldset className="field">

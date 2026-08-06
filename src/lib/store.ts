@@ -141,20 +141,41 @@ export class LocalTaskStore implements TaskStore {
     this.write(this.read().filter((task) => task.id !== id))
   }
 
+  /**
+   * Inviting someone who already has access changes their level rather than
+   * adding a second entry. Two rows for one person leaves it ambiguous which
+   * permission applies, and the hosted schema rejects the duplicate outright
+   * — `unique (task_id, lower(invitee_email))` on `task_shares`.
+   */
   async addShare(taskId: string, invitee: string, permission: Permission): Promise<Task> {
-    return this.mutate(taskId, (task) => ({
-      ...task,
-      shares: [
-        ...task.shares,
-        {
-          id: newId(),
-          invitee,
-          permission,
-          invitedAt: new Date().toISOString(),
-          linkToken: newId().replace(/-/g, '').slice(0, 12),
-        },
-      ],
-    }))
+    const trimmed = invitee.trim()
+    const key = trimmed.toLowerCase()
+
+    return this.mutate(taskId, (task) => {
+      const existing = task.shares.find((share) => share.invitee.trim().toLowerCase() === key)
+      if (existing) {
+        return {
+          ...task,
+          shares: task.shares.map((share) =>
+            share.id === existing.id ? { ...share, permission } : share,
+          ),
+        }
+      }
+
+      return {
+        ...task,
+        shares: [
+          ...task.shares,
+          {
+            id: newId(),
+            invitee: trimmed,
+            permission,
+            invitedAt: new Date().toISOString(),
+            linkToken: newId().replace(/-/g, '').slice(0, 12),
+          },
+        ],
+      }
+    })
   }
 
   async updateShare(taskId: string, shareId: string, permission: Permission): Promise<Task> {

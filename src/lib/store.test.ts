@@ -133,6 +133,40 @@ describe('LocalTaskStore with a working localStorage', () => {
     expect(withoutShare.shares).toHaveLength(0)
   })
 
+  it('re-inviting someone changes their level instead of adding a second entry', async () => {
+    const store = new LocalTaskStore()
+    const created = await store.create(draft)
+
+    await store.addShare(created.id, 'helper@example.com', 'view')
+    const reinvited = await store.addShare(created.id, 'helper@example.com', 'edit')
+
+    // Two rows for one person leaves it undecided which permission applies,
+    // and the hosted schema rejects the duplicate outright.
+    expect(reinvited.shares).toHaveLength(1)
+    expect(reinvited.shares[0].permission).toBe('edit')
+  })
+
+  it('treats a differently-cased or padded address as the same person', async () => {
+    const store = new LocalTaskStore()
+    const created = await store.create(draft)
+
+    await store.addShare(created.id, 'helper@example.com', 'view')
+    const reinvited = await store.addShare(created.id, '  Helper@Example.com ', 'comment')
+
+    expect(reinvited.shares).toHaveLength(1)
+    expect(reinvited.shares[0].permission).toBe('comment')
+    // The original spelling stands — re-inviting is not a rename.
+    expect(reinvited.shares[0].invitee).toBe('helper@example.com')
+  })
+
+  it('trims the invitee on the way in', async () => {
+    const store = new LocalTaskStore()
+    const created = await store.create(draft)
+
+    const shared = await store.addShare(created.id, '  assistant@example.com  ', 'view')
+    expect(shared.shares[0].invitee).toBe('assistant@example.com')
+  })
+
   it('returns a fresh array reference on every list() call', async () => {
     const store = new LocalTaskStore()
     const a = await store.list()

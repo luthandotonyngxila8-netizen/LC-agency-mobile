@@ -71,6 +71,23 @@ p {
   margin: 0;
 }
 
+/*
+ * Anything the user typed can be one unbroken run of characters — a pasted
+ * link, a reference number, a file path. `anywhere` rather than `break-word`
+ * because it also shrinks min-content width, which is what stops a flex or
+ * grid track being blown out and scrolling the whole page sideways.
+ */
+h1,
+h2,
+h3,
+h4,
+p,
+dd,
+li,
+time {
+  overflow-wrap: anywhere;
+}
+
 button {
   font: inherit;
   color: inherit;
@@ -729,6 +746,11 @@ button {
   padding: 10px 12px;
   border-radius: var(--radius-sm);
   background: var(--bg-raised-2);
+}
+
+.form-preview--bad {
+  color: var(--bad);
+  background: color-mix(in srgb, var(--bad) 12%, transparent);
 }
 
 .form-error {

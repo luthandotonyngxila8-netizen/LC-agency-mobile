@@ -195,10 +195,17 @@ export class SupabaseTaskStore implements TaskStore {
     if (error) throw new Error(error.message)
   }
 
+  /**
+   * Re-inviting someone changes their level instead of failing on the unique
+   * index — the same behaviour as the local store. Emails are lower-cased on
+   * the way in so the index and the profile join agree on what "same person"
+   * means.
+   */
   async addShare(taskId: string, invitee: string, permission: Permission): Promise<Task> {
-    const { error } = await this.client
-      .from('task_shares')
-      .insert({ task_id: taskId, invitee_email: invitee, permission })
+    const { error } = await this.client.from('task_shares').upsert(
+      { task_id: taskId, invitee_email: invitee.trim().toLowerCase(), permission },
+      { onConflict: 'task_id, invitee_email' },
+    )
     if (error) throw new Error(error.message)
     return this.fetchOne(taskId)
   }

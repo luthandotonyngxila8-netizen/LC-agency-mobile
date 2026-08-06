@@ -12,6 +12,10 @@ interface Props {
 /** The pop-up shell the client asked for: focused, dismissable, mobile-first. */
 export function Modal({ title, onClose, children, footer, size = 'md' }: Props) {
   const panelRef = useRef<HTMLDivElement>(null)
+  // Where the pointer went down. A drag that starts inside the panel and ends
+  // on the backdrop — selecting text and overshooting — must not be read as a
+  // click on the backdrop, or a half-filled form is thrown away.
+  const pressedOnBackdrop = useRef(false)
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -19,7 +23,13 @@ export function Modal({ title, onClose, children, footer, size = 'md' }: Props) 
     }
     document.addEventListener('keydown', onKeyDown)
     document.body.classList.add('is-modal-open')
-    panelRef.current?.focus()
+
+    // Only take focus if the panel's own content hasn't claimed it — an
+    // autoFocus field inside is the better landing place, and on a phone it
+    // is the difference between the keyboard opening and not.
+    if (!panelRef.current?.contains(document.activeElement)) {
+      panelRef.current?.focus()
+    }
 
     return () => {
       document.removeEventListener('keydown', onKeyDown)
@@ -28,7 +38,15 @@ export function Modal({ title, onClose, children, footer, size = 'md' }: Props) 
   }, [onClose])
 
   return (
-    <div className="modal-backdrop" onClick={onClose}>
+    <div
+      className="modal-backdrop"
+      onMouseDown={(event) => {
+        pressedOnBackdrop.current = event.target === event.currentTarget
+      }}
+      onClick={(event) => {
+        if (event.target === event.currentTarget && pressedOnBackdrop.current) onClose()
+      }}
+    >
       <div
         ref={panelRef}
         className={`modal modal--${size}`}
@@ -36,7 +54,6 @@ export function Modal({ title, onClose, children, footer, size = 'md' }: Props) 
         aria-modal="true"
         aria-label={title}
         tabIndex={-1}
-        onClick={(event) => event.stopPropagation()}
       >
         <header className="modal__header">
           <h2>{title}</h2>
