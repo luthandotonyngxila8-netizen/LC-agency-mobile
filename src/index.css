@@ -173,6 +173,17 @@ button {
   background: rgba(244, 104, 95, 0.12);
 }
 
+/* The button that actually does the irreversible thing, not the one that
+   opens the question. Filled, so it never reads as the safe choice. */
+.button--destructive {
+  background: var(--bad);
+  color: #22070a;
+}
+
+.button--destructive:hover {
+  background: color-mix(in srgb, var(--bad) 82%, white);
+}
+
 .button--block {
   width: 100%;
 }

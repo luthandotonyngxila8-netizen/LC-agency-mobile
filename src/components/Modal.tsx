@@ -9,6 +9,16 @@ interface Props {
   size?: 'md' | 'lg'
 }
 
+/**
+ * Which modals are open, oldest first.
+ *
+ * A confirmation opens over a task pop-up, so more than one can be mounted at
+ * once. Without this, Escape would reach every open modal and dismiss the lot,
+ * and the first one to unmount would lift the scroll lock while another was
+ * still on screen.
+ */
+const openModals: symbol[] = []
+
 /** The pop-up shell the client asked for: focused, dismissable, mobile-first. */
 export function Modal({ title, onClose, children, footer, size = 'md' }: Props) {
   const panelRef = useRef<HTMLDivElement>(null)
@@ -18,11 +28,15 @@ export function Modal({ title, onClose, children, footer, size = 'md' }: Props) 
   const pressedOnBackdrop = useRef(false)
 
   useEffect(() => {
+    const id = Symbol('modal')
+    openModals.push(id)
+    document.body.classList.add('is-modal-open')
+
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose()
+      // Only the topmost modal answers Escape.
+      if (event.key === 'Escape' && openModals.at(-1) === id) onClose()
     }
     document.addEventListener('keydown', onKeyDown)
-    document.body.classList.add('is-modal-open')
 
     // Only take focus if the panel's own content hasn't claimed it — an
     // autoFocus field inside is the better landing place, and on a phone it
@@ -33,7 +47,9 @@ export function Modal({ title, onClose, children, footer, size = 'md' }: Props) 
 
     return () => {
       document.removeEventListener('keydown', onKeyDown)
-      document.body.classList.remove('is-modal-open')
+      const index = openModals.indexOf(id)
+      if (index !== -1) openModals.splice(index, 1)
+      if (openModals.length === 0) document.body.classList.remove('is-modal-open')
     }
   }, [onClose])
 

@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useRef, useState, type FormEvent } from 'react'
 import { format, parseISO } from 'date-fns'
 import {
   PERMISSION_HINTS,
@@ -35,6 +35,8 @@ export function ShareDialog({
   const [invitee, setInvitee] = useState('')
   const [permission, setPermission] = useState<Permission>('view')
   const [copied, setCopied] = useState(false)
+  const [copyFailed, setCopyFailed] = useState(false)
+  const linkRef = useRef<HTMLElement>(null)
 
   const shareLink = `https://finini.app/shared/${task.id.slice(0, 8)}`
 
@@ -47,14 +49,28 @@ export function ShareDialog({
     setPermission('view')
   }
 
+  /**
+   * Says "Copied" only when it copied. The clipboard is blocked outright in
+   * some mobile browsers and in an embedded frame, and claiming success there
+   * sends someone off to paste an empty clipboard. On failure the link is
+   * selected instead, so it can be copied by hand.
+   */
   const copyLink = async () => {
     try {
       await navigator.clipboard.writeText(shareLink)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
     } catch {
-      // Clipboard is blocked in some mobile browsers; the link is on screen anyway.
+      setCopyFailed(true)
+      const node = linkRef.current
+      if (node) {
+        const range = document.createRange()
+        range.selectNodeContents(node)
+        const selection = window.getSelection()
+        selection?.removeAllRanges()
+        selection?.addRange(range)
+      }
     }
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
   }
 
   return (
@@ -101,13 +117,15 @@ export function ShareDialog({
       <section className="detail-section">
         <h4>Share link</h4>
         <div className="share-link">
-          <code>{shareLink}</code>
+          <code ref={linkRef}>{shareLink}</code>
           <button type="button" className="button button--ghost" onClick={copyLink}>
             {copied ? 'Copied' : 'Copy'}
           </button>
         </div>
         <small className="field-hint">
-          Anyone with the link gets the permission level you set for them above.
+          {copyFailed
+            ? 'This browser blocked the clipboard — the link is selected above, copy it by hand.'
+            : 'Anyone with the link gets the permission level you set for them above.'}
         </small>
       </section>
 

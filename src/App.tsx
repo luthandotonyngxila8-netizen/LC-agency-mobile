@@ -4,6 +4,7 @@ import { useTasks } from './hooks/useTasks'
 import { useAuth } from './hooks/useAuth'
 import { resetDemoData } from './lib/store'
 import { plural } from './lib/progress'
+import { Confirm, type ConfirmRequest } from './components/Confirm'
 import { Dashboard } from './components/Dashboard'
 import { SignIn } from './components/SignIn'
 import { TaskDetail } from './components/TaskDetail'
@@ -34,6 +35,9 @@ export default function App() {
   } = useTasks()
   const { user, loading: authLoading, signIn, signUp, signOut } = useAuth()
   const [dialog, setDialog] = useState<Dialog>({ kind: 'none' })
+  // Confirmations sit outside `dialog` so one can be asked over a task pop-up
+  // without closing it — cancelling has to leave you where you were.
+  const [confirming, setConfirming] = useState<ConfirmRequest | null>(null)
 
   const close = () => setDialog({ kind: 'none' })
 
@@ -60,18 +64,25 @@ export default function App() {
   const parentOf = (task: Task | undefined) =>
     task?.parentId ? tasks.find((candidate) => candidate.id === task.parentId) : undefined
 
-  const handleDelete = async () => {
+  const handleDelete = () => {
     if (!activeTask) return
-    // Deleting a project takes its parts with it, so say how many rather than
-    // letting them disappear behind a generic confirmation.
-    const parts = tasks.filter((task) => task.parentId === activeTask.id).length
-    const warning =
-      parts > 0
-        ? `Delete “${activeTask.title}” and its ${parts} ${plural(parts, 'part')}?`
-        : `Delete “${activeTask.title}”?`
-    if (!confirm(warning)) return
-    await removeTask(activeTask.id)
-    close()
+    const task = activeTask
+    // Deleting a project takes its parts with it, so name them rather than
+    // letting them disappear behind a generic question.
+    const parts = tasks.filter((candidate) => candidate.parentId === task.id).length
+
+    setConfirming({
+      title: `Delete “${task.title}”?`,
+      body:
+        parts > 0
+          ? `This also deletes the ${parts} ${plural(parts, 'part')} inside it, with their notes and history. It can't be undone.`
+          : "Its notes and history go with it. This can't be undone.",
+      confirmLabel: parts > 0 ? `Delete all ${parts + 1}` : 'Delete',
+      destructive: true,
+      onConfirm: () => {
+        void removeTask(task.id).then(close)
+      },
+    })
   }
 
   const handleInvite = async (invitee: string, permission: Permission) => {
@@ -80,9 +91,16 @@ export default function App() {
   }
 
   const handleReset = () => {
-    if (!confirm('Reset the demo back to its sample tasks?')) return
-    resetDemoData()
-    window.location.reload()
+    setConfirming({
+      title: 'Reset the demo?',
+      body: 'Every task you have added or changed is discarded and the sample tasks come back.',
+      confirmLabel: 'Reset',
+      destructive: true,
+      onConfirm: () => {
+        resetDemoData()
+        window.location.reload()
+      },
+    })
   }
 
   const openTask = (task: Task) => setDialog({ kind: 'detail', taskId: task.id })
@@ -176,6 +194,11 @@ export default function App() {
           }
           onRevoke={(shareId) => void removeShare(activeTask.id, shareId)}
         />
+      )}
+
+      {/* Last, so it stacks over whichever pop-up asked for it. */}
+      {confirming && (
+        <Confirm request={confirming} onClose={() => setConfirming(null)} />
       )}
     </div>
   )

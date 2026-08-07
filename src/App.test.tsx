@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import App from './App'
@@ -135,6 +135,92 @@ describe('task dialog flow', () => {
     ])
 
     expect(screen.getByRole('dialog')).toBeDefined()
+  })
+})
+
+describe('deleting', () => {
+  /**
+   * These go through the app's own confirmation, never `window.confirm`.
+   *
+   * A sandboxed frame without `allow-modals` ignores `confirm()` outright and
+   * returns false, which is how the demo link is embedded — so every delete
+   * silently did nothing. `window.confirm` is stubbed to throw here so a
+   * return to it fails the test rather than passing in jsdom and breaking in
+   * the browser.
+   */
+  beforeEach(() => {
+    vi.stubGlobal('confirm', () => {
+      throw new Error('window.confirm is ignored in a sandboxed frame — use Confirm')
+    })
+  })
+
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
+
+  it('deletes a task after the confirmation is accepted', async () => {
+    const user = userEvent.setup()
+    const dialog = await openTaskDetail(user)
+
+    await user.click(within(dialog).getByRole('button', { name: 'Delete' }))
+    const confirmation = await screen.findByRole('dialog', { name: /Delete “/ })
+    await user.click(within(confirmation).getByRole('button', { name: 'Delete' }))
+
+    await waitFor(() => {
+      const list = screen.getByRole('region', { name: 'Tasks' })
+      expect(within(list).queryByRole('heading', { name: SEEDED_TITLE })).toBeNull()
+    })
+  })
+
+  it('keeps the task when the confirmation is cancelled, and stays where you were', async () => {
+    const user = userEvent.setup()
+    const dialog = await openTaskDetail(user)
+
+    await user.click(within(dialog).getByRole('button', { name: 'Delete' }))
+    const confirmation = await screen.findByRole('dialog', { name: /Delete “/ })
+    await user.click(within(confirmation).getByRole('button', { name: 'Cancel' }))
+
+    // Back on the task, not dumped out to the dashboard.
+    expect(await screen.findByRole('dialog', { name: SEEDED_TITLE })).toBeDefined()
+    const list = screen.getByRole('region', { name: 'Tasks' })
+    expect(within(list).getByRole('heading', { name: SEEDED_TITLE })).toBeDefined()
+  })
+
+  it('says how many parts go with a project, and takes them', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    const taskList = await screen.findByRole('region', { name: 'Tasks' })
+    await user.click(
+      await within(taskList).findByRole('heading', { name: 'Brand refresh rollout' }),
+    )
+    const dialog = await screen.findByRole('dialog')
+
+    await user.click(within(dialog).getByRole('button', { name: 'Delete' }))
+    const confirmation = await screen.findByRole('dialog', { name: /Delete “/ })
+
+    expect(within(confirmation).getByText(/3 parts inside it/)).toBeDefined()
+    await user.click(within(confirmation).getByRole('button', { name: 'Delete all 4' }))
+
+    await waitFor(() => {
+      const raw = localStorage.getItem('finini-dashboard/tasks/v1')
+      const tasks = JSON.parse(raw!) as { parentId: string | null }[]
+      expect(tasks.filter((t) => t.parentId === 'seed-brand-refresh')).toEqual([])
+    })
+  })
+
+  it('Escape closes the confirmation without closing the task behind it', async () => {
+    const user = userEvent.setup()
+    const dialog = await openTaskDetail(user)
+
+    await user.click(within(dialog).getByRole('button', { name: 'Delete' }))
+    await screen.findByRole('dialog', { name: /Delete “/ })
+
+    await user.keyboard('{Escape}')
+
+    await waitFor(() => {
+      expect(screen.queryByRole('dialog', { name: /Delete “/ })).toBeNull()
+    })
+    expect(screen.getByRole('dialog', { name: SEEDED_TITLE })).toBeDefined()
   })
 })
 
