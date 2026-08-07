@@ -14,6 +14,14 @@ interface Props {
    * the dates are being chosen rather than discovered afterwards.
    */
   parent?: Task
+  /**
+   * The parts inside the task being edited, if it is a project. Pulling a
+   * project's end date in strands them past it just as surely as pushing a
+   * part's out — the warning has to work in both directions.
+   *
+   * Not called `children`: that name is React's own, and this never renders.
+   */
+  parts?: Task[]
   onSubmit: (draft: TaskDraft) => void
   onClose: () => void
 }
@@ -39,7 +47,7 @@ function defaultDraft(parent?: Task): TaskDraft {
   }
 }
 
-export function TaskForm({ task, parent, onSubmit, onClose }: Props) {
+export function TaskForm({ task, parent, parts = [], onSubmit, onClose }: Props) {
   const [draft, setDraft] = useState<TaskDraft>(() =>
     task
       ? {
@@ -69,6 +77,15 @@ export function TaskForm({ task, parent, onSubmit, onClose }: Props) {
 
   // Live preview of the week count, so the timeline isn't a surprise on save.
   const preview = datesValid ? getWeekProgress(draft) : null
+
+  // Parts that the end date being typed would leave hanging past the project.
+  // Unfinished only — a delivered part can't be stranded by a date change.
+  const strandedParts = datesValid
+    ? parts.filter(
+        (child) =>
+          child.status !== 'done' && parseISO(child.endDate) > parseISO(draft.endDate),
+      )
+    : []
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
@@ -169,6 +186,16 @@ export function TaskForm({ task, parent, onSubmit, onClose }: Props) {
             This runs past {parent.title}, which ends{' '}
             {format(parseISO(parent.endDate), 'd MMM')}. Allowed — but the project
             will report a deadline it can&rsquo;t meet.
+          </p>
+        )}
+
+        {/* The same problem from the other end: pulling the project in. */}
+        {datesValid && strandedParts.length > 0 && (
+          <p className="form-preview form-preview--warn">
+            {strandedParts.length === 1
+              ? `“${strandedParts[0].title}” now ends after this project does.`
+              : `${strandedParts.length} parts now end after this project does.`}{' '}
+            Allowed — but the project will report a deadline it can&rsquo;t meet.
           </p>
         )}
 

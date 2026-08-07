@@ -80,7 +80,12 @@ export default function App() {
       confirmLabel: parts > 0 ? `Delete all ${parts + 1}` : 'Delete',
       destructive: true,
       onConfirm: () => {
-        void removeTask(task.id).then(close)
+        void removeTask(task.id).then(() => {
+          // Deleting a part puts you back in the project you were working in,
+          // rather than dropping you out to the dashboard having lost your place.
+          if (task.parentId) setDialog({ kind: 'detail', taskId: task.parentId })
+          else close()
+        })
       },
     })
   }
@@ -179,6 +184,7 @@ export default function App() {
         <TaskForm
           task={activeTask}
           parent={parentOf(activeTask)}
+          parts={tasks.filter((task) => task.parentId === activeTask.id)}
           onSubmit={handleEdit}
           onClose={() => setDialog({ kind: 'detail', taskId: activeTask.id })}
         />

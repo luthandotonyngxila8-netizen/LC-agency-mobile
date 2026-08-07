@@ -1,7 +1,7 @@
 import { format, parseISO } from 'date-fns'
 import { PERMISSION_LABELS, STATUS_LABELS, type Task, type TaskStatus } from '../types'
 import { daysSinceMovement, isStalled, plural } from '../lib/progress'
-import { overrunsParent } from '../lib/tree'
+import { daysSinceProjectMovement, isProjectStalled, overrunsParent } from '../lib/tree'
 import { Modal } from './Modal'
 import { SubProjects } from './SubProjects'
 import { TaskNotes } from './TaskNotes'
@@ -45,6 +45,13 @@ export function TaskDetail({
     ? (tasks.find((candidate) => candidate.id === task.parentId) ?? null)
     : null
 
+  // A project counts its parts' activity as its own — see the card.
+  const isProject = task.parentId === null
+  const stalled = isProject ? isProjectStalled(tasks, task) : isStalled(task)
+  const quietDays = isProject
+    ? daysSinceProjectMovement(tasks, task)
+    : daysSinceMovement(task)
+
   return (
     <Modal
       title={task.title}
@@ -85,11 +92,11 @@ export function TaskDetail({
         </p>
       )}
 
-      {isStalled(task) && (
+      {stalled && (
         <p className="stall-notice">
-          Nothing has happened here for{' '}
+          Nothing has happened here{isProject ? ' or in its parts' : ''} for{' '}
           <strong>
-            {daysSinceMovement(task)} {plural(daysSinceMovement(task), 'day')}
+            {quietDays} {plural(quietDays, 'day')}
           </strong>
           . The timeline above only counts calendar time — it can&rsquo;t tell you
           the work has stopped.

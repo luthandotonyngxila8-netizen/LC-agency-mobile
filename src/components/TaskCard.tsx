@@ -6,7 +6,7 @@ import {
   isStalled,
   plural,
 } from '../lib/progress'
-import { rollUp } from '../lib/tree'
+import { daysSinceProjectMovement, isProjectStalled, rollUp } from '../lib/tree'
 import { WeekProgress } from './WeekProgress'
 
 interface Props {
@@ -18,9 +18,16 @@ interface Props {
 
 export function TaskCard({ task, tasks, onOpen }: Props) {
   const health = getHealth(task)
-  const stalled = isStalled(task)
-  const quietDays = daysSinceMovement(task)
   const sub = rollUp(tasks, task)
+
+  // A project with parts is judged on its parts' activity too. Work on a
+  // project happens inside them, so its own record goes quiet immediately and
+  // would otherwise report a busy project as stalled within the week.
+  const isProject = task.parentId === null
+  const stalled = isProject ? isProjectStalled(tasks, task) : isStalled(task)
+  const quietDays = isProject
+    ? daysSinceProjectMovement(tasks, task)
+    : daysSinceMovement(task)
 
   return (
     <article className="task-card" data-health={health}>
@@ -45,12 +52,23 @@ export function TaskCard({ task, tasks, onOpen }: Props) {
               {sub.done} of {sub.total} {sub.total === 1 ? 'part' : 'parts'} done
             </span>
           )}
-          {/* A part dated past the project it belongs to is the clearest early
-              warning the dashboard has — it outranks the deadline colour. */}
-          {sub && sub.overrunning > 0 && (
+          {/*
+            A part can be weeks late while the project sits comfortably inside
+            its own dates — the health pill tracks the project's deadline and
+            would say nothing. Late-right-now outranks scheduled-to-overrun, so
+            only the more urgent of the two shows rather than stacking both.
+          */}
+          {sub && sub.overdue > 0 ? (
             <span className="tag tag--overrun">
-              {sub.overrunning} {plural(sub.overrunning, 'part')} past this deadline
+              {sub.overdue} {plural(sub.overdue, 'part')} overdue
             </span>
+          ) : (
+            sub &&
+            sub.overrunning > 0 && (
+              <span className="tag tag--overrun">
+                {sub.overrunning} {plural(sub.overrunning, 'part')} past this deadline
+              </span>
+            )
           )}
           {stalled && (
             <span className="tag tag--stalled">

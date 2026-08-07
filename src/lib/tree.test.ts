@@ -3,11 +3,13 @@ import type { Task, TaskStatus } from '../types'
 import {
   childrenOf,
   defaultChildDates,
+  daysSinceProjectMovement,
+  isProjectStalled,
+  overduePartCount,
   overrunsParent,
   rollUp,
   subProgress,
   topLevel,
-  worstChildStatus,
 } from './tree'
 
 const task = (
@@ -108,11 +110,92 @@ describe('subProgress', () => {
       task('c', '2026-03-01', '2026-05-30', 'not_started', 'project'),
     ]
 
-    expect(subProgress(children, parent)).toEqual({
+    expect(subProgress(children, parent, NOW)).toEqual({
       total: 3,
       done: 1,
       overrunning: 1,
+      overdue: 0,
     })
+  })
+})
+
+describe('overduePartCount', () => {
+  it('counts parts whose own deadline has already passed', () => {
+    const children = [
+      task('late', '2026-02-01', '2026-03-01', 'in_progress', 'p'),
+      task('fine', '2026-03-01', '2026-04-30', 'in_progress', 'p'),
+    ]
+    expect(overduePartCount(children, NOW)).toBe(1)
+  })
+
+  it('does not count a part that was finished', () => {
+    const children = [task('late-but-done', '2026-02-01', '2026-03-01', 'done', 'p')]
+    expect(overduePartCount(children, NOW)).toBe(0)
+  })
+
+  it('is separate from overrunning — a part can be late without overrunning', () => {
+    // The project runs to April. This part was due in March and is late. It
+    // does not overrun the project, yet nothing else on the dashboard would
+    // say a word about it.
+    const parent = task('project', '2026-01-01', '2026-04-30')
+    const children = [task('late', '2026-02-01', '2026-03-01', 'in_progress', 'project')]
+
+    const counts = subProgress(children, parent, NOW)
+    expect(counts.overrunning).toBe(0)
+    expect(counts.overdue).toBe(1)
+  })
+})
+
+describe('daysSinceProjectMovement', () => {
+  const withEvent = (t: Task, at: string): Task => ({
+    ...t,
+    events: [{ id: `${t.id}-ev`, at, type: 'note_added' }],
+  })
+
+  it('counts work in a part as movement on the project holding it', () => {
+    // Otherwise breaking a project down makes it look abandoned within a week:
+    // the project's own record stops changing the moment the work moves into
+    // its parts.
+    const project = withEvent(
+      task('project', '2026-01-01', '2026-05-30'),
+      '2026-02-01T09:00:00.000Z',
+    )
+    const part = withEvent(
+      task('part', '2026-01-01', '2026-05-01', 'in_progress', 'project'),
+      '2026-03-09T09:00:00.000Z',
+    )
+
+    expect(daysSinceProjectMovement([project, part], project, NOW)).toBe(1)
+    expect(isProjectStalled([project, part], project, NOW)).toBe(false)
+  })
+
+  it('stalls only when the project and every part have gone quiet', () => {
+    const project = withEvent(
+      task('project', '2026-01-01', '2026-05-30'),
+      '2026-02-01T09:00:00.000Z',
+    )
+    const part = withEvent(
+      task('part', '2026-01-01', '2026-05-01', 'in_progress', 'project'),
+      '2026-02-02T09:00:00.000Z',
+    )
+
+    expect(isProjectStalled([project, part], project, NOW)).toBe(true)
+  })
+
+  it('falls back to the project alone when it has no parts', () => {
+    const project = withEvent(
+      task('project', '2026-01-01', '2026-05-30'),
+      '2026-03-08T09:00:00.000Z',
+    )
+    expect(daysSinceProjectMovement([project], project, NOW)).toBe(2)
+  })
+
+  it('never stalls a finished project', () => {
+    const project = withEvent(
+      task('project', '2026-01-01', '2026-05-30', 'done'),
+      '2026-01-02T09:00:00.000Z',
+    )
+    expect(isProjectStalled([project], project, NOW)).toBe(false)
   })
 })
 
@@ -131,30 +214,6 @@ describe('rollUp', () => {
     expect(result?.total).toBe(1)
     expect(result?.done).toBe(1)
     expect(result?.children.map((t) => t.id)).toEqual(['a'])
-  })
-})
-
-describe('worstChildStatus', () => {
-  it('is done only when every part is done', () => {
-    expect(
-      worstChildStatus([
-        task('a', '2026-03-01', '2026-03-20', 'done', 'p'),
-        task('b', '2026-03-01', '2026-03-20', 'done', 'p'),
-      ]),
-    ).toBe('done')
-  })
-
-  it('is in progress if any single part is', () => {
-    expect(
-      worstChildStatus([
-        task('a', '2026-03-01', '2026-03-20', 'done', 'p'),
-        task('b', '2026-03-01', '2026-03-20', 'in_progress', 'p'),
-      ]),
-    ).toBe('in_progress')
-  })
-
-  it('is null when there are no parts at all', () => {
-    expect(worstChildStatus([])).toBeNull()
   })
 })
 

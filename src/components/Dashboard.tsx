@@ -32,14 +32,18 @@ export function Dashboard({ tasks, onOpen, onNew }: Props) {
   // this is the "where am I right now" view the client opens the app for.
   const focus = ordered.find((task) => task.status !== 'done')
 
+  // Counted over everything, projects and parts alike. Counting only projects
+  // hid a part that was weeks overdue behind a project sitting comfortably
+  // inside its own dates — the exact "it says green but it's already in
+  // trouble" case. Over-counting an alarm is the safe direction.
   const counts = useMemo(() => {
-    const byHealth = ordered.map((task) => getHealth(task))
+    const byHealth = tasks.map((task) => getHealth(task))
     return {
       overdue: byHealth.filter((health) => health === 'overdue').length,
       dueSoon: byHealth.filter((health) => health === 'due_soon').length,
-      running: ordered.filter((task) => task.status === 'in_progress').length,
+      running: tasks.filter((task) => task.status === 'in_progress').length,
     }
-  }, [ordered])
+  }, [tasks])
 
   const visible = ordered.filter((task) => {
     if (filter === 'all') return true

@@ -1,6 +1,12 @@
 import { parseISO } from 'date-fns'
-import type { Task, TaskStatus } from '../types'
-import { getWeekProgress, sortByUrgency } from './progress'
+import type { Task } from '../types'
+import {
+  daysSinceMovement,
+  getHealth,
+  getWeekProgress,
+  sortByUrgency,
+  STALL_THRESHOLD_DAYS,
+} from './progress'
 
 /**
  * Projects and the sub-projects inside them.
@@ -34,15 +40,22 @@ export function childrenOf(tasks: Task[], parentId: string, today: Date = new Da
 export interface SubProgress {
   total: number
   done: number
-  /** Sub-projects whose end date falls after their parent's. */
+  /** Parts whose end date falls after their parent's — a planning problem. */
   overrunning: number
+  /** Parts whose own deadline has already passed — late right now. */
+  overdue: number
 }
 
-export function subProgress(children: Task[], parent: Task): SubProgress {
+export function subProgress(
+  children: Task[],
+  parent: Task,
+  today: Date = new Date(),
+): SubProgress {
   return {
     total: children.length,
     done: children.filter((child) => child.status === 'done').length,
     overrunning: children.filter((child) => overrunsParent(child, parent)).length,
+    overdue: overduePartCount(children, today),
   }
 }
 
@@ -67,22 +80,50 @@ export function overrunsParent(child: Task, parent: Task): boolean {
 export function rollUp(tasks: Task[], parent: Task, today: Date = new Date()) {
   const children = childrenOf(tasks, parent.id, today)
   if (children.length === 0) return null
-  return { children, ...subProgress(children, parent) }
+  return { children, ...subProgress(children, parent, today) }
 }
 
 /**
- * A project inherits the worst of its sub-projects' silence.
+ * Days since anything happened on a project *or* on any of its parts.
  *
- * Without this, breaking a project into sub-projects would hide a stall: the
- * parent looks touched because its children were edited, while the work inside
- * it has gone quiet. The parent should be at least as alarming as its parts.
+ * A project's own record barely changes once it has been broken down — the
+ * work moves in its parts. Reading only the project's own events therefore
+ * reports a busy project as silent within a week, which is the opposite of
+ * what the stall warning is for and would train the client to ignore it.
  */
-export function worstChildStatus(children: Task[]): TaskStatus | null {
-  if (children.length === 0) return null
-  if (children.every((child) => child.status === 'done')) return 'done'
-  if (children.some((child) => child.status === 'in_progress')) return 'in_progress'
-  return 'not_started'
+export function daysSinceProjectMovement(
+  tasks: Task[],
+  project: Task,
+  today: Date = new Date(),
+): number {
+  const parts = tasks.filter((task) => task.parentId === project.id)
+  return Math.min(...[project, ...parts].map((task) => daysSinceMovement(task, today)))
 }
+
+/** The stall test a project should be judged by: itself and everything inside it. */
+export function isProjectStalled(
+  tasks: Task[],
+  project: Task,
+  today: Date = new Date(),
+): boolean {
+  if (project.status === 'done') return false
+  if (getWeekProgress(project, today).phase === 'upcoming') return false
+  return daysSinceProjectMovement(tasks, project, today) >= STALL_THRESHOLD_DAYS
+}
+
+/**
+ * Parts whose own deadline has already passed.
+ *
+ * Distinct from `overrunsParent`, and more urgent: that one is a part
+ * *scheduled* beyond its project, a planning problem for later. This is a part
+ * that is late right now. A project can sit comfortably inside its own dates
+ * while a part of it is weeks overdue, and nothing else on the dashboard would
+ * say so — the project's colour tracks the project's dates.
+ */
+export function overduePartCount(children: Task[], today: Date = new Date()): number {
+  return children.filter((child) => getHealth(child, today) === 'overdue').length
+}
+
 
 /**
  * Sensible dates for a new sub-project: starting today if the project is
