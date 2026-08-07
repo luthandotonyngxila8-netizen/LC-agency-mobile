@@ -61,6 +61,10 @@ create trigger on_auth_user_created
 create table public.tasks (
   id uuid primary key default gen_random_uuid(),
   owner_id uuid not null references public.profiles on delete cascade,
+  -- The project this sits inside. Null for a top-level project; deleting a
+  -- project takes its parts with it. Depth is capped at one by the trigger
+  -- below rather than left to the client.
+  parent_id uuid references public.tasks on delete cascade,
   title text not null,
   description text not null default '',
   end_state text not null default '',
@@ -73,6 +77,44 @@ create table public.tasks (
 );
 
 create index tasks_owner_idx on public.tasks (owner_id);
+create index tasks_parent_idx on public.tasks (parent_id);
+
+-- Exactly one level of nesting. A part cannot itself take parts: the client
+-- asked for "a project within a project", and arbitrary depth is what turns a
+-- self-management tool into the platform he said he didn't want. Enforced here
+-- so it holds however the rows arrive — client, SQL editor, or import.
+create function public.enforce_single_nesting()
+returns trigger
+language plpgsql
+as $$
+declare
+  grandparent uuid;
+begin
+  if new.parent_id is null then
+    return new;
+  end if;
+
+  if new.parent_id = new.id then
+    raise exception 'A project cannot contain itself';
+  end if;
+
+  select parent_id into grandparent from public.tasks where id = new.parent_id;
+  if grandparent is not null then
+    raise exception 'A sub-project cannot contain further sub-projects';
+  end if;
+
+  -- A project that already has parts cannot become a part of something else.
+  if exists (select 1 from public.tasks where parent_id = new.id) then
+    raise exception 'A project with parts cannot itself become a part';
+  end if;
+
+  return new;
+end;
+$$;
+
+create trigger tasks_single_nesting
+  before insert or update of parent_id on public.tasks
+  for each row execute function public.enforce_single_nesting();
 
 alter table public.tasks enable row level security;
 
@@ -121,24 +163,32 @@ alter table public.task_shares enable row level security;
 
 -- The signed-in user's permission on a task: 'owner', one of the three share
 -- tiers, or null. Written as a function so the policies below read as English
--- rather than repeating the same two subqueries eight times.
+-- rather than repeating the same subqueries eight times.
+--
+-- Access flows downward: sharing a project shares the parts inside it, the way
+-- a shared folder carries its contents. A part can still be shared on its own
+-- without giving away the project — and a grant made directly on the part wins
+-- over the inherited one, since it is the more specific decision.
 create function public.task_permission(target_task uuid)
 returns text
 language sql
 stable
 security definer set search_path = ''
 as $$
+  with target as (
+    select id, parent_id, owner_id from public.tasks where id = target_task
+  ),
+  granted as (
+    select s.task_id, s.permission
+    from public.task_shares s
+    join public.profiles p on lower(p.email) = lower(s.invitee_email)
+    where p.id = auth.uid()
+  )
   select case
-    when exists (
-      select 1 from public.tasks t
-      where t.id = target_task and t.owner_id = auth.uid()
-    ) then 'owner'
-    else (
-      select s.permission
-      from public.task_shares s
-      join public.profiles p on lower(p.email) = lower(s.invitee_email)
-      where s.task_id = target_task and p.id = auth.uid()
-      limit 1
+    when (select owner_id from target) = auth.uid() then 'owner'
+    else coalesce(
+      (select permission from granted where task_id = (select id from target) limit 1),
+      (select permission from granted where task_id = (select parent_id from target) limit 1)
     )
   end;
 $$;

@@ -12,11 +12,15 @@ export function seedTasks(today: Date = new Date()): Task[] {
   const now = today.toISOString()
 
   const base = (
-    task: Omit<Task, 'createdAt' | 'updatedAt' | 'shares' | 'notes' | 'events'> &
+    task: Omit<
+      Task,
+      'createdAt' | 'updatedAt' | 'shares' | 'notes' | 'events' | 'parentId'
+    > &
       Partial<Task>,
   ): Task => ({
     createdAt: now,
     updatedAt: now,
+    parentId: null,
     shares: [],
     notes: [],
     events: [],
@@ -66,6 +70,52 @@ export function seedTasks(today: Date = new Date()): Task[] {
         { id: 'seed-brand-ev-note', at: at(-3), type: 'note_added' },
         ...opened(-16, 'seed-brand'),
       ],
+    }),
+    // The brand refresh is broken into parts — one delivered, one running, and
+    // one deliberately dated past the project itself so the overrun warning has
+    // something to say. It's the case the client described: the project reads
+    // green while a piece of it is already outside the deadline.
+    base({
+      id: 'seed-brand-identity',
+      parentId: 'seed-brand-refresh',
+      title: 'Logo lockup and colour palette',
+      description: 'Settle the mark, the lockup variants and the palette before anything gets applied.',
+      endState: 'Signed-off lockup files and hex values in the shared drive.',
+      startDate: day(-16),
+      endDate: day(-2),
+      status: 'done',
+      events: [
+        {
+          id: 'seed-bi-ev-done',
+          at: at(-2),
+          type: 'status_changed',
+          from: 'in_progress',
+          to: 'done',
+        },
+        ...opened(-16, 'seed-bi'),
+      ],
+    }),
+    base({
+      id: 'seed-brand-templates',
+      parentId: 'seed-brand-refresh',
+      title: 'Deck and document templates',
+      description: 'Rebuild the pitch deck, proposal and invoice templates on the new identity.',
+      endState: 'Templates in the shared drive and the old ones archived.',
+      startDate: day(-1),
+      endDate: day(18),
+      status: 'in_progress',
+      events: opened(-1, 'seed-bt'),
+    }),
+    base({
+      id: 'seed-brand-social',
+      parentId: 'seed-brand-refresh',
+      title: 'Social profiles and banners',
+      description: 'Swap avatars, banners and bios across every profile.',
+      endState: 'All profiles carrying the new identity, with the old assets archived.',
+      startDate: day(10),
+      endDate: day(32),
+      status: 'not_started',
+      events: [{ id: 'seed-bs-ev-created', at: at(-16), type: 'created' }],
     }),
     base({
       id: 'seed-client-proposal',

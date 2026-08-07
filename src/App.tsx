@@ -3,6 +3,7 @@ import type { Permission, Task, TaskDraft, TaskStatus } from './types'
 import { useTasks } from './hooks/useTasks'
 import { useAuth } from './hooks/useAuth'
 import { resetDemoData } from './lib/store'
+import { plural } from './lib/progress'
 import { Dashboard } from './components/Dashboard'
 import { SignIn } from './components/SignIn'
 import { TaskDetail } from './components/TaskDetail'
@@ -14,6 +15,8 @@ type Dialog =
   | { kind: 'detail'; taskId: string }
   | { kind: 'edit'; taskId: string }
   | { kind: 'create' }
+  /** Creating a part inside an existing project. */
+  | { kind: 'create-sub'; taskId: string }
   | { kind: 'share'; taskId: string }
 
 export default function App() {
@@ -53,9 +56,20 @@ export default function App() {
     await updateTask(activeTask.id, { status })
   }
 
+  /** The project an open sub-project belongs to, if it is one. */
+  const parentOf = (task: Task | undefined) =>
+    task?.parentId ? tasks.find((candidate) => candidate.id === task.parentId) : undefined
+
   const handleDelete = async () => {
     if (!activeTask) return
-    if (!confirm(`Delete “${activeTask.title}”?`)) return
+    // Deleting a project takes its parts with it, so say how many rather than
+    // letting them disappear behind a generic confirmation.
+    const parts = tasks.filter((task) => task.parentId === activeTask.id).length
+    const warning =
+      parts > 0
+        ? `Delete “${activeTask.title}” and its ${parts} ${plural(parts, 'part')}?`
+        : `Delete “${activeTask.title}”?`
+    if (!confirm(warning)) return
     await removeTask(activeTask.id)
     close()
   }
@@ -119,9 +133,18 @@ export default function App() {
 
       {dialog.kind === 'create' && <TaskForm onSubmit={handleCreate} onClose={close} />}
 
+      {activeTask && dialog.kind === 'create-sub' && (
+        <TaskForm
+          parent={activeTask}
+          onSubmit={handleCreate}
+          onClose={() => setDialog({ kind: 'detail', taskId: activeTask.id })}
+        />
+      )}
+
       {activeTask && dialog.kind === 'detail' && (
         <TaskDetail
           task={activeTask}
+          tasks={tasks}
           onClose={close}
           onStatusChange={handleStatusChange}
           onEdit={() => setDialog({ kind: 'edit', taskId: activeTask.id })}
@@ -129,12 +152,15 @@ export default function App() {
           onDelete={handleDelete}
           onAddNote={(body) => void addNote(activeTask.id, body)}
           onRemoveNote={(noteId) => void removeNote(activeTask.id, noteId)}
+          onOpenTask={openTask}
+          onAddSubProject={() => setDialog({ kind: 'create-sub', taskId: activeTask.id })}
         />
       )}
 
       {activeTask && dialog.kind === 'edit' && (
         <TaskForm
           task={activeTask}
+          parent={parentOf(activeTask)}
           onSubmit={handleEdit}
           onClose={() => setDialog({ kind: 'detail', taskId: activeTask.id })}
         />

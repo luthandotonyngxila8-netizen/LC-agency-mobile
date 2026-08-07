@@ -24,6 +24,8 @@ import type { TaskStore } from './store'
 /** Row shapes as the schema defines them, before mapping to camelCase. */
 export interface TaskRow {
   id: string
+  /** Null for a top-level project. Nesting is capped at one level by a trigger. */
+  parent_id: string | null
   title: string
   description: string
   end_state: string
@@ -61,7 +63,7 @@ export interface ShareRow {
 
 /** One query shape, used everywhere, so a task never comes back half-loaded. */
 const TASK_SELECT = `
-  id, title, description, end_state, start_date, end_date, status,
+  id, parent_id, title, description, end_state, start_date, end_date, status,
   created_at, updated_at,
   task_notes ( id, body, created_at ),
   task_events ( id, type, from_status, to_status, at ),
@@ -96,6 +98,7 @@ export function toTask(row: TaskRow): Task {
 
   return {
     id: row.id,
+    parentId: row.parent_id,
     title: row.title,
     description: row.description,
     endState: row.end_state,
@@ -159,6 +162,7 @@ export class SupabaseTaskStore implements TaskStore {
       .from('tasks')
       .insert({
         owner_id: auth.user.id,
+        parent_id: draft.parentId,
         title: draft.title,
         description: draft.description,
         end_state: draft.endState,

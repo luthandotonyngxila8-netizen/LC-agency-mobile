@@ -48,6 +48,15 @@ export type TaskEvent =
 
 export interface Task {
   id: string
+  /**
+   * The project this sits inside, or null for a top-level project.
+   *
+   * Exactly one level deep, deliberately. The client asked for "a project
+   * within a project"; arbitrary nesting is what turns a self-management tool
+   * into the kind of platform he said he didn't want. Enforced in the store,
+   * not just by convention — a sub-project cannot itself take children.
+   */
+  parentId: string | null
   title: string
   description: string
   /** Definition of done — what "finished" actually looks like. */

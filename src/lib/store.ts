@@ -37,6 +37,7 @@ function newId(): string {
 function normalize(tasks: Task[]): Task[] {
   return tasks.map((task) => ({
     ...task,
+    parentId: task.parentId ?? null,
     shares: task.shares ?? [],
     notes: task.notes ?? [],
     events: task.events ?? [],
@@ -91,6 +92,19 @@ export class LocalTaskStore implements TaskStore {
   }
 
   async create(draft: TaskDraft): Promise<Task> {
+    const tasks = this.read()
+
+    if (draft.parentId !== null) {
+      const parent = tasks.find((task) => task.id === draft.parentId)
+      if (!parent) throw new Error(`No task with id ${draft.parentId}`)
+      // One level, enforced rather than assumed. Without this a sub-project
+      // could take sub-projects of its own and the dashboard would quietly
+      // stop showing part of the tree.
+      if (parent.parentId !== null) {
+        throw new Error('A sub-project cannot contain further sub-projects')
+      }
+    }
+
     const now = new Date().toISOString()
     const task: Task = {
       ...draft,
@@ -101,7 +115,7 @@ export class LocalTaskStore implements TaskStore {
       notes: [],
       events: [{ id: newId(), at: now, type: 'created' }],
     }
-    this.write([...this.read(), task])
+    this.write([...tasks, task])
     return task
   }
 
@@ -137,8 +151,16 @@ export class LocalTaskStore implements TaskStore {
     })
   }
 
+  /**
+   * Deleting a project takes its sub-projects with it — the same cascade the
+   * hosted schema does with `on delete cascade`. Leaving them behind would
+   * strand tasks pointing at a parent that no longer exists, and they would
+   * vanish from the dashboard without being deleted.
+   *
+   * The caller is responsible for saying how many are about to go.
+   */
   async remove(id: string): Promise<void> {
-    this.write(this.read().filter((task) => task.id !== id))
+    this.write(this.read().filter((task) => task.id !== id && task.parentId !== id))
   }
 
   /**

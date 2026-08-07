@@ -11,6 +11,7 @@ import { isStalled, daysSinceMovement } from './progress'
 
 const row = (overrides: Partial<TaskRow> = {}): TaskRow => ({
   id: 'task-1',
+  parent_id: null,
   title: 'Year-end tax pack',
   description: 'Invoices, receipts, statements.',
   end_state: 'Pack in the shared folder.',

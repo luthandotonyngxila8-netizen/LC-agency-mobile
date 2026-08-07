@@ -1,12 +1,16 @@
 import { format, parseISO } from 'date-fns'
 import { PERMISSION_LABELS, STATUS_LABELS, type Task, type TaskStatus } from '../types'
 import { daysSinceMovement, isStalled, plural } from '../lib/progress'
+import { overrunsParent } from '../lib/tree'
 import { Modal } from './Modal'
+import { SubProjects } from './SubProjects'
 import { TaskNotes } from './TaskNotes'
 import { WeekProgress } from './WeekProgress'
 
 interface Props {
   task: Task
+  /** Every task, so a project can show its parts and a part can name its project. */
+  tasks: Task[]
   onClose: () => void
   onStatusChange: (status: TaskStatus) => void
   onEdit: () => void
@@ -14,6 +18,8 @@ interface Props {
   onDelete: () => void
   onAddNote: (body: string) => void
   onRemoveNote: (noteId: string) => void
+  onOpenTask: (task: Task) => void
+  onAddSubProject: () => void
 }
 
 const STATUSES: TaskStatus[] = ['not_started', 'in_progress', 'done']
@@ -24,6 +30,7 @@ const STATUSES: TaskStatus[] = ['not_started', 'in_progress', 'done']
  */
 export function TaskDetail({
   task,
+  tasks,
   onClose,
   onStatusChange,
   onEdit,
@@ -31,7 +38,13 @@ export function TaskDetail({
   onDelete,
   onAddNote,
   onRemoveNote,
+  onOpenTask,
+  onAddSubProject,
 }: Props) {
+  const parent = task.parentId
+    ? (tasks.find((candidate) => candidate.id === task.parentId) ?? null)
+    : null
+
   return (
     <Modal
       title={task.title}
@@ -53,7 +66,24 @@ export function TaskDetail({
         </>
       }
     >
+      {parent && (
+        <p className="parent-crumb">
+          Part of{' '}
+          <button type="button" className="link" onClick={() => onOpenTask(parent)}>
+            {parent.title}
+          </button>
+        </p>
+      )}
+
       <WeekProgress task={task} variant="hero" />
+
+      {parent && overrunsParent(task, parent) && (
+        <p className="overrun-notice">
+          This runs past {parent.title}&rsquo;s own deadline. Either this date moves in,
+          or the project&rsquo;s moves out — right now the project is reporting a
+          deadline it can&rsquo;t meet.
+        </p>
+      )}
 
       {isStalled(task) && (
         <p className="stall-notice">
@@ -82,6 +112,16 @@ export function TaskDetail({
           ))}
         </div>
       </section>
+
+      {/* Only a project holds parts — one level deep, so a part never does. */}
+      {task.parentId === null && (
+        <SubProjects
+          parent={task}
+          tasks={tasks}
+          onOpen={onOpenTask}
+          onAdd={onAddSubProject}
+        />
+      )}
 
       <TaskNotes task={task} onAdd={onAddNote} onRemove={onRemoveNote} />
 
@@ -113,14 +153,24 @@ export function TaskDetail({
 
       <section className="detail-section">
         <h4>Access</h4>
-        {task.shares.length === 0 ? (
-          <p className="muted">Private — only you can see this task.</p>
+        {task.shares.length === 0 && (parent?.shares.length ?? 0) === 0 ? (
+          <p className="muted">Private — only you can see this.</p>
         ) : (
           <ul className="share-list share-list--compact">
             {task.shares.map((share) => (
               <li key={share.id}>
                 <span>{share.invitee}</span>
                 <span className="tag tag--muted">{PERMISSION_LABELS[share.permission]}</span>
+              </li>
+            ))}
+            {/* Access flows down: sharing a project shares what's inside it.
+                Shown here so it's never a surprise who can read a part. */}
+            {parent?.shares.map((share) => (
+              <li key={`inherited-${share.id}`}>
+                <span>{share.invitee}</span>
+                <span className="tag tag--muted">
+                  {PERMISSION_LABELS[share.permission]} · via project
+                </span>
               </li>
             ))}
           </ul>

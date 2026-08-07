@@ -753,6 +753,12 @@ button {
   background: color-mix(in srgb, var(--bad) 12%, transparent);
 }
 
+/* Allowed, but you should know: distinct from --bad, which blocks the save. */
+.form-preview--warn {
+  color: var(--warn);
+  background: color-mix(in srgb, var(--warn) 12%, transparent);
+}
+
 .form-error {
   font-size: 13px;
   color: var(--bad);
@@ -862,6 +868,105 @@ button {
 
 .stall-notice strong {
   color: var(--warn);
+}
+
+/* --- sub-projects --------------------------------------------------------- */
+
+.tag--sub {
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+  color: var(--text-muted);
+}
+
+.tag--overrun {
+  border-color: color-mix(in srgb, var(--bad) 45%, transparent);
+  color: var(--bad);
+}
+
+.parent-crumb {
+  font-size: 13px;
+  color: var(--text-faint);
+  margin-top: -6px;
+}
+
+.overrun-notice {
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--bad);
+  background: rgba(244, 104, 95, 0.08);
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.sub-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sub-head__count {
+  font-size: 12px;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
+.sub-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sub-row {
+  --health-tone: var(--good);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  width: 100%;
+  padding: 11px 13px;
+  text-align: left;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--health-tone);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.15s;
+}
+
+.sub-row[data-health='due_soon'] {
+  --health-tone: var(--warn);
+}
+
+.sub-row[data-health='overdue'] {
+  --health-tone: var(--bad);
+}
+
+.sub-row[data-health='not_started'],
+.sub-row[data-health='done'] {
+  --health-tone: var(--idle);
+}
+
+.sub-row:hover {
+  border-color: var(--border-strong);
+  border-left-color: var(--health-tone);
+}
+
+.sub-row__title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.sub-row__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.sub-row__when {
+  font-size: 13px;
+  color: var(--text-muted);
 }
 
 /* --- notes ---------------------------------------------------------------- */

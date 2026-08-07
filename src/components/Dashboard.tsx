@@ -2,10 +2,12 @@ import { useMemo, useState } from 'react'
 import { format } from 'date-fns'
 import type { Task } from '../types'
 import { getHealth, sortByUrgency } from '../lib/progress'
+import { topLevel } from '../lib/tree'
 import { TaskCard } from './TaskCard'
 import { WeekProgress } from './WeekProgress'
 
 interface Props {
+  /** Every task, flat. The dashboard shows projects; sub-projects live inside them. */
   tasks: Task[]
   onOpen: (task: Task) => void
   onNew: () => void
@@ -22,7 +24,9 @@ const FILTERS: { id: Filter; label: string }[] = [
 export function Dashboard({ tasks, onOpen, onNew }: Props) {
   const [filter, setFilter] = useState<Filter>('active')
 
-  const ordered = useMemo(() => sortByUrgency(tasks), [tasks])
+  // Projects only. A sub-project appearing beside its own parent would double
+  // count it in the summary and bury the project it belongs to.
+  const ordered = useMemo(() => sortByUrgency(topLevel(tasks)), [tasks])
 
   // The single most pressing task gets the full-width timeline treatment —
   // this is the "where am I right now" view the client opens the app for.
@@ -109,7 +113,7 @@ export function Dashboard({ tasks, onOpen, onNew }: Props) {
         ) : (
           <div className="task-grid">
             {visible.map((task) => (
-              <TaskCard key={task.id} task={task} onOpen={onOpen} />
+              <TaskCard key={task.id} task={task} tasks={tasks} onOpen={onOpen} />
             ))}
           </div>
         )}

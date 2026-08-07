@@ -3,32 +3,47 @@ import { addWeeks, format, isBefore, parseISO } from 'date-fns'
 import { STATUS_LABELS, type Task, type TaskDraft, type TaskStatus } from '../types'
 import { Modal } from './Modal'
 import { getWeekProgress } from '../lib/progress'
+import { defaultChildDates } from '../lib/tree'
 
 interface Props {
   /** Omit to create a new task. */
   task?: Task
+  /**
+   * The project this sits inside. Set when creating a part — so it opens dated
+   * to fit — and when editing one, so overrunning the project is flagged while
+   * the dates are being chosen rather than discovered afterwards.
+   */
+  parent?: Task
   onSubmit: (draft: TaskDraft) => void
   onClose: () => void
 }
 
 const STATUSES: TaskStatus[] = ['not_started', 'in_progress', 'done']
 
-function defaultDraft(): TaskDraft {
+function defaultDraft(parent?: Task): TaskDraft {
   const today = new Date()
+  const dates = parent
+    ? defaultChildDates(parent, today)
+    : {
+        startDate: format(today, 'yyyy-MM-dd'),
+        endDate: format(addWeeks(today, 4), 'yyyy-MM-dd'),
+      }
+
   return {
+    parentId: parent?.id ?? null,
     title: '',
     description: '',
     endState: '',
-    startDate: format(today, 'yyyy-MM-dd'),
-    endDate: format(addWeeks(today, 4), 'yyyy-MM-dd'),
+    ...dates,
     status: 'not_started',
   }
 }
 
-export function TaskForm({ task, onSubmit, onClose }: Props) {
+export function TaskForm({ task, parent, onSubmit, onClose }: Props) {
   const [draft, setDraft] = useState<TaskDraft>(() =>
     task
       ? {
+          parentId: task.parentId,
           title: task.title,
           description: task.description,
           endState: task.endState,
@@ -36,7 +51,7 @@ export function TaskForm({ task, onSubmit, onClose }: Props) {
           endDate: task.endDate,
           status: task.status,
         }
-      : defaultDraft(),
+      : defaultDraft(parent),
   )
   const [error, setError] = useState<string | null>(null)
 
@@ -70,7 +85,7 @@ export function TaskForm({ task, onSubmit, onClose }: Props) {
 
   return (
     <Modal
-      title={task ? 'Edit task' : 'New task'}
+      title={task ? 'Edit task' : parent ? `New part of “${parent.title}”` : 'New task'}
       onClose={onClose}
       footer={
         <div className="modal__footer-actions modal__footer-actions--full">
@@ -78,7 +93,7 @@ export function TaskForm({ task, onSubmit, onClose }: Props) {
             Cancel
           </button>
           <button type="submit" form="task-form" className="button">
-            {task ? 'Save changes' : 'Create task'}
+            {task ? 'Save changes' : parent ? 'Add part' : 'Create task'}
           </button>
         </div>
       }
@@ -146,6 +161,15 @@ export function TaskForm({ task, onSubmit, onClose }: Props) {
               The end date falls before the start date — no timeline to draw.
             </p>
           )
+        )}
+
+        {/* Told at the point of choosing, not discovered on the dashboard later. */}
+        {parent && datesValid && parseISO(draft.endDate) > parseISO(parent.endDate) && (
+          <p className="form-preview form-preview--warn">
+            This runs past {parent.title}, which ends{' '}
+            {format(parseISO(parent.endDate), 'd MMM')}. Allowed — but the project
+            will report a deadline it can&rsquo;t meet.
+          </p>
         )}
 
         <fieldset className="field">

@@ -138,6 +138,76 @@ describe('task dialog flow', () => {
   })
 })
 
+describe('sub-projects', () => {
+  /** The seeded project that is broken into parts. */
+  const PROJECT = 'Brand refresh rollout'
+
+  async function openProject(user: ReturnType<typeof userEvent.setup>) {
+    render(<App />)
+    const taskList = await screen.findByRole('region', { name: 'Tasks' })
+    await user.click(await within(taskList).findByRole('heading', { name: PROJECT }))
+    return await screen.findByRole('dialog')
+  }
+
+  it('lists a project but not the parts inside it', async () => {
+    render(<App />)
+    const taskList = await screen.findByRole('region', { name: 'Tasks' })
+
+    expect(await within(taskList).findByRole('heading', { name: PROJECT })).toBeDefined()
+    // A part appearing beside its own project would double count it.
+    expect(
+      within(taskList).queryByRole('heading', { name: 'Deck and document templates' }),
+    ).toBeNull()
+  })
+
+  it('shows the parts inside the project, and opens one', async () => {
+    const user = userEvent.setup()
+    const dialog = await openProject(user)
+
+    await user.click(within(dialog).getByRole('button', { name: /Deck and document templates/ }))
+
+    // The part gets the same pop-up, and names the project it belongs to.
+    expect(await screen.findByText(/Part of/)).toBeDefined()
+    expect(screen.getByRole('button', { name: PROJECT })).toBeDefined()
+  })
+
+  it('warns when a part is dated past the project holding it', async () => {
+    const user = userEvent.setup()
+    const dialog = await openProject(user)
+
+    expect(
+      within(dialog).getByText(/dated past this project’s own deadline/),
+    ).toBeDefined()
+  })
+
+  it('adds a part, dated to fit inside the project by default', async () => {
+    const user = userEvent.setup()
+    const dialog = await openProject(user)
+
+    await user.click(within(dialog).getByRole('button', { name: '+ Add a part' }))
+
+    const form = await screen.findByRole('dialog', { name: /New part of/ })
+    await user.type(within(form).getByRole('textbox', { name: 'Task name' }), 'Print collateral')
+    await user.click(within(form).getByRole('button', { name: 'Add part' }))
+
+    // Lands on the new part's own pop-up, showing its project.
+    expect(await screen.findByRole('heading', { name: 'Print collateral' })).toBeDefined()
+    expect(screen.getByText(/Part of/)).toBeDefined()
+  })
+
+  it('a part cannot itself hold parts', async () => {
+    const user = userEvent.setup()
+    const dialog = await openProject(user)
+
+    await user.click(within(dialog).getByRole('button', { name: /Deck and document templates/ }))
+    await waitFor(() => {
+      expect(screen.getByText(/Part of/)).toBeDefined()
+    })
+
+    expect(screen.queryByRole('button', { name: '+ Add a part' })).toBeNull()
+  })
+})
+
 describe('task notes', () => {
   it('shows the notes already logged against a task', async () => {
     const user = userEvent.setup()

@@ -6,17 +6,21 @@ import {
   isStalled,
   plural,
 } from '../lib/progress'
+import { rollUp } from '../lib/tree'
 import { WeekProgress } from './WeekProgress'
 
 interface Props {
   task: Task
+  /** Every task, so a project can count what's inside it. */
+  tasks: Task[]
   onOpen: (task: Task) => void
 }
 
-export function TaskCard({ task, onOpen }: Props) {
+export function TaskCard({ task, tasks, onOpen }: Props) {
   const health = getHealth(task)
   const stalled = isStalled(task)
   const quietDays = daysSinceMovement(task)
+  const sub = rollUp(tasks, task)
 
   return (
     <article className="task-card" data-health={health}>
@@ -36,6 +40,18 @@ export function TaskCard({ task, onOpen }: Props) {
           <span className="tag" data-status={task.status}>
             {STATUS_LABELS[task.status]}
           </span>
+          {sub && (
+            <span className="tag tag--sub">
+              {sub.done} of {sub.total} {sub.total === 1 ? 'part' : 'parts'} done
+            </span>
+          )}
+          {/* A part dated past the project it belongs to is the clearest early
+              warning the dashboard has — it outranks the deadline colour. */}
+          {sub && sub.overrunning > 0 && (
+            <span className="tag tag--overrun">
+              {sub.overrunning} {plural(sub.overrunning, 'part')} past this deadline
+            </span>
+          )}
           {stalled && (
             <span className="tag tag--stalled">
               No movement in {quietDays} {plural(quietDays, 'day')}

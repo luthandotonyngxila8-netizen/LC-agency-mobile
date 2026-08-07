@@ -6,14 +6,16 @@ mobile-first.
 
 ## Status
 
-**Week one is complete.** Notes, activity events, stall detection, the PWA, the
-auth shell and the Supabase skeleton are all in. 80 tests passing, lint and
-build clean.
+**Week one is complete, and the first of week two is in.** Notes, activity
+events, stall detection, the PWA, the auth shell, the Supabase skeleton, and now
+sub-projects. 111 tests passing, lint and build clean.
 
-Nothing is connected to a live backend yet — that is week two, and it cannot
-start until the accounts exist. The schema also assumes one owner with per-task
-sharing; if the answer to the user-model question turns out to be several
-administrators, the migration is a rewrite rather than an addition.
+Nothing is connected to a live backend yet — that is the rest of week two, and
+it cannot start until the accounts exist.
+
+**The user model is settled** (7 Aug): one owner, everyone else a guest granted
+view / comment / edit per item, on projects and on the parts inside them. That
+is what the migration already assumed, so nothing is rewritten.
 
 The demo and the build are different things and the distinction matters. The
 demo exists to show the client the timeline concept; week one is the first paid
@@ -62,13 +64,39 @@ Ordered by dependency.
       Written, tested where testable, connected to nothing. Built single-user —
       the migration marks where several administrators would change it.
 
+## Week two — started
+
+- [x] **Sub-projects.** A project holds parts; each part has its own timeline,
+      notes and sharing. Exactly one level deep, enforced in the store and by a
+      database trigger rather than left to convention.
+
+      A parent keeps its **own** dates — they are not derived from its parts.
+      A project has a deadline before anyone has broken it down, and when a
+      part is dated past the project holding it, that disagreement is the most
+      useful thing on the screen: it is the client's "it says green but it is
+      already in trouble", made visible. Derived dates would absorb the overrun
+      and report health right up to the deadline.
+
+      Access flows downward, matching what the client confirmed: sharing a
+      project shares the parts inside it, a part can still be shared on its own,
+      and a grant made directly on a part beats the inherited one.
+
+- [ ] Live backend — the Supabase swap. Blocked on the accounts existing.
+- [ ] Email on completion, scheduled digests, stall alerts.
+- [ ] Push notifications.
+- [ ] Risk flag the user sets by hand, overriding the calendar.
+
 ## Blocked pending client input
 
-- **User model.** One user with an occasional helper, or several administrators?
-  This changes the schema and every row-level security policy. Build single-user
-  until answered; the Supabase migrations are where it would diverge.
 - **Report format.** A sample of the progress report the client currently
   compiles by hand. Blocks the consolidated reporting work in week three.
+  He has said it varies project to project and there is no fixed template —
+  which is itself the answer: the reporting feature should assemble what the
+  system knows and let him adjust it, not fill in a fixed form.
+- **Hosting.** Which provider he uses for his existing website, and whether it
+  is file-upload hosting or a site builder. The app is static files and will run
+  on most hosting; the database cannot. Recommendation is his domain, not his
+  hosting — see the README.
 
 ## Notes
 

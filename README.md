@@ -56,6 +56,27 @@ timeline card; every task in the list carries a compact version of the same comp
 date, and a three-state status (not started / in progress / done). Creating or editing a
 task previews the resulting timeline length before you save.
 
+A project can be broken into **parts**, one level deep. Each part carries its own
+timeline, notes and sharing, and the project shows how many are done. A part dated past
+the project holding it is flagged — on the project's card, inside the project, inside the
+part, and while the dates are being chosen. That case is the point: the project's own
+timeline would otherwise report health right up to a deadline it can't meet.
+
+## Where it will be hosted
+
+The build output is static files, so the app itself runs almost anywhere — including
+ordinary cPanel-style web hosting. Two things it does need:
+
+- **HTTPS.** Without it the service worker won't register, so it can't be installed to a
+  phone and can't receive push notifications.
+- **Somewhere for the database.** Postgres, auth and the row-level rules are a hosted
+  service; they can't run on shared hosting. Self-hosting them needs a server with Docker,
+  which is the maintenance burden the client explicitly wanted to avoid.
+
+The recommendation is therefore **his domain, not his hosting**: point a subdomain at a
+static host (free at this scale, HTTPS included, deploys from the repo) so the dashboard's
+uptime isn't tied to his website's and nobody has to upload files by hand.
+
 **3. Sharing and permissions (mocked).** Per-task sharing with three Google-Docs-style
 tiers — view, comment, edit. Invite by name/email, change someone's level, revoke access,
 copy a per-task share link. The dashboard stays private by default; sharing is always

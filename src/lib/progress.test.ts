@@ -19,6 +19,7 @@ const task = (
   id = 'task',
 ): Task => ({
   id,
+  parentId: null,
   title: 'Task',
   description: '',
   endState: '',

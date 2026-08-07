@@ -46,6 +46,7 @@ class ThrowingStorage implements Storage {
 }
 
 const draft: TaskDraft = {
+  parentId: null,
   title: 'Draft a proposal',
   description: 'Scope and price the work.',
   endState: 'Proposal sent.',
@@ -167,6 +168,62 @@ describe('LocalTaskStore with a working localStorage', () => {
     expect(shared.shares[0].invitee).toBe('assistant@example.com')
   })
 
+  it('creates a part inside a project', async () => {
+    const store = new LocalTaskStore()
+    const project = await store.create(draft)
+
+    const part = await store.create({ ...draft, parentId: project.id, title: 'Part one' })
+
+    expect(part.parentId).toBe(project.id)
+  })
+
+  it('refuses to nest a part inside a part', async () => {
+    // One level, enforced. Deeper nesting would let part of the tree fall off
+    // the dashboard entirely, since only projects are listed.
+    const store = new LocalTaskStore()
+    const project = await store.create(draft)
+    const part = await store.create({ ...draft, parentId: project.id })
+
+    await expect(store.create({ ...draft, parentId: part.id })).rejects.toThrow(
+      'A sub-project cannot contain further sub-projects',
+    )
+  })
+
+  it('refuses to attach a part to a project that does not exist', async () => {
+    const store = new LocalTaskStore()
+    await expect(store.create({ ...draft, parentId: 'missing-id' })).rejects.toThrow(
+      'No task with id missing-id',
+    )
+  })
+
+  it('deleting a project deletes its parts too', async () => {
+    // Otherwise they survive pointing at a parent that is gone — invisible on
+    // the dashboard, which only lists projects, but still taking up storage.
+    const store = new LocalTaskStore()
+    const project = await store.create(draft)
+    await store.create({ ...draft, parentId: project.id, title: 'Part one' })
+    await store.create({ ...draft, parentId: project.id, title: 'Part two' })
+
+    await store.remove(project.id)
+
+    const remaining = await store.list()
+    expect(remaining.filter((task) => task.parentId === project.id)).toEqual([])
+    expect(remaining.find((task) => task.id === project.id)).toBeUndefined()
+  })
+
+  it('deleting a part leaves its project and siblings alone', async () => {
+    const store = new LocalTaskStore()
+    const project = await store.create(draft)
+    const first = await store.create({ ...draft, parentId: project.id, title: 'Part one' })
+    await store.create({ ...draft, parentId: project.id, title: 'Part two' })
+
+    await store.remove(first.id)
+
+    const remaining = await store.list()
+    expect(remaining.find((task) => task.id === project.id)).toBeDefined()
+    expect(remaining.filter((task) => task.parentId === project.id)).toHaveLength(1)
+  })
+
   it('returns a fresh array reference on every list() call', async () => {
     const store = new LocalTaskStore()
     const a = await store.list()
@@ -232,6 +289,8 @@ describe('LocalTaskStore with a working localStorage', () => {
 
     expect(tasks[0].notes).toEqual([])
     expect(tasks[0].title).toBe('Saved by an older build')
+    // Everything saved before sub-projects existed is a top-level project.
+    expect(tasks[0].parentId).toBeNull()
   })
 
   it('opens a new task with a created event', async () => {
