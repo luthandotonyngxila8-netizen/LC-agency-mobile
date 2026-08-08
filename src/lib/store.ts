@@ -1,5 +1,5 @@
 import type { Permission, Task, TaskDraft, TaskEvent } from '../types'
-import { seedTasks } from './seed'
+import { SEED_VERSION, seedTasks } from './seed'
 
 /**
  * The only contract the UI knows about.
@@ -21,6 +21,47 @@ export interface TaskStore {
 }
 
 const STORAGE_KEY = 'finini-dashboard/tasks/v1'
+const SEED_VERSION_KEY = 'finini-dashboard/seed-version'
+
+/** Absent means data saved before the stamp existed — treat it as version 1. */
+function readSeedVersion(): number {
+  try {
+    return Number(localStorage.getItem(SEED_VERSION_KEY) ?? 1)
+  } catch {
+    return SEED_VERSION
+  }
+}
+
+/**
+ * Whether the saved tasks are still just the samples, untouched.
+ *
+ * Only then is it safe to replace them with a newer set. A task the user
+ * created has a generated id, and a note is the clearest sign someone actually
+ * tried the thing rather than clicking around — either means their data is
+ * theirs, and it gets an offer to update rather than a silent overwrite.
+ */
+function isUntouchedSeed(tasks: Task[]): boolean {
+  return tasks.every(
+    (task) =>
+      task.id.startsWith('seed-') &&
+      task.notes.every((note) => note.id.startsWith('seed-')),
+  )
+}
+
+/**
+ * True when the browser is holding samples from an older build that can't be
+ * replaced automatically because the user has added something of their own.
+ * The UI offers them the update rather than taking it.
+ */
+export function demoDataIsStale(): boolean {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    if (!raw) return false
+    return readSeedVersion() < SEED_VERSION && !isUntouchedSeed(normalize(JSON.parse(raw)))
+  } catch {
+    return false
+  }
+}
 
 function newId(): string {
   return typeof crypto !== 'undefined' && 'randomUUID' in crypto
@@ -58,7 +99,18 @@ export class LocalTaskStore implements TaskStore {
     if (this.fallback) return [...this.fallback]
     try {
       const raw = localStorage.getItem(STORAGE_KEY)
-      if (raw) return normalize(JSON.parse(raw) as Task[])
+      if (raw) {
+        const stored = normalize(JSON.parse(raw) as Task[])
+        // Samples from an older build, never touched: replace them. Otherwise
+        // the same link keeps showing whatever was current the first time it
+        // was opened, and nothing on screen says so.
+        if (readSeedVersion() < SEED_VERSION && isUntouchedSeed(stored)) {
+          const refreshed = seedTasks()
+          this.write(refreshed)
+          return refreshed
+        }
+        return stored
+      }
     } catch {
       // Corrupt or unreadable storage falls through to the seed below.
     }
@@ -70,6 +122,7 @@ export class LocalTaskStore implements TaskStore {
   private write(tasks: Task[]): void {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks))
+      localStorage.setItem(SEED_VERSION_KEY, String(SEED_VERSION))
       this.fallback = null
     } catch {
       this.fallback = tasks
@@ -246,6 +299,9 @@ export class LocalTaskStore implements TaskStore {
 export function resetDemoData(): void {
   try {
     localStorage.removeItem(STORAGE_KEY)
+    // Clear the stamp too, so the next read seeds cleanly rather than
+    // comparing against a version whose data no longer exists.
+    localStorage.removeItem(SEED_VERSION_KEY)
   } catch {
     // Nothing stored to clear; the reload handles it.
   }

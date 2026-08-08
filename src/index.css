@@ -114,6 +114,26 @@ button {
   padding: 20px 16px 40px;
 }
 
+/* Shown when the browser is holding samples from an older build that can't be
+   replaced automatically. Deliberately loud — being quiet about it is the bug
+   this exists to prevent. */
+.update-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px 12px;
+  padding: 10px 16px;
+  font-size: 14px;
+  color: var(--accent-ink);
+  background: var(--accent);
+}
+
+.update-bar .link {
+  color: var(--accent-ink);
+  font-weight: 650;
+}
+
 .app__footer {
   display: flex;
   flex-wrap: wrap;

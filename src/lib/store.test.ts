@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { LocalTaskStore, resetDemoData } from './store'
+import { demoDataIsStale, LocalTaskStore, resetDemoData } from './store'
 import type { TaskDraft } from '../types'
 
 /** Minimal `Storage` implementation so these tests don't need jsdom. */
@@ -222,6 +222,45 @@ describe('LocalTaskStore with a working localStorage', () => {
     const remaining = await store.list()
     expect(remaining.find((task) => task.id === project.id)).toBeDefined()
     expect(remaining.filter((task) => task.parentId === project.id)).toHaveLength(1)
+  })
+
+  it('replaces untouched samples from an older build', async () => {
+    // The failure this prevents: a client opens the link, the samples are
+    // saved, a week of work ships, they open the same link and see the old
+    // build's data with nothing on screen to say so.
+    const stale = (await new LocalTaskStore().list()).filter((task) => !task.parentId)
+    localStorage.setItem('finini-dashboard/tasks/v1', JSON.stringify(stale))
+    localStorage.setItem('finini-dashboard/seed-version', '1')
+
+    const tasks = await new LocalTaskStore().list()
+
+    expect(tasks.some((task) => task.parentId !== null)).toBe(true)
+    expect(localStorage.getItem('finini-dashboard/seed-version')).toBe('2')
+  })
+
+  it('keeps data the user added rather than replacing it', async () => {
+    const store = new LocalTaskStore()
+    const mine = await store.create({ ...draft, title: 'Mine' })
+    localStorage.setItem('finini-dashboard/seed-version', '1')
+
+    const tasks = await new LocalTaskStore().list()
+
+    expect(tasks.find((task) => task.id === mine.id)).toBeDefined()
+    expect(demoDataIsStale()).toBe(true)
+  })
+
+  it('counts a note the user wrote as data worth keeping', async () => {
+    const store = new LocalTaskStore()
+    const seeded = (await store.list())[0]
+    await store.addNote(seeded.id, 'I typed this while trying it out.')
+    localStorage.setItem('finini-dashboard/seed-version', '1')
+
+    expect(demoDataIsStale()).toBe(true)
+  })
+
+  it('is not stale when the samples are current', async () => {
+    await new LocalTaskStore().list()
+    expect(demoDataIsStale()).toBe(false)
   })
 
   it('returns a fresh array reference on every list() call', async () => {

@@ -2,6 +2,18 @@ import { addDays, format } from 'date-fns'
 import type { Task } from '../types'
 
 /**
+ * Bump this whenever the sample tasks below change shape or content.
+ *
+ * The demo writes its samples into the browser on first visit and reads those
+ * back forever after. Without a stamp to compare against, someone who opened an
+ * earlier build keeps seeing that build's data at the same link — current code
+ * rendering stale content, with no way to tell. That is not a hypothetical: it
+ * is how sub-projects failed to appear for a client who had opened the demo the
+ * week before.
+ */
+export const SEED_VERSION = 2
+
+/**
  * Demo data, generated relative to today so the timeline always shows a
  * realistic spread: something mid-flight, something nearly due, something
  * already delivered and something that hasn't kicked off yet.

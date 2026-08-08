@@ -2,7 +2,7 @@ import { useState } from 'react'
 import type { Permission, Task, TaskDraft, TaskStatus } from './types'
 import { useTasks } from './hooks/useTasks'
 import { useAuth } from './hooks/useAuth'
-import { resetDemoData } from './lib/store'
+import { demoDataIsStale, resetDemoData } from './lib/store'
 import { plural } from './lib/progress'
 import { Confirm, type ConfirmRequest } from './components/Confirm'
 import { Dashboard } from './components/Dashboard'
@@ -110,6 +110,10 @@ export default function App() {
 
   const openTask = (task: Task) => setDialog({ kind: 'detail', taskId: task.id })
 
+  // Read once on mount: this only changes when the demo is reset, which
+  // reloads the page anyway.
+  const [staleDemo] = useState(demoDataIsStale)
+
   // Nothing renders until we know who's signed in, otherwise the sign-in screen
   // flashes up for a moment on every load before the session resolves.
   if (authLoading) {
@@ -128,6 +132,20 @@ export default function App() {
 
   return (
     <div className="app">
+      {/*
+        Only shown when the samples are out of date *and* the person has added
+        something worth keeping, so it can't be replaced for them. Silence here
+        is what let a client review a week-old version of the app.
+      */}
+      {staleDemo && (
+        <div className="update-bar" role="status">
+          <span>This demo has been updated since you last opened it.</span>
+          <button type="button" className="link" onClick={handleReset}>
+            Load the latest
+          </button>
+        </div>
+      )}
+
       <main className="app__main">
         {loading ? (
           <p className="empty">Loading…</p>
